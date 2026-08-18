@@ -1,0 +1,449 @@
+<main id="f1-standings-high-fidelity" aria-label="F1 iOS App 车手与车队积分榜高保真效果图">
+  <style>
+    #f1-standings-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-standings-high-fidelity * { box-sizing: border-box; }
+    #f1-standings-high-fidelity .f1std-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #29292e;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-standings-high-fidelity .f1std-screen {
+      background:
+        radial-gradient(circle at 95% 1%, rgba(255,128,0,.14), transparent 25%),
+        linear-gradient(180deg, #0b0a09 0%, #050506 100%);
+    }
+    #f1-standings-high-fidelity .f1std-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-standings-high-fidelity .f1std-status-icons { display: flex; align-items: center; gap: 7px; }
+    #f1-standings-high-fidelity .f1std-signal { display: flex; align-items: end; gap: 2px; height: 12px; }
+    #f1-standings-high-fidelity .f1std-signal i { width: 3px; border-radius: 2px; background: #fff; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(1) { height: 4px; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(2) { height: 7px; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(3) { height: 10px; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(4) { height: 12px; }
+    #f1-standings-high-fidelity .f1std-wifi {
+      width: 15px;
+      height: 11px;
+      position: relative;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+    }
+    #f1-standings-high-fidelity .f1std-wifi::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-standings-high-fidelity .f1std-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      color: #09090a;
+      background: #fff;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-standings-high-fidelity .f1std-header { padding: 11px 20px 18px; }
+    #f1-standings-high-fidelity .f1std-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #f1-standings-high-fidelity .f1std-title {
+      color: #fff;
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 820;
+      letter-spacing: -.03em;
+    }
+    #f1-standings-high-fidelity .f1std-season {
+      min-height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      background: #17171a;
+      border: 1px solid #2d2d32;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-standings-high-fidelity .f1std-season svg { width: 15px; height: 15px; }
+    #f1-standings-high-fidelity .f1std-subtitle {
+      margin-top: 4px;
+      color: #898993;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-standings-high-fidelity .f1std-switch {
+      margin-top: 17px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background: #151518;
+      border: 1px solid #29292e;
+      border-radius: 17px;
+    }
+    #f1-standings-high-fidelity .f1std-switch-button {
+      min-height: 40px;
+      color: #85858f;
+      background: transparent;
+      border: 0;
+      border-radius: 13px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 720;
+    }
+    #f1-standings-high-fidelity .f1std-switch-button[aria-pressed="true"] { color: #fff; background: #3a3a3f; }
+    #f1-standings-high-fidelity .f1std-content { padding: 0 16px 28px; }
+    #f1-standings-high-fidelity .f1std-panel[hidden] { display: none; }
+    #f1-standings-high-fidelity .f1std-panel { display: grid; gap: 20px; }
+    #f1-standings-high-fidelity .f1std-leader {
+      position: relative;
+      min-height: 255px;
+      overflow: hidden;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(255,128,0,.48), transparent 42%),
+        linear-gradient(145deg, #351b08 0%, #171015 55%, #0d0d10 100%);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 30px;
+      isolation: isolate;
+    }
+    #f1-standings-high-fidelity .f1std-leader--team {
+      background: radial-gradient(circle at 82% 22%, rgba(255,128,0,.48), transparent 42%), linear-gradient(145deg, #341a08 0%, #131014 60%, #0d0d10 100%);
+    }
+    #f1-standings-high-fidelity .f1std-watermark {
+      position: absolute;
+      right: 10px;
+      top: 22px;
+      z-index: -1;
+      color: rgba(255,255,255,.08);
+      font-size: 118px;
+      line-height: 118px;
+      font-weight: 850;
+      letter-spacing: -.08em;
+    }
+    #f1-standings-high-fidelity .f1std-leader-kicker {
+      color: #ffbd83;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 760;
+      letter-spacing: .04em;
+    }
+    #f1-standings-high-fidelity .f1std-leader-name {
+      max-width: 78%;
+      margin-top: 7px;
+      color: #fff;
+      font-size: 29px;
+      line-height: 35px;
+      font-weight: 830;
+      letter-spacing: -.03em;
+    }
+    #f1-standings-high-fidelity .f1std-leader-team {
+      margin-top: 3px;
+      color: #ff9800;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 730;
+    }
+    #f1-standings-high-fidelity .f1std-leader-metrics {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      gap: 9px;
+    }
+    #f1-standings-high-fidelity .f1std-metric span {
+      display: block;
+      color: #a9a9b1;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-metric strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 23px;
+      line-height: 27px;
+      font-weight: 820;
+    }
+    #f1-standings-high-fidelity .f1std-list-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0 3px;
+    }
+    #f1-standings-high-fidelity .f1std-list-head h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 770;
+    }
+    #f1-standings-high-fidelity .f1std-list-head span {
+      color: #82828b;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-list {
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid #29292e;
+      border-radius: 25px;
+    }
+    #f1-standings-high-fidelity .f1std-row {
+      min-height: 68px;
+      padding: 9px 14px;
+      display: grid;
+      grid-template-columns: 29px 5px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2f;
+    }
+    #f1-standings-high-fidelity .f1std-row:last-child { border-bottom: 0; }
+    #f1-standings-high-fidelity .f1std-position {
+      color: #f5f5f7;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 800;
+    }
+    #f1-standings-high-fidelity .f1std-color { width: 5px; height: 31px; border-radius: 3px; }
+    #f1-standings-high-fidelity .f1std-color--mcl { background: #ff8000; }
+    #f1-standings-high-fidelity .f1std-color--mer { background: #27f4d2; }
+    #f1-standings-high-fidelity .f1std-color--fer { background: #e8002d; }
+    #f1-standings-high-fidelity .f1std-color--rbr { background: #3671c6; }
+    #f1-standings-high-fidelity .f1std-color--ast { background: #229971; }
+    #f1-standings-high-fidelity .f1std-color--wil { background: #64c4ff; }
+    #f1-standings-high-fidelity .f1std-color--alp { background: #ff87bc; }
+    #f1-standings-high-fidelity .f1std-color--has { background: #b6babd; }
+    #f1-standings-high-fidelity .f1std-color--rbt { background: #6692ff; }
+    #f1-standings-high-fidelity .f1std-color--aud { background: #f50537; }
+    #f1-standings-high-fidelity .f1std-color--cad { background: #aeb7c3; }
+    #f1-standings-high-fidelity .f1std-name { min-width: 0; }
+    #f1-standings-high-fidelity .f1std-name strong {
+      display: block;
+      color: #fff;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 720;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-standings-high-fidelity .f1std-name span {
+      display: block;
+      margin-top: 2px;
+      color: #898993;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-standings-high-fidelity .f1std-points {
+      color: #fff;
+      font-size: 19px;
+      line-height: 23px;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+    #f1-standings-high-fidelity .f1std-points small {
+      margin-left: 2px;
+      color: #85858e;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-tabbar-wrap {
+      padding: 12px 16px 20px;
+      background: linear-gradient(180deg, rgba(5,5,6,0), #050506 18%);
+    }
+    #f1-standings-high-fidelity .f1std-tabbar {
+      min-height: 72px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      background: rgba(28,28,31,.96);
+      border: 1px solid #34343a;
+      border-radius: 25px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.34);
+    }
+    #f1-standings-high-fidelity .f1std-tab {
+      min-width: 0;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 3px;
+      color: #777780;
+      border-radius: 19px;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-tab svg { width: 20px; height: 20px; }
+    #f1-standings-high-fidelity .f1std-tab--active { color: #fff; background: #3a3a3f; }
+    #f1-standings-high-fidelity .f1std-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 7px auto 0;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-standings-high-fidelity .f1std-device { border-radius: 38px; }
+      #f1-standings-high-fidelity .f1std-status { padding-left: 21px; padding-right: 21px; }
+      #f1-standings-high-fidelity .f1std-header { padding-left: 16px; padding-right: 16px; }
+      #f1-standings-high-fidelity .f1std-title { font-size: 28px; line-height: 34px; }
+      #f1-standings-high-fidelity .f1std-content { padding-left: 12px; padding-right: 12px; }
+      #f1-standings-high-fidelity .f1std-leader { padding: 17px; border-radius: 26px; }
+      #f1-standings-high-fidelity .f1std-leader-name { font-size: 26px; line-height: 32px; }
+      #f1-standings-high-fidelity .f1std-leader-metrics { left: 17px; right: 17px; bottom: 17px; }
+      #f1-standings-high-fidelity .f1std-metric strong { font-size: 21px; }
+      #f1-standings-high-fidelity .f1std-row { padding-left: 11px; padding-right: 11px; grid-template-columns: 27px 4px minmax(0, 1fr) auto; gap: 7px; }
+      #f1-standings-high-fidelity .f1std-color { width: 4px; }
+      #f1-standings-high-fidelity .f1std-name strong { font-size: 13px; }
+      #f1-standings-high-fidelity .f1std-points { font-size: 17px; }
+    }
+  </style>
+
+  <article class="f1std-device">
+    <div class="f1std-screen">
+      <header>
+        <div class="f1std-status" aria-label="状态栏">
+          <span>09:41</span>
+          <div class="f1std-status-icons" aria-hidden="true"><span class="f1std-signal"><i></i><i></i><i></i><i></i></span><span class="f1std-wifi"></span><span class="f1std-battery">85</span></div>
+        </div>
+        <div class="f1std-header">
+          <div class="f1std-header-row"><div class="f1std-title">积分榜</div><button class="f1std-season" type="button">2026 赛季 <i data-lucide="chevron-down" aria-hidden="true"></i></button></div>
+          <div class="f1std-subtitle">第 11 轮后 · 示例数据</div>
+          <div class="f1std-switch" aria-label="积分榜类型">
+            <button class="f1std-switch-button" type="button" data-standing-tab="drivers" aria-pressed="true">车手</button>
+            <button class="f1std-switch-button" type="button" data-standing-tab="teams" aria-pressed="false">车队</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="f1std-content">
+        <section class="f1std-panel" data-standing-panel="drivers" aria-label="车手积分榜">
+          <div class="f1std-leader">
+            <div class="f1std-watermark">81</div>
+            <div class="f1std-leader-kicker">车手积分领先者</div>
+            <div class="f1std-leader-name">奥斯卡·皮亚斯特里</div>
+            <div class="f1std-leader-team">迈凯伦车队 · PIA</div>
+            <div class="f1std-leader-metrics">
+              <div class="f1std-metric"><span>积分</span><strong>198</strong></div>
+              <div class="f1std-metric"><span>获胜</span><strong>4</strong></div>
+              <div class="f1std-metric"><span>领奖台</span><strong>7</strong></div>
+            </div>
+          </div>
+          <div class="f1std-list-head"><h2>车手排名</h2><span>积分</span></div>
+          <div class="f1std-list">
+            <div class="f1std-row"><span class="f1std-position">01</span><i class="f1std-color f1std-color--mcl"></i><div class="f1std-name"><strong>奥斯卡·皮亚斯特里</strong><span>迈凯伦 · PIA</span></div><span class="f1std-points">198<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">02</span><i class="f1std-color f1std-color--mcl"></i><div class="f1std-name"><strong>兰多·诺里斯</strong><span>迈凯伦 · NOR</span></div><span class="f1std-points">176<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">03</span><i class="f1std-color f1std-color--mer"></i><div class="f1std-name"><strong>乔治·拉塞尔</strong><span>梅赛德斯 · RUS</span></div><span class="f1std-points">141<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">04</span><i class="f1std-color f1std-color--fer"></i><div class="f1std-name"><strong>夏尔·勒克莱尔</strong><span>法拉利 · LEC</span></div><span class="f1std-points">138<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">05</span><i class="f1std-color f1std-color--rbr"></i><div class="f1std-name"><strong>马克斯·维斯塔潘</strong><span>红牛 · VER</span></div><span class="f1std-points">128<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">06</span><i class="f1std-color f1std-color--fer"></i><div class="f1std-name"><strong>刘易斯·汉密尔顿</strong><span>法拉利 · HAM</span></div><span class="f1std-points">109<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">07</span><i class="f1std-color f1std-color--ast"></i><div class="f1std-name"><strong>费尔南多·阿隆索</strong><span>阿斯顿·马丁 · ALO</span></div><span class="f1std-points">92<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">08</span><i class="f1std-color f1std-color--wil"></i><div class="f1std-name"><strong>卡洛斯·塞恩斯</strong><span>威廉姆斯 · SAI</span></div><span class="f1std-points">81<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">09</span><i class="f1std-color f1std-color--mer"></i><div class="f1std-name"><strong>安德烈亚·基米·安东内利</strong><span>梅赛德斯 · ANT</span></div><span class="f1std-points">76<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">10</span><i class="f1std-color f1std-color--wil"></i><div class="f1std-name"><strong>亚历山大·阿尔本</strong><span>威廉姆斯 · ALB</span></div><span class="f1std-points">64<small>分</small></span></div>
+          </div>
+        </section>
+
+        <section class="f1std-panel" data-standing-panel="teams" aria-label="车队积分榜" hidden>
+          <div class="f1std-leader f1std-leader--team">
+            <div class="f1std-watermark">MCL</div>
+            <div class="f1std-leader-kicker">车队积分领先者</div>
+            <div class="f1std-leader-name">迈凯伦车队</div>
+            <div class="f1std-leader-team">MCLAREN</div>
+            <div class="f1std-leader-metrics">
+              <div class="f1std-metric"><span>积分</span><strong>374</strong></div>
+              <div class="f1std-metric"><span>获胜</span><strong>6</strong></div>
+              <div class="f1std-metric"><span>杆位</span><strong>5</strong></div>
+            </div>
+          </div>
+          <div class="f1std-list-head"><h2>车队排名</h2><span>积分</span></div>
+          <div class="f1std-list">
+            <div class="f1std-row"><span class="f1std-position">01</span><i class="f1std-color f1std-color--mcl"></i><div class="f1std-name"><strong>迈凯伦车队</strong><span>MCLAREN</span></div><span class="f1std-points">374<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">02</span><i class="f1std-color f1std-color--mer"></i><div class="f1std-name"><strong>梅赛德斯车队</strong><span>MERCEDES</span></div><span class="f1std-points">234<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">03</span><i class="f1std-color f1std-color--fer"></i><div class="f1std-name"><strong>法拉利车队</strong><span>FERRARI</span></div><span class="f1std-points">218<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">04</span><i class="f1std-color f1std-color--rbr"></i><div class="f1std-name"><strong>红牛车队</strong><span>RED BULL RACING</span></div><span class="f1std-points">196<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">05</span><i class="f1std-color f1std-color--wil"></i><div class="f1std-name"><strong>威廉姆斯车队</strong><span>WILLIAMS</span></div><span class="f1std-points">119<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">06</span><i class="f1std-color f1std-color--ast"></i><div class="f1std-name"><strong>阿斯顿·马丁车队</strong><span>ASTON MARTIN</span></div><span class="f1std-points">88<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">07</span><i class="f1std-color f1std-color--alp"></i><div class="f1std-name"><strong>阿尔派车队</strong><span>ALPINE</span></div><span class="f1std-points">61<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">08</span><i class="f1std-color f1std-color--has"></i><div class="f1std-name"><strong>哈斯车队</strong><span>HAAS</span></div><span class="f1std-points">49<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">09</span><i class="f1std-color f1std-color--rbt"></i><div class="f1std-name"><strong>小红牛车队</strong><span>RACING BULLS</span></div><span class="f1std-points">37<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">10</span><i class="f1std-color f1std-color--aud"></i><div class="f1std-name"><strong>奥迪车队</strong><span>AUDI</span></div><span class="f1std-points">25<small>分</small></span></div>
+            <div class="f1std-row"><span class="f1std-position">11</span><i class="f1std-color f1std-color--cad"></i><div class="f1std-name"><strong>凯迪拉克车队</strong><span>CADILLAC</span></div><span class="f1std-points">12<small>分</small></span></div>
+          </div>
+        </section>
+      </div>
+
+      <nav class="f1std-tabbar-wrap" aria-label="主导航">
+        <div class="f1std-tabbar">
+          <div class="f1std-tab"><i data-lucide="house" aria-hidden="true"></i><span>首页</span></div>
+          <div class="f1std-tab"><i data-lucide="calendar-days" aria-hidden="true"></i><span>赛历</span></div>
+          <div class="f1std-tab f1std-tab--active"><i data-lucide="trophy" aria-hidden="true"></i><span>积分榜</span></div>
+        </div>
+        <div class="f1std-home-indicator" aria-hidden="true"></div>
+      </nav>
+    </div>
+  </article>
+
+  <script>
+    (() => {
+      const root = document.getElementById('f1-standings-high-fidelity');
+      const tabs = Array.from(root.querySelectorAll('[data-standing-tab]'));
+      const panels = Array.from(root.querySelectorAll('[data-standing-panel]'));
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const selected = tab.getAttribute('data-standing-tab');
+          tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
+          panels.forEach((panel) => { panel.hidden = panel.getAttribute('data-standing-panel') !== selected; });
+        });
+      });
+    })();
+  </script>
+</main>

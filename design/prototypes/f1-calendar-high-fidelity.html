@@ -1,0 +1,1711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>F1 Calendar High Fidelity</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="F1 Calendar High Fidelity" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;F1 Calendar High Fidelity&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main id=&quot;f1-calendar-high-fidelity&quot; aria-label=&quot;F1 iOS App 赛历页面高保真效果图&quot;&gt;
+  &lt;style&gt;
+    #f1-calendar-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Display&quot;, &quot;SF Pro Text&quot;, &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-calendar-high-fidelity * { box-sizing: border-box; }
+    #f1-calendar-high-fidelity .f1cal-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #28282d;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-calendar-high-fidelity .f1cal-screen {
+      background:
+        radial-gradient(circle at 96% 1%, rgba(255,86,51,.13), transparent 24%),
+        linear-gradient(180deg, #09090b 0%, #050506 100%);
+    }
+    #f1-calendar-high-fidelity .f1cal-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-status-icons { display: flex; align-items: center; gap: 7px; }
+    #f1-calendar-high-fidelity .f1cal-signal { display: flex; align-items: end; gap: 2px; height: 12px; }
+    #f1-calendar-high-fidelity .f1cal-signal i { width: 3px; border-radius: 2px; background: #fff; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(1) { height: 4px; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(2) { height: 7px; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(3) { height: 10px; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(4) { height: 12px; }
+    #f1-calendar-high-fidelity .f1cal-wifi {
+      width: 15px;
+      height: 11px;
+      position: relative;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+    }
+    #f1-calendar-high-fidelity .f1cal-wifi::after {
+      content: &quot;&quot;;
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-calendar-high-fidelity .f1cal-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      color: #09090a;
+      background: #fff;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-calendar-high-fidelity .f1cal-header { padding: 11px 20px 18px; }
+    #f1-calendar-high-fidelity .f1cal-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #f1-calendar-high-fidelity .f1cal-title {
+      color: #fff;
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+    #f1-calendar-high-fidelity .f1cal-season-button {
+      min-height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      background: #17171a;
+      border: 1px solid #2d2d32;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-season-button svg { width: 15px; height: 15px; }
+    #f1-calendar-high-fidelity .f1cal-subtitle {
+      margin-top: 4px;
+      color: #898993;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-calendar-high-fidelity .f1cal-state-switch {
+      margin-top: 17px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background: #151518;
+      border: 1px solid #28282d;
+      border-radius: 16px;
+    }
+    #f1-calendar-high-fidelity .f1cal-state-item {
+      min-height: 38px;
+      display: grid;
+      place-items: center;
+      color: #85858e;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-state-item--active {
+      color: #fff;
+      background: #36363b;
+    }
+    #f1-calendar-high-fidelity .f1cal-content {
+      padding: 0 16px 28px;
+      display: grid;
+      gap: 25px;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(255,122,68,.38), transparent 39%),
+        linear-gradient(145deg, #36170f 0%, #181014 52%, #0c0c0f 100%);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 30px;
+      isolation: isolate;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-kicker {
+      color: #ff785c;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 750;
+      letter-spacing: .04em;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-round {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: #b8b8c0;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-title {
+      margin-top: 5px;
+      color: #fff;
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-track-name {
+      margin-top: 2px;
+      color: #ff8067;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-date {
+      margin-top: 3px;
+      color: #a0a0aa;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-calendar-high-fidelity .f1cal-track-preview {
+      height: 188px;
+      margin-top: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.025);
+      border-radius: 22px;
+    }
+    #f1-calendar-high-fidelity .f1cal-track-preview svg {
+      width: 100%;
+      height: 180px;
+      overflow: visible;
+    }
+    #f1-calendar-high-fidelity .f1cal-track-outline {
+      fill: none;
+      stroke: #ff6546;
+      stroke-width: 11;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 9px 11px rgba(255,101,70,.18));
+    }
+    #f1-calendar-high-fidelity .f1cal-turn circle { fill: #25252b; stroke: #595962; stroke-width: 1; }
+    #f1-calendar-high-fidelity .f1cal-turn text {
+      fill: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Text&quot;, sans-serif;
+      font-size: 11px;
+      font-weight: 750;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-footer {
+      margin-top: 13px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 15px;
+      align-items: end;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-footer span {
+      display: block;
+      color: #93939c;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-footer strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 750;
+    }
+    #f1-calendar-high-fidelity .f1cal-countdown {
+      color: #ff7a61;
+      font-size: 26px;
+      line-height: 29px;
+      font-weight: 820;
+      letter-spacing: -.035em;
+      white-space: nowrap;
+    }
+    #f1-calendar-high-fidelity .f1cal-countdown small {
+      margin-left: 3px;
+      color: #b7b7bf;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    #f1-calendar-high-fidelity .f1cal-month {
+      display: grid;
+      gap: 12px;
+    }
+    #f1-calendar-high-fidelity .f1cal-month-heading {
+      padding: 0 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    #f1-calendar-high-fidelity .f1cal-month-heading h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 760;
+    }
+    #f1-calendar-high-fidelity .f1cal-month-heading span {
+      color: #808089;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-list {
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid #28282d;
+      border-radius: 25px;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-row {
+      min-height: 132px;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr) 100px;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid #29292e;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-row:last-child { border-bottom: 0; }
+    #f1-calendar-high-fidelity .f1cal-race-date {
+      align-self: stretch;
+      padding-top: 5px;
+      color: #ff7358;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 750;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-date strong {
+      display: block;
+      color: #fff;
+      font-size: 24px;
+      line-height: 27px;
+      font-weight: 800;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-main { min-width: 0; }
+    #f1-calendar-high-fidelity .f1cal-race-round {
+      color: #85858f;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+      letter-spacing: .03em;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-name {
+      margin-top: 3px;
+      color: #fff;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 750;
+    }
+    #f1-calendar-high-fidelity .f1cal-circuit-name {
+      margin-top: 3px;
+      color: #8e8e98;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-type {
+      margin-top: 8px;
+      color: #c3c3ca;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-type b { color: #ff7459; font-weight: 750; }
+    #f1-calendar-high-fidelity .f1cal-thumb {
+      position: relative;
+      width: 100px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      background: #18181c;
+      border-radius: 18px;
+    }
+    #f1-calendar-high-fidelity .f1cal-thumb svg { width: 82px; height: 70px; overflow: visible; }
+    #f1-calendar-high-fidelity .f1cal-thumb path {
+      fill: none;
+      stroke: #f2f2f5;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #f1-calendar-high-fidelity .f1cal-thumb-label {
+      position: absolute;
+      right: 8px;
+      bottom: 6px;
+      color: #777780;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-tabbar-wrap {
+      padding: 12px 16px 20px;
+      background: linear-gradient(180deg, rgba(5,5,6,0), #050506 18%);
+    }
+    #f1-calendar-high-fidelity .f1cal-tabbar {
+      min-height: 72px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      background: rgba(28,28,31,.96);
+      border: 1px solid #34343a;
+      border-radius: 25px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.34);
+    }
+    #f1-calendar-high-fidelity .f1cal-tab {
+      min-width: 0;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 3px;
+      color: #777780;
+      border-radius: 19px;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-tab svg { width: 20px; height: 20px; }
+    #f1-calendar-high-fidelity .f1cal-tab--active { color: #fff; background: #3a3a3f; }
+    #f1-calendar-high-fidelity .f1cal-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 7px auto 0;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-calendar-high-fidelity .f1cal-device { border-radius: 38px; }
+      #f1-calendar-high-fidelity .f1cal-status { padding-left: 21px; padding-right: 21px; }
+      #f1-calendar-high-fidelity .f1cal-header { padding-left: 16px; padding-right: 16px; }
+      #f1-calendar-high-fidelity .f1cal-title { font-size: 28px; line-height: 34px; }
+      #f1-calendar-high-fidelity .f1cal-content { padding-left: 12px; padding-right: 12px; }
+      #f1-calendar-high-fidelity .f1cal-feature { padding: 17px; border-radius: 26px; }
+      #f1-calendar-high-fidelity .f1cal-feature-title { font-size: 26px; line-height: 32px; }
+      #f1-calendar-high-fidelity .f1cal-feature-round { right: 17px; top: 17px; }
+      #f1-calendar-high-fidelity .f1cal-track-preview { height: 171px; }
+      #f1-calendar-high-fidelity .f1cal-track-preview svg { height: 165px; }
+      #f1-calendar-high-fidelity .f1cal-race-row {
+        min-height: 126px;
+        padding: 13px;
+        grid-template-columns: 46px minmax(0, 1fr) 82px;
+        gap: 9px;
+      }
+      #f1-calendar-high-fidelity .f1cal-race-date strong { font-size: 22px; }
+      #f1-calendar-high-fidelity .f1cal-race-name { font-size: 15px; }
+      #f1-calendar-high-fidelity .f1cal-thumb { width: 82px; height: 82px; border-radius: 16px; }
+      #f1-calendar-high-fidelity .f1cal-thumb svg { width: 67px; height: 60px; }
+    }
+  &lt;/style&gt;
+
+  &lt;article class=&quot;f1cal-device&quot;&gt;
+    &lt;div class=&quot;f1cal-screen&quot;&gt;
+      &lt;header&gt;
+        &lt;div class=&quot;f1cal-status&quot; aria-label=&quot;状态栏&quot;&gt;
+          &lt;span&gt;09:41&lt;/span&gt;
+          &lt;div class=&quot;f1cal-status-icons&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;span class=&quot;f1cal-signal&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span class=&quot;f1cal-wifi&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;f1cal-battery&quot;&gt;85&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;f1cal-header&quot;&gt;
+          &lt;div class=&quot;f1cal-header-row&quot;&gt;
+            &lt;div class=&quot;f1cal-title&quot;&gt;赛历&lt;/div&gt;
+            &lt;button class=&quot;f1cal-season-button&quot; type=&quot;button&quot;&gt;2026 赛季 &lt;i data-lucide=&quot;chevron-down&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;f1cal-subtitle&quot;&gt;示例数据 · 所有时间均为本地时间&lt;/div&gt;
+          &lt;div class=&quot;f1cal-state-switch&quot; aria-label=&quot;赛程状态&quot;&gt;
+            &lt;div class=&quot;f1cal-state-item f1cal-state-item--active&quot;&gt;即将进行&lt;/div&gt;
+            &lt;div class=&quot;f1cal-state-item&quot;&gt;已结束&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;f1cal-content&quot;&gt;
+        &lt;section class=&quot;f1cal-feature&quot; aria-labelledby=&quot;f1cal-next-title&quot;&gt;
+          &lt;div class=&quot;f1cal-feature-kicker&quot;&gt;下一个比赛周末&lt;/div&gt;
+          &lt;div class=&quot;f1cal-feature-round&quot;&gt;R16&lt;/div&gt;
+          &lt;div class=&quot;f1cal-feature-title&quot; id=&quot;f1cal-next-title&quot;&gt;意大利大奖赛&lt;/div&gt;
+          &lt;div class=&quot;f1cal-feature-track-name&quot;&gt;蒙扎国家赛车场&lt;/div&gt;
+          &lt;div class=&quot;f1cal-feature-date&quot;&gt;09 月 05–07 日 · 蒙扎&lt;/div&gt;
+
+          &lt;div class=&quot;f1cal-track-preview&quot;&gt;
+            &lt;svg viewBox=&quot;0 0 330 180&quot; role=&quot;img&quot; aria-label=&quot;蒙扎赛道预览，标记 T1 到 T11、发车线与行驶方向&quot;&gt;
+              &lt;path class=&quot;f1cal-track-outline&quot; d=&quot;M43 128 L58 45 Q60 28 80 25 L121 20 Q135 18 147 31 L175 61 Q185 72 198 69 L264 62 Q287 60 292 78 L294 107 Q295 126 275 130 L202 137 Q180 139 164 132 L128 117 Q116 112 107 120 L89 134 Q75 145 61 139 Z&quot; /&gt;
+              &lt;line x1=&quot;190&quot; y1=&quot;129&quot; x2=&quot;192&quot; y2=&quot;143&quot; stroke=&quot;#fff&quot; stroke-width=&quot;4&quot; /&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(218 148)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T1&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(162 148)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T2&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(103 140)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T3&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(65 153)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T4&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(35 116)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T5&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(42 67)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T6&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(77 12)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T7&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(137 11)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T8&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(178 48)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T9&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(233 51)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T10&lt;/text&gt;&lt;/g&gt;
+              &lt;g class=&quot;f1cal-turn&quot; transform=&quot;translate(307 92)&quot;&gt;&lt;circle r=&quot;11&quot;/&gt;&lt;text&gt;T11&lt;/text&gt;&lt;/g&gt;
+              &lt;path d=&quot;M247 131 l12 -6 l-2 7 l7 3 z&quot; fill=&quot;#fff&quot; aria-hidden=&quot;true&quot; /&gt;
+            &lt;/svg&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;f1cal-feature-footer&quot;&gt;
+            &lt;div&gt;&lt;span&gt;下一节&lt;/span&gt;&lt;strong&gt;第一节练习赛 · 周五 19:30&lt;/strong&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1cal-countdown&quot;&gt;03&lt;small&gt;天&lt;/small&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;f1cal-month&quot; aria-labelledby=&quot;f1cal-september&quot;&gt;
+          &lt;div class=&quot;f1cal-month-heading&quot;&gt;&lt;h2 id=&quot;f1cal-september&quot;&gt;九月&lt;/h2&gt;&lt;span&gt;2 场比赛&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1cal-race-list&quot;&gt;
+            &lt;article class=&quot;f1cal-race-row&quot;&gt;
+              &lt;div class=&quot;f1cal-race-date&quot;&gt;&lt;strong&gt;05&lt;/strong&gt;– 07&lt;/div&gt;
+              &lt;div class=&quot;f1cal-race-main&quot;&gt;
+                &lt;div class=&quot;f1cal-race-round&quot;&gt;R16 · ITA&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-name&quot;&gt;意大利大奖赛&lt;/div&gt;
+                &lt;div class=&quot;f1cal-circuit-name&quot;&gt;蒙扎国家赛车场&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-type&quot;&gt;&lt;b&gt;标准周末&lt;/b&gt; · 5 个 Session&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;f1cal-thumb&quot; aria-label=&quot;蒙扎赛道缩略图&quot;&gt;
+                &lt;svg viewBox=&quot;0 0 100 78&quot; role=&quot;img&quot; aria-label=&quot;蒙扎赛道轮廓&quot;&gt;&lt;path d=&quot;M13 58 L23 18 L40 13 L53 21 L65 14 L85 39 L79 61 L55 64 L40 55 L26 65 Z&quot;/&gt;&lt;/svg&gt;
+                &lt;span class=&quot;f1cal-thumb-label&quot;&gt;11 弯&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;f1cal-race-row&quot;&gt;
+              &lt;div class=&quot;f1cal-race-date&quot;&gt;&lt;strong&gt;19&lt;/strong&gt;– 21&lt;/div&gt;
+              &lt;div class=&quot;f1cal-race-main&quot;&gt;
+                &lt;div class=&quot;f1cal-race-round&quot;&gt;R17 · AZE&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-name&quot;&gt;阿塞拜疆大奖赛&lt;/div&gt;
+                &lt;div class=&quot;f1cal-circuit-name&quot;&gt;巴库城市赛道&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-type&quot;&gt;&lt;b&gt;标准周末&lt;/b&gt; · 5 个 Session&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;f1cal-thumb&quot; aria-label=&quot;巴库赛道缩略图&quot;&gt;
+                &lt;svg viewBox=&quot;0 0 100 78&quot; role=&quot;img&quot; aria-label=&quot;巴库赛道轮廓&quot;&gt;&lt;path d=&quot;M10 54 L37 54 L41 21 L55 18 L59 40 L86 40 L86 61 L58 62 L53 52 L26 66 Z&quot;/&gt;&lt;/svg&gt;
+                &lt;span class=&quot;f1cal-thumb-label&quot;&gt;20 弯&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;f1cal-month&quot; aria-labelledby=&quot;f1cal-october&quot;&gt;
+          &lt;div class=&quot;f1cal-month-heading&quot;&gt;&lt;h2 id=&quot;f1cal-october&quot;&gt;十月&lt;/h2&gt;&lt;span&gt;2 场比赛&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1cal-race-list&quot;&gt;
+            &lt;article class=&quot;f1cal-race-row&quot;&gt;
+              &lt;div class=&quot;f1cal-race-date&quot;&gt;&lt;strong&gt;03&lt;/strong&gt;– 05&lt;/div&gt;
+              &lt;div class=&quot;f1cal-race-main&quot;&gt;
+                &lt;div class=&quot;f1cal-race-round&quot;&gt;R18 · SGP&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-name&quot;&gt;新加坡大奖赛&lt;/div&gt;
+                &lt;div class=&quot;f1cal-circuit-name&quot;&gt;滨海湾街道赛道&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-type&quot;&gt;&lt;b&gt;夜赛&lt;/b&gt; · 5 个 Session&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;f1cal-thumb&quot; aria-label=&quot;滨海湾赛道缩略图&quot;&gt;
+                &lt;svg viewBox=&quot;0 0 100 78&quot; role=&quot;img&quot; aria-label=&quot;滨海湾赛道轮廓&quot;&gt;&lt;path d=&quot;M12 49 L26 21 L42 30 L53 18 L69 31 L87 26 L79 50 L87 62 L62 59 L48 68 L35 52 L21 61 Z&quot;/&gt;&lt;/svg&gt;
+                &lt;span class=&quot;f1cal-thumb-label&quot;&gt;19 弯&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;article class=&quot;f1cal-race-row&quot;&gt;
+              &lt;div class=&quot;f1cal-race-date&quot;&gt;&lt;strong&gt;17&lt;/strong&gt;– 19&lt;/div&gt;
+              &lt;div class=&quot;f1cal-race-main&quot;&gt;
+                &lt;div class=&quot;f1cal-race-round&quot;&gt;R19 · USA&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-name&quot;&gt;美国大奖赛&lt;/div&gt;
+                &lt;div class=&quot;f1cal-circuit-name&quot;&gt;美洲赛道&lt;/div&gt;
+                &lt;div class=&quot;f1cal-race-type&quot;&gt;&lt;b&gt;冲刺周末&lt;/b&gt; · 5 个 Session&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;f1cal-thumb&quot; aria-label=&quot;美洲赛道缩略图&quot;&gt;
+                &lt;svg viewBox=&quot;0 0 100 78&quot; role=&quot;img&quot; aria-label=&quot;美洲赛道轮廓&quot;&gt;&lt;path d=&quot;M11 51 L23 22 L36 16 L46 31 L60 20 L82 27 L88 44 L67 56 L53 52 L43 66 L24 62 Z&quot;/&gt;&lt;/svg&gt;
+                &lt;span class=&quot;f1cal-thumb-label&quot;&gt;20 弯&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/article&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+
+      &lt;nav class=&quot;f1cal-tabbar-wrap&quot; aria-label=&quot;主导航&quot;&gt;
+        &lt;div class=&quot;f1cal-tabbar&quot;&gt;
+          &lt;div class=&quot;f1cal-tab&quot;&gt;&lt;i data-lucide=&quot;house&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;首页&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1cal-tab f1cal-tab--active&quot;&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;赛历&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1cal-tab&quot;&gt;&lt;i data-lucide=&quot;trophy&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;积分榜&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;f1cal-home-indicator&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

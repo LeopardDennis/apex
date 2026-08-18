@@ -1,0 +1,326 @@
+<div id="racecomp-final-wireframes">
+  <style>
+    #racecomp-final-wireframes {
+      width: 100%;
+      padding: 8px 0 18px;
+      color: #f7f7f8;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+      background: transparent;
+      box-sizing: border-box;
+    }
+    #racecomp-final-wireframes * { box-sizing: border-box; }
+    #racecomp-final-wireframes .pf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      gap: 22px;
+      align-items: start;
+    }
+    #racecomp-final-wireframes .pf-frame { min-width: 0; }
+    #racecomp-final-wireframes .pf-caption {
+      margin: 0 0 8px 8px;
+      color: #74747d;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    #racecomp-final-wireframes .pf-phone {
+      position: relative;
+      width: min(100%, 340px);
+      height: 720px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid #34343b;
+      border-radius: 35px;
+      background: #08080a;
+      box-shadow: 0 18px 44px rgba(0,0,0,.28);
+    }
+    #racecomp-final-wireframes .pf-status {
+      position: relative;
+      z-index: 3;
+      height: 38px;
+      padding: 13px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #f5f5f6;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    #racecomp-final-wireframes .pf-scroll {
+      height: 672px;
+      overflow: hidden;
+      padding: 8px 15px 30px;
+    }
+    #racecomp-final-wireframes .pf-back {
+      position: relative;
+      z-index: 3;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(0,0,0,.28);
+      font-size: 14px;
+    }
+    #racecomp-final-wireframes .pf-driver-hero,
+    #racecomp-final-wireframes .pf-team-hero {
+      position: relative;
+      height: 278px;
+      margin: -46px -15px 0;
+      overflow: hidden;
+      padding: 61px 18px 17px;
+      background: radial-gradient(circle at 86% 25%, rgba(54,255,240,.55), transparent 34%), linear-gradient(150deg, #003a38 0%, #071716 62%, #08080a 100%);
+    }
+    #racecomp-final-wireframes .pf-team-hero {
+      background: radial-gradient(circle at 84% 25%, rgba(255,128,0,.53), transparent 36%), linear-gradient(150deg, #402000 0%, #171006 62%, #08080a 100%);
+    }
+    #racecomp-final-wireframes .pf-hero-kicker { color: rgba(255,255,255,.7); font-size: 9px; font-weight: 800; }
+    #racecomp-final-wireframes .pf-hero-name { margin-top: 6px; max-width: 210px; font-size: 28px; font-weight: 820; letter-spacing: -.05em; }
+    #racecomp-final-wireframes .pf-hero-en { margin-top: 2px; color: rgba(255,255,255,.64); font-size: 10px; }
+    #racecomp-final-wireframes .pf-rank-points {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      display: flex;
+      gap: 24px;
+    }
+    #racecomp-final-wireframes .pf-big-number { font-size: 31px; font-weight: 820; }
+    #racecomp-final-wireframes .pf-big-number span { display: block; color: rgba(255,255,255,.62); font-size: 8px; }
+    #racecomp-final-wireframes .pf-helmet {
+      position: absolute;
+      right: -4px;
+      bottom: 2px;
+      width: 142px;
+      height: 150px;
+      opacity: .83;
+    }
+    #racecomp-final-wireframes .pf-car {
+      position: absolute;
+      right: -15px;
+      bottom: 24px;
+      width: 190px;
+      height: 115px;
+      opacity: .9;
+    }
+    #racecomp-final-wireframes .pf-section-title { margin: 16px 2px 8px; font-size: 14px; font-weight: 760; }
+    #racecomp-final-wireframes .pf-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid #25252b;
+      border-radius: 15px;
+      background: #25252b;
+    }
+    #racecomp-final-wireframes .pf-stat {
+      min-height: 56px;
+      padding: 10px 5px;
+      text-align: center;
+      background: #111115;
+    }
+    #racecomp-final-wireframes .pf-stat strong { display: block; font-size: 16px; }
+    #racecomp-final-wireframes .pf-stat span { display: block; margin-top: 4px; color: #777780; font-size: 8px; }
+    #racecomp-final-wireframes .pf-chart {
+      height: 105px;
+      padding: 12px 9px 8px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      border-bottom: 1px solid #24242a;
+    }
+    #racecomp-final-wireframes .pf-bar-wrap {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      color: #777780;
+      font-size: 7px;
+    }
+    #racecomp-final-wireframes .pf-bar { width: 100%; max-width: 18px; min-height: 3px; border-radius: 5px 5px 2px 2px; background: #00a19c; }
+    #racecomp-final-wireframes .pf-team-hero + .pf-section-title + .pf-stat-grid + .pf-section-title + .pf-chart .pf-bar { background: #ff8000; }
+    #racecomp-final-wireframes .pf-result-row,
+    #racecomp-final-wireframes .pf-driver-row {
+      min-height: 38px;
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #222228;
+      font-size: 9px;
+    }
+    #racecomp-final-wireframes .pf-result-row strong,
+    #racecomp-final-wireframes .pf-driver-row strong { font-size: 11px; }
+    #racecomp-final-wireframes .pf-muted { color: #787881; font-size: 8px; }
+    #racecomp-final-wireframes .pf-driver-pair {
+      padding: 11px 12px;
+      border: 1px solid #25252b;
+      border-radius: 15px;
+      background: #111115;
+    }
+    #racecomp-final-wireframes .pf-driver-row:last-child { border-bottom: 0; }
+    #racecomp-final-wireframes .pf-widget-phone { background: linear-gradient(145deg, #1e2730, #07080a 70%); }
+    #racecomp-final-wireframes .pf-widget-scroll {
+      height: 672px;
+      overflow: hidden;
+      padding: 12px 12px 24px;
+    }
+    #racecomp-final-wireframes .pf-widget-title { margin: 0 2px 10px; font-size: 20px; font-weight: 820; }
+    #racecomp-final-wireframes .pf-widget-large,
+    #racecomp-final-wireframes .pf-widget-medium {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 22px;
+      background: #0b0b0d;
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+    }
+    #racecomp-final-wireframes .pf-widget-large { height: 185px; display: grid; grid-template-columns: 42% 58%; }
+    #racecomp-final-wireframes .pf-widget-medium { height: 120px; padding: 13px; }
+    #racecomp-final-wireframes .pf-widget-count {
+      position: relative;
+      padding: 14px;
+      background: radial-gradient(circle at 68% 22%, rgba(169,92,255,.26), transparent 40%), #0d0c10;
+      border-right: 1px solid #27272d;
+    }
+    #racecomp-final-wireframes .pf-widget-race { font-size: 15px; font-weight: 820; }
+    #racecomp-final-wireframes .pf-widget-track { margin-top: 2px; color: #9c9ca5; font-size: 8px; }
+    #racecomp-final-wireframes .pf-widget-countdown { position: absolute; left: 14px; bottom: 13px; color: #b56aff; font-size: 24px; font-weight: 820; }
+    #racecomp-final-wireframes .pf-widget-countdown span { display: block; margin-top: 2px; color: #8c8c95; font-size: 8px; }
+    #racecomp-final-wireframes .pf-mini-track { width: 100%; height: 54px; margin-top: 7px; }
+    #racecomp-final-wireframes .pf-widget-schedule { padding: 12px 11px; }
+    #racecomp-final-wireframes .pf-widget-day { margin-bottom: 5px; color: #b56aff; font-size: 8px; font-weight: 800; }
+    #racecomp-final-wireframes .pf-widget-session { min-height: 28px; display: grid; grid-template-columns: 1fr auto; gap: 5px; font-size: 8px; }
+    #racecomp-final-wireframes .pf-widget-session strong { font-size: 9px; }
+    #racecomp-final-wireframes .pf-widget-session span { color: #8c8c95; }
+    #racecomp-final-wireframes .pf-widget-schedule-medium { display: grid; grid-template-columns: 39% 61%; height: 100%; }
+    #racecomp-final-wireframes .pf-widget-gpblock { padding-right: 10px; border-right: 1px solid #26262c; }
+    #racecomp-final-wireframes .pf-widget-gpblock strong { display: block; font-size: 16px; }
+    #racecomp-final-wireframes .pf-widget-gpblock span { display: block; margin-top: 4px; color: #9a9aa3; font-size: 8px; }
+    #racecomp-final-wireframes .pf-widget-listcompact { padding-left: 11px; }
+    #racecomp-final-wireframes .pf-widget-listcompact div { min-height: 22px; display: flex; justify-content: space-between; color: #d8d8dd; font-size: 8px; }
+    #racecomp-final-wireframes .pf-widget-standing-head { display: flex; justify-content: space-between; align-items: flex-start; }
+    #racecomp-final-wireframes .pf-widget-standing-head strong { font-size: 16px; }
+    #racecomp-final-wireframes .pf-widget-standing-head span { color: #777780; font-size: 8px; }
+    #racecomp-final-wireframes .pf-widget-standing-row { min-height: 24px; display: grid; grid-template-columns: 19px 4px 1fr auto; gap: 6px; align-items: center; font-size: 8px; border-bottom: 1px solid #202026; }
+    #racecomp-final-wireframes .pf-widget-standing-row:last-child { border-bottom: 0; }
+    #racecomp-final-wireframes .pf-widget-mark { width: 4px; height: 12px; border-radius: 3px; }
+    #racecomp-final-wireframes .pf-settings-title { margin: 6px 2px 10px; font-size: 25px; font-weight: 820; }
+    #racecomp-final-wireframes .pf-settings-section { margin: 11px 2px 5px; color: #777780; font-size: 9px; font-weight: 800; }
+    #racecomp-final-wireframes .pf-settings-group { overflow: hidden; border: 1px solid #25252b; border-radius: 16px; background: #111115; }
+    #racecomp-final-wireframes .pf-setting-row { min-height: 40px; padding: 0 13px; display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; border-bottom: 1px solid #24242a; font-size: 11px; }
+    #racecomp-final-wireframes .pf-setting-row:last-child { border-bottom: 0; }
+    #racecomp-final-wireframes .pf-setting-value { color: #85858e; font-size: 9px; }
+    #racecomp-final-wireframes .pf-switch { width: 34px; height: 20px; padding: 2px; border-radius: 12px; background: #00a19c; }
+    #racecomp-final-wireframes .pf-switch::after { content: ""; display: block; width: 16px; height: 16px; margin-left: 14px; border-radius: 50%; background: #fff; }
+    #racecomp-final-wireframes .pf-refresh { color: #7ce0da; }
+    @media (max-width: 390px) {
+      #racecomp-final-wireframes .pf-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="pf-grid">
+    <section class="pf-frame" aria-label="车手详情低保真线框">
+      <div class="pf-caption">08 · 车手详情</div>
+      <div class="pf-phone">
+        <div class="pf-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="pf-scroll">
+          <div class="pf-back">←</div>
+          <div class="pf-driver-hero">
+            <div class="pf-hero-kicker">ANT · 车手号码 12</div>
+            <div class="pf-hero-name">基米·安托内利</div>
+            <div class="pf-hero-en">Andrea Kimi Antonelli · 梅赛德斯车队</div>
+            <svg class="pf-helmet" viewBox="0 0 150 160" role="img" aria-label="车手头盔形象占位">
+              <path d="M40 135 C21 113 20 69 35 38 C47 14 93 9 116 33 C132 50 134 90 121 109 L111 140 L58 147Z" fill="#d9e3e4" opacity=".9"/>
+              <path d="M34 64 C62 44 102 43 128 61 L122 88 C92 98 60 96 31 85Z" fill="#15171b"/>
+              <path d="M40 48 L77 18 L110 32 L76 49Z" fill="#00a19c"/>
+              <path d="M49 103 L117 96 L111 124 L63 132Z" fill="#77858a"/>
+            </svg>
+            <div class="pf-rank-points"><div class="pf-big-number">P1<span>车手排名</span></div><div class="pf-big-number">219<span>积分</span></div></div>
+          </div>
+          <div class="pf-section-title">赛季数据</div>
+          <div class="pf-stat-grid"><div class="pf-stat"><strong>6</strong><span>获胜</span></div><div class="pf-stat"><strong>9</strong><span>领奖台</span></div><div class="pf-stat"><strong>4</strong><span>杆位</span></div><div class="pf-stat"><strong>1</strong><span>未完赛</span></div></div>
+          <div class="pf-section-title">每站积分</div>
+          <div class="pf-chart" aria-label="车手每站积分柱状图">
+            <div class="pf-bar-wrap"><i class="pf-bar" style="height:72%"></i><span>01</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:96%"></i><span>02</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:100%"></i><span>03</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:62%"></i><span>04</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:100%"></i><span>05</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:72%"></i><span>06</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:4%;background:#44444c"></i><span>07</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:100%"></i><span>08</span></div>
+          </div>
+          <div class="pf-section-title">分站成绩</div>
+          <div class="pf-result-row"><span class="pf-muted">R12</span><strong>荷兰大奖赛</strong><span>P1 · 25分</span></div>
+          <div class="pf-result-row"><span class="pf-muted">R11</span><strong>匈牙利大奖赛</strong><span>P2 · 18分</span></div>
+          <div class="pf-result-row"><span class="pf-muted">R10</span><strong>比利时大奖赛</strong><span>P1 · 25分</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-frame" aria-label="车队详情低保真线框">
+      <div class="pf-caption">09 · 车队详情</div>
+      <div class="pf-phone">
+        <div class="pf-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="pf-scroll">
+          <div class="pf-back">←</div>
+          <div class="pf-team-hero">
+            <div class="pf-hero-kicker">2026 赛季</div>
+            <div class="pf-hero-name">迈凯伦车队</div>
+            <div class="pf-hero-en">McLaren Racing</div>
+            <svg class="pf-car" viewBox="0 0 220 120" role="img" aria-label="赛车形象占位">
+              <ellipse cx="108" cy="93" rx="87" ry="13" fill="#000" opacity=".38"/>
+              <path d="M30 69 L65 53 L90 31 L137 29 L165 50 L203 62 L198 81 L155 88 L72 88 L24 82Z" fill="#ff8000"/>
+              <path d="M88 33 L112 20 L142 29 L131 51 L97 51Z" fill="#14161b"/>
+              <path d="M31 66 L15 56 L47 52 L70 58Z" fill="#30333a"/>
+              <circle cx="61" cy="84" r="17" fill="#111" stroke="#555" stroke-width="5"/><circle cx="168" cy="82" r="18" fill="#111" stroke="#555" stroke-width="5"/>
+            </svg>
+            <div class="pf-rank-points"><div class="pf-big-number">P3<span>车队排名</span></div><div class="pf-big-number">264<span>积分</span></div></div>
+          </div>
+          <div class="pf-section-title">赛季数据</div>
+          <div class="pf-stat-grid"><div class="pf-stat"><strong>5</strong><span>获胜</span></div><div class="pf-stat"><strong>10</strong><span>领奖台</span></div><div class="pf-stat"><strong>3</strong><span>杆位</span></div><div class="pf-stat"><strong>4</strong><span>最快圈</span></div></div>
+          <div class="pf-section-title">车手</div>
+          <div class="pf-driver-pair"><div class="pf-driver-row"><span class="pf-muted">NOR</span><strong>兰多·诺里斯</strong><span>138分</span></div><div class="pf-driver-row"><span class="pf-muted">PIA</span><strong>奥斯卡·皮亚斯特里</strong><span>126分</span></div></div>
+          <div class="pf-section-title">每站积分</div>
+          <div class="pf-chart" aria-label="车队每站积分柱状图">
+            <div class="pf-bar-wrap"><i class="pf-bar" style="height:55%;background:#ff8000"></i><span>01</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:84%;background:#ff8000"></i><span>02</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:71%;background:#ff8000"></i><span>03</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:92%;background:#ff8000"></i><span>04</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:100%;background:#ff8000"></i><span>05</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:66%;background:#ff8000"></i><span>06</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:41%;background:#ff8000"></i><span>07</span></div><div class="pf-bar-wrap"><i class="pf-bar" style="height:89%;background:#ff8000"></i><span>08</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-frame" aria-label="Widget 低保真线框">
+      <div class="pf-caption">10 · Widget 组合</div>
+      <div class="pf-phone pf-widget-phone">
+        <div class="pf-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="pf-widget-scroll">
+          <div class="pf-widget-title">Widget</div>
+          <div class="pf-widget-large" aria-label="大型比赛周末 Widget">
+            <div class="pf-widget-count"><div class="pf-widget-race">荷兰大奖赛</div><div class="pf-widget-track">Zandvoort · 第12站</div><svg class="pf-mini-track" viewBox="0 0 120 60"><path d="M10 43 C9 23 28 10 49 12 C72 13 75 30 91 30 C105 30 115 40 106 50 C96 60 78 49 64 48 C48 48 38 57 23 52 C17 50 12 47 10 43Z" fill="none" stroke="#a95cff" stroke-width="7" stroke-linecap="round"/></svg><div class="pf-widget-countdown">02天 06时<span>下一节 · 排位赛 Q</span></div></div>
+            <div class="pf-widget-schedule"><div class="pf-widget-day">周六</div><div class="pf-widget-session"><strong>三练 FP3</strong><span>17:30</span></div><div class="pf-widget-session"><strong>排位赛 Q</strong><span>21:00</span></div><div class="pf-widget-day">周日</div><div class="pf-widget-session"><strong>正赛 R</strong><span>20:00</span></div></div>
+          </div>
+          <div class="pf-widget-medium" aria-label="中型比赛日程 Widget"><div class="pf-widget-schedule-medium"><div class="pf-widget-gpblock"><strong>荷兰大奖赛</strong><span>第12站 · 8月21–23日</span><svg class="pf-mini-track" viewBox="0 0 120 60"><path d="M10 43 C9 23 28 10 49 12 C72 13 75 30 91 30 C105 30 115 40 106 50 C96 60 78 49 64 48 C48 48 38 57 23 52 C17 50 12 47 10 43Z" fill="none" stroke="#a95cff" stroke-width="7" stroke-linecap="round"/></svg></div><div class="pf-widget-listcompact"><div><strong>FP3</strong><span>周六 17:30</span></div><div><strong>排位赛</strong><span>周六 21:00</span></div><div><strong>正赛</strong><span>周日 20:00</span></div></div></div></div>
+          <div class="pf-widget-medium" aria-label="车手积分榜 Widget"><div class="pf-widget-standing-head"><strong>车手积分榜</strong><span>第12站后</span></div><div class="pf-widget-standing-row"><b>01</b><i class="pf-widget-mark" style="background:#00a19c"></i><span>基米·安托内利</span><b>219</b></div><div class="pf-widget-standing-row"><b>02</b><i class="pf-widget-mark" style="background:#e8002d"></i><span>夏尔·勒克莱尔</span><b>169</b></div><div class="pf-widget-standing-row"><b>03</b><i class="pf-widget-mark" style="background:#3671c6"></i><span>马克斯·维斯塔潘</span><b>160</b></div></div>
+          <div class="pf-widget-medium" aria-label="车队积分榜 Widget"><div class="pf-widget-standing-head"><strong>车队积分榜</strong><span>第12站后</span></div><div class="pf-widget-standing-row"><b>01</b><i class="pf-widget-mark" style="background:#00a19c"></i><span>梅赛德斯车队</span><b>347</b></div><div class="pf-widget-standing-row"><b>02</b><i class="pf-widget-mark" style="background:#e8002d"></i><span>法拉利车队</span><b>278</b></div><div class="pf-widget-standing-row"><b>03</b><i class="pf-widget-mark" style="background:#ff8000"></i><span>迈凯伦车队</span><b>264</b></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-frame" aria-label="设置页低保真线框">
+      <div class="pf-caption">11 · 设置</div>
+      <div class="pf-phone">
+        <div class="pf-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="pf-scroll">
+          <div class="pf-back">←</div>
+          <div class="pf-settings-title">设置</div>
+          <div class="pf-settings-section">显示</div>
+          <div class="pf-settings-group"><div class="pf-setting-row"><span>中文名称</span><span class="pf-setting-value">始终显示</span></div><div class="pf-setting-row"><span>英文副标题</span><i class="pf-switch"></i></div><div class="pf-setting-row"><span>时间格式</span><span class="pf-setting-value">24小时 ›</span></div><div class="pf-setting-row"><span>距离单位</span><span class="pf-setting-value">公里 ›</span></div></div>
+          <div class="pf-settings-section">数据</div>
+          <div class="pf-settings-group"><div class="pf-setting-row"><span>自动刷新</span><i class="pf-switch"></i></div><div class="pf-setting-row"><span>上次更新</span><span class="pf-setting-value">今天 18:42</span></div><div class="pf-setting-row"><span class="pf-refresh">立即刷新</span><span></span></div><div class="pf-setting-row"><span>清除本地缓存</span><span class="pf-setting-value">›</span></div></div>
+          <div class="pf-settings-section">外观</div>
+          <div class="pf-settings-group"><div class="pf-setting-row"><span>高对比度</span><i class="pf-switch"></i></div><div class="pf-setting-row"><span>减少动态效果</span><span class="pf-setting-value">跟随系统 ›</span></div></div>
+          <div class="pf-settings-section">关于</div>
+          <div class="pf-settings-group"><div class="pf-setting-row"><span>数据来源</span><span class="pf-setting-value">›</span></div><div class="pf-setting-row"><span>非官方产品说明</span><span class="pf-setting-value">›</span></div><div class="pf-setting-row"><span>版本</span><span class="pf-setting-value">1.0</span></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

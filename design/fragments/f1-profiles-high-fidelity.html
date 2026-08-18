@@ -1,0 +1,580 @@
+<main id="f1-profiles-high-fidelity" aria-label="F1 iOS App 车手与车队详情页面高保真效果图">
+  <style>
+    #f1-profiles-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-profiles-high-fidelity * { box-sizing: border-box; }
+    #f1-profiles-high-fidelity .f1pro-preview-switch {
+      width: min(100%, 320px);
+      margin: 0 auto 14px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background: #151518;
+      border: 1px solid #29292e;
+      border-radius: 17px;
+    }
+    #f1-profiles-high-fidelity .f1pro-preview-button {
+      min-height: 40px;
+      color: #85858f;
+      background: transparent;
+      border: 0;
+      border-radius: 13px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 720;
+    }
+    #f1-profiles-high-fidelity .f1pro-preview-button[aria-pressed="true"] { color: #fff; background: #3a3a3f; }
+    #f1-profiles-high-fidelity .f1pro-page[hidden] { display: none; }
+    #f1-profiles-high-fidelity .f1pro-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #29292e;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-profiles-high-fidelity .f1pro-screen {
+      background:
+        radial-gradient(circle at 96% 1%, rgba(255,128,0,.14), transparent 25%),
+        linear-gradient(180deg, #0b0a09 0%, #050506 100%);
+    }
+    #f1-profiles-high-fidelity .f1pro-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-profiles-high-fidelity .f1pro-status-icons { display: flex; align-items: center; gap: 7px; }
+    #f1-profiles-high-fidelity .f1pro-signal { display: flex; align-items: end; gap: 2px; height: 12px; }
+    #f1-profiles-high-fidelity .f1pro-signal i { width: 3px; border-radius: 2px; background: #fff; }
+    #f1-profiles-high-fidelity .f1pro-signal i:nth-child(1) { height: 4px; }
+    #f1-profiles-high-fidelity .f1pro-signal i:nth-child(2) { height: 7px; }
+    #f1-profiles-high-fidelity .f1pro-signal i:nth-child(3) { height: 10px; }
+    #f1-profiles-high-fidelity .f1pro-signal i:nth-child(4) { height: 12px; }
+    #f1-profiles-high-fidelity .f1pro-wifi {
+      width: 15px;
+      height: 11px;
+      position: relative;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+    }
+    #f1-profiles-high-fidelity .f1pro-wifi::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-profiles-high-fidelity .f1pro-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      color: #09090a;
+      background: #fff;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-profiles-high-fidelity .f1pro-nav {
+      padding: 10px 18px 15px;
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) 42px;
+      gap: 12px;
+      align-items: center;
+    }
+    #f1-profiles-high-fidelity .f1pro-back {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #17171a;
+      border: 1px solid #303035;
+      border-radius: 50%;
+    }
+    #f1-profiles-high-fidelity .f1pro-back svg { width: 20px; height: 20px; }
+    #f1-profiles-high-fidelity .f1pro-nav-title {
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 760;
+    }
+    #f1-profiles-high-fidelity .f1pro-content {
+      padding: 0 16px 30px;
+      display: grid;
+      gap: 26px;
+    }
+    #f1-profiles-high-fidelity .f1pro-hero {
+      position: relative;
+      min-height: 402px;
+      overflow: hidden;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(255,128,0,.52), transparent 43%),
+        linear-gradient(145deg, #3a1c07 0%, #171015 54%, #0d0d10 100%);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 30px;
+      isolation: isolate;
+    }
+    #f1-profiles-high-fidelity .f1pro-hero--team {
+      min-height: 370px;
+      background: radial-gradient(circle at 84% 18%, rgba(255,128,0,.56), transparent 44%), linear-gradient(145deg, #3a1c07 0%, #171015 56%, #0d0d10 100%);
+    }
+    #f1-profiles-high-fidelity .f1pro-number {
+      position: absolute;
+      right: 10px;
+      top: 22px;
+      z-index: -1;
+      color: rgba(255,255,255,.08);
+      font-size: 142px;
+      line-height: 142px;
+      font-weight: 850;
+      letter-spacing: -.09em;
+    }
+    #f1-profiles-high-fidelity .f1pro-kicker {
+      color: #ffbd83;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 760;
+      letter-spacing: .04em;
+    }
+    #f1-profiles-high-fidelity .f1pro-name {
+      max-width: 88%;
+      margin-top: 5px;
+      color: #fff;
+      font-size: 29px;
+      line-height: 35px;
+      font-weight: 830;
+      letter-spacing: -.03em;
+    }
+    #f1-profiles-high-fidelity .f1pro-english {
+      margin-top: 1px;
+      color: rgba(255,255,255,.72);
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-team-name {
+      margin-top: 5px;
+      color: #ff9800;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 730;
+    }
+    #f1-profiles-high-fidelity .f1pro-helmet-zone {
+      position: absolute;
+      right: 8px;
+      top: 113px;
+      width: 176px;
+      height: 175px;
+      display: grid;
+      place-items: center;
+    }
+    #f1-profiles-high-fidelity .f1pro-helmet-zone svg { width: 162px; height: 162px; }
+    #f1-profiles-high-fidelity .f1pro-car-zone {
+      position: absolute;
+      right: 3px;
+      top: 115px;
+      width: 240px;
+      height: 145px;
+      display: grid;
+      place-items: center;
+    }
+    #f1-profiles-high-fidelity .f1pro-car-zone svg { width: 225px; height: 132px; }
+    #f1-profiles-high-fidelity .f1pro-hero-metrics {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 9px;
+    }
+    #f1-profiles-high-fidelity .f1pro-hero-metric span {
+      display: block;
+      color: #aaaab2;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-hero-metric strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 21px;
+      line-height: 25px;
+      font-weight: 820;
+    }
+    #f1-profiles-high-fidelity .f1pro-section { display: grid; gap: 12px; }
+    #f1-profiles-high-fidelity .f1pro-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0 3px;
+    }
+    #f1-profiles-high-fidelity .f1pro-section-head h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 770;
+    }
+    #f1-profiles-high-fidelity .f1pro-section-head span {
+      color: #81818a;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-chart {
+      padding: 16px 14px 12px;
+      background: #111114;
+      border: 1px solid #29292e;
+      border-radius: 24px;
+    }
+    #f1-profiles-high-fidelity .f1pro-bars {
+      height: 150px;
+      display: grid;
+      grid-template-columns: repeat(11, minmax(0, 1fr));
+      gap: 6px;
+      align-items: end;
+    }
+    #f1-profiles-high-fidelity .f1pro-bar-wrap {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+    }
+    #f1-profiles-high-fidelity .f1pro-bar {
+      width: 100%;
+      min-width: 9px;
+      max-width: 18px;
+      background: #ff8000;
+      border-radius: 7px 7px 3px 3px;
+    }
+    #f1-profiles-high-fidelity .f1pro-bar--team { background: #ff8000; }
+    #f1-profiles-high-fidelity .f1pro-bar-wrap span {
+      color: #787882;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-chart-caption {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      color: #8a8a93;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-list {
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid #29292e;
+      border-radius: 24px;
+    }
+    #f1-profiles-high-fidelity .f1pro-result-row {
+      min-height: 72px;
+      padding: 10px 14px;
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr) auto;
+      gap: 11px;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2f;
+    }
+    #f1-profiles-high-fidelity .f1pro-result-row:last-child { border-bottom: 0; }
+    #f1-profiles-high-fidelity .f1pro-round {
+      color: #ff8d32;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 760;
+    }
+    #f1-profiles-high-fidelity .f1pro-round strong {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 800;
+    }
+    #f1-profiles-high-fidelity .f1pro-race strong {
+      display: block;
+      color: #fff;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 720;
+    }
+    #f1-profiles-high-fidelity .f1pro-race span {
+      display: block;
+      margin-top: 2px;
+      color: #888892;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+    }
+    #f1-profiles-high-fidelity .f1pro-result {
+      text-align: right;
+      white-space: nowrap;
+    }
+    #f1-profiles-high-fidelity .f1pro-result strong {
+      display: block;
+      color: #fff;
+      font-size: 19px;
+      line-height: 23px;
+      font-weight: 820;
+    }
+    #f1-profiles-high-fidelity .f1pro-result span {
+      display: block;
+      margin-top: 2px;
+      color: #8a8a93;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-drivers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #f1-profiles-high-fidelity .f1pro-driver-tile {
+      min-height: 150px;
+      padding: 15px;
+      position: relative;
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid #29292e;
+      border-radius: 22px;
+    }
+    #f1-profiles-high-fidelity .f1pro-driver-number {
+      position: absolute;
+      right: 5px;
+      top: 3px;
+      color: rgba(255,128,0,.18);
+      font-size: 64px;
+      line-height: 64px;
+      font-weight: 850;
+    }
+    #f1-profiles-high-fidelity .f1pro-driver-code {
+      color: #ff9800;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 760;
+    }
+    #f1-profiles-high-fidelity .f1pro-driver-tile strong {
+      position: relative;
+      display: block;
+      max-width: 85%;
+      margin-top: 30px;
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 730;
+    }
+    #f1-profiles-high-fidelity .f1pro-driver-points {
+      position: absolute;
+      left: 15px;
+      bottom: 13px;
+      color: #fff;
+      font-size: 21px;
+      line-height: 25px;
+      font-weight: 820;
+    }
+    #f1-profiles-high-fidelity .f1pro-driver-points small {
+      margin-left: 3px;
+      color: #83838c;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-profiles-high-fidelity .f1pro-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 17px auto 12px;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-profiles-high-fidelity .f1pro-preview-switch { width: min(100%, 300px); }
+      #f1-profiles-high-fidelity .f1pro-device { border-radius: 38px; }
+      #f1-profiles-high-fidelity .f1pro-status { padding-left: 21px; padding-right: 21px; }
+      #f1-profiles-high-fidelity .f1pro-content { padding-left: 12px; padding-right: 12px; }
+      #f1-profiles-high-fidelity .f1pro-hero { padding: 17px; border-radius: 26px; }
+      #f1-profiles-high-fidelity .f1pro-name { font-size: 26px; line-height: 32px; }
+      #f1-profiles-high-fidelity .f1pro-helmet-zone { right: 0; width: 158px; }
+      #f1-profiles-high-fidelity .f1pro-helmet-zone svg { width: 148px; height: 148px; }
+      #f1-profiles-high-fidelity .f1pro-car-zone { right: -10px; width: 215px; }
+      #f1-profiles-high-fidelity .f1pro-car-zone svg { width: 205px; }
+      #f1-profiles-high-fidelity .f1pro-hero-metrics { left: 17px; right: 17px; bottom: 17px; }
+      #f1-profiles-high-fidelity .f1pro-hero-metric strong { font-size: 19px; }
+      #f1-profiles-high-fidelity .f1pro-bars { gap: 4px; }
+      #f1-profiles-high-fidelity .f1pro-result-row { padding-left: 11px; padding-right: 11px; grid-template-columns: 42px minmax(0,1fr) auto; gap: 8px; }
+      #f1-profiles-high-fidelity .f1pro-drivers { gap: 8px; }
+      #f1-profiles-high-fidelity .f1pro-driver-tile { padding: 13px; }
+      #f1-profiles-high-fidelity .f1pro-driver-points { left: 13px; }
+    }
+  </style>
+
+  <div class="f1pro-preview-switch" aria-label="切换详情页预览">
+    <button class="f1pro-preview-button" type="button" data-profile-tab="driver" aria-pressed="true">车手详情</button>
+    <button class="f1pro-preview-button" type="button" data-profile-tab="team" aria-pressed="false">车队详情</button>
+  </div>
+
+  <article class="f1pro-page f1pro-device" data-profile-page="driver">
+    <div class="f1pro-screen">
+      <header>
+        <div class="f1pro-status" aria-label="状态栏"><span>09:41</span><div class="f1pro-status-icons" aria-hidden="true"><span class="f1pro-signal"><i></i><i></i><i></i><i></i></span><span class="f1pro-wifi"></span><span class="f1pro-battery">85</span></div></div>
+        <div class="f1pro-nav"><button class="f1pro-back" type="button" aria-label="返回积分榜"><i data-lucide="arrow-left" aria-hidden="true"></i></button><div class="f1pro-nav-title">车手详情</div><span></span></div>
+      </header>
+      <div class="f1pro-content">
+        <section class="f1pro-hero" aria-labelledby="f1pro-driver-name">
+          <div class="f1pro-number">81</div>
+          <div class="f1pro-kicker">2026 赛季 · 示例数据</div>
+          <div class="f1pro-name" id="f1pro-driver-name">奥斯卡·皮亚斯特里</div>
+          <div class="f1pro-english">Oscar Piastri · PIA</div>
+          <div class="f1pro-team-name">迈凯伦车队</div>
+          <div class="f1pro-helmet-zone" aria-hidden="true">
+            <svg viewBox="0 0 180 180">
+              <defs><linearGradient id="f1pro-helmet-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffcf4a"/><stop offset=".55" stop-color="#ff8000"/><stop offset="1" stop-color="#19191d"/></linearGradient></defs>
+              <path d="M46 120 Q29 101 34 73 Q42 31 84 22 Q126 18 150 50 Q164 68 156 104 L142 138 Q134 158 108 161 L77 158 Q56 155 46 140 Z" fill="url(#f1pro-helmet-gradient)" stroke="rgba(255,255,255,.7)" stroke-width="4"/>
+              <path d="M45 77 Q78 52 141 67 L151 83 Q104 99 51 91 Z" fill="#111318" stroke="#6fd3ff" stroke-width="4"/>
+              <path d="M55 111 L145 105 L136 127 L69 134 Z" fill="#202127" opacity=".85"/>
+              <path d="M71 35 L88 22 L101 40 L115 27 L126 50" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+              <text x="99" y="122" fill="#fff" font-size="22" font-weight="800" text-anchor="middle">81</text>
+            </svg>
+          </div>
+          <div class="f1pro-hero-metrics">
+            <div class="f1pro-hero-metric"><span>排名</span><strong>01</strong></div>
+            <div class="f1pro-hero-metric"><span>积分</span><strong>198</strong></div>
+            <div class="f1pro-hero-metric"><span>获胜</span><strong>4</strong></div>
+            <div class="f1pro-hero-metric"><span>领奖台</span><strong>7</strong></div>
+          </div>
+        </section>
+
+        <section class="f1pro-section" aria-labelledby="f1pro-driver-chart-title">
+          <div class="f1pro-section-head"><h2 id="f1pro-driver-chart-title">每轮积分</h2><span>前 11 轮</span></div>
+          <div class="f1pro-chart">
+            <div class="f1pro-bars" role="img" aria-label="奥斯卡·皮亚斯特里前十一轮积分柱状图">
+              <div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:72%"></i><span>01</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:100%"></i><span>02</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:80%"></i><span>03</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:100%"></i><span>04</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:60%"></i><span>05</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:100%"></i><span>06</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:32%"></i><span>07</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:72%"></i><span>08</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:40%"></i><span>09</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:100%"></i><span>10</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar" style="height:60%"></i><span>11</span></div>
+            </div>
+            <div class="f1pro-chart-caption"><span>0 分</span><span>最高 25 分</span></div>
+          </div>
+        </section>
+
+        <section class="f1pro-section" aria-labelledby="f1pro-driver-results-title">
+          <div class="f1pro-section-head"><h2 id="f1pro-driver-results-title">最近比赛</h2><span>完赛名次 · 积分</span></div>
+          <div class="f1pro-list">
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R11</strong>匈牙利</div><div class="f1pro-race"><strong>匈牙利大奖赛</strong><span>亨格罗林赛道</span></div><div class="f1pro-result"><strong>P3</strong><span>15 分</span></div></div>
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R10</strong>比利时</div><div class="f1pro-race"><strong>比利时大奖赛</strong><span>斯帕赛道</span></div><div class="f1pro-result"><strong>P1</strong><span>25 分</span></div></div>
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R09</strong>英国</div><div class="f1pro-race"><strong>英国大奖赛</strong><span>银石赛道</span></div><div class="f1pro-result"><strong>P8</strong><span>4 分</span></div></div>
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R08</strong>奥地利</div><div class="f1pro-race"><strong>奥地利大奖赛</strong><span>红牛环赛道</span></div><div class="f1pro-result"><strong>P2</strong><span>18 分</span></div></div>
+          </div>
+        </section>
+      </div>
+      <div class="f1pro-home-indicator" aria-hidden="true"></div>
+    </div>
+  </article>
+
+  <article class="f1pro-page f1pro-device" data-profile-page="team" hidden>
+    <div class="f1pro-screen">
+      <header>
+        <div class="f1pro-status" aria-label="状态栏"><span>09:41</span><div class="f1pro-status-icons" aria-hidden="true"><span class="f1pro-signal"><i></i><i></i><i></i><i></i></span><span class="f1pro-wifi"></span><span class="f1pro-battery">85</span></div></div>
+        <div class="f1pro-nav"><button class="f1pro-back" type="button" aria-label="返回积分榜"><i data-lucide="arrow-left" aria-hidden="true"></i></button><div class="f1pro-nav-title">车队详情</div><span></span></div>
+      </header>
+      <div class="f1pro-content">
+        <section class="f1pro-hero f1pro-hero--team" aria-labelledby="f1pro-team-name">
+          <div class="f1pro-number">MCL</div>
+          <div class="f1pro-kicker">2026 赛季 · 示例数据</div>
+          <div class="f1pro-name" id="f1pro-team-name">迈凯伦车队</div>
+          <div class="f1pro-english">McLaren Racing</div>
+          <div class="f1pro-team-name">英国 · MCL</div>
+          <div class="f1pro-car-zone" aria-hidden="true">
+            <svg viewBox="0 0 260 150">
+              <defs><linearGradient id="f1pro-car-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb000"/><stop offset=".55" stop-color="#ff8000"/><stop offset="1" stop-color="#a83f00"/></linearGradient></defs>
+              <ellipse cx="142" cy="124" rx="103" ry="15" fill="rgba(0,0,0,.42)"/>
+              <path d="M28 91 L67 82 L94 60 L155 54 L184 68 L222 74 L238 96 L218 105 L160 100 L128 112 L73 108 L37 103 Z" fill="url(#f1pro-car-gradient)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+              <path d="M98 59 L114 34 L146 34 L162 56" fill="#16171b" stroke="#ff9700" stroke-width="3"/>
+              <path d="M165 55 L200 44 L220 50 L222 73" fill="#16171b" stroke="#ff9700" stroke-width="3"/>
+              <rect x="36" y="87" width="12" height="32" rx="5" fill="#111318"/><rect x="204" y="83" width="14" height="37" rx="6" fill="#111318"/>
+              <circle cx="79" cy="108" r="17" fill="#0b0c0e" stroke="#484a50" stroke-width="4"/><circle cx="193" cy="106" r="17" fill="#0b0c0e" stroke="#484a50" stroke-width="4"/>
+              <path d="M64 78 L180 73" stroke="#2d2e33" stroke-width="8" stroke-linecap="round"/>
+              <text x="133" y="82" fill="#fff" font-size="22" font-weight="800" text-anchor="middle">MCL</text>
+            </svg>
+          </div>
+          <div class="f1pro-hero-metrics">
+            <div class="f1pro-hero-metric"><span>排名</span><strong>01</strong></div>
+            <div class="f1pro-hero-metric"><span>积分</span><strong>374</strong></div>
+            <div class="f1pro-hero-metric"><span>获胜</span><strong>6</strong></div>
+            <div class="f1pro-hero-metric"><span>杆位</span><strong>5</strong></div>
+          </div>
+        </section>
+
+        <section class="f1pro-section" aria-labelledby="f1pro-team-drivers-title">
+          <div class="f1pro-section-head"><h2 id="f1pro-team-drivers-title">车队车手</h2><span>车手积分</span></div>
+          <div class="f1pro-drivers">
+            <div class="f1pro-driver-tile"><div class="f1pro-driver-number">81</div><div class="f1pro-driver-code">PIA</div><strong>奥斯卡·皮亚斯特里</strong><div class="f1pro-driver-points">198<small>分</small></div></div>
+            <div class="f1pro-driver-tile"><div class="f1pro-driver-number">04</div><div class="f1pro-driver-code">NOR</div><strong>兰多·诺里斯</strong><div class="f1pro-driver-points">176<small>分</small></div></div>
+          </div>
+        </section>
+
+        <section class="f1pro-section" aria-labelledby="f1pro-team-chart-title">
+          <div class="f1pro-section-head"><h2 id="f1pro-team-chart-title">每轮积分</h2><span>前 11 轮</span></div>
+          <div class="f1pro-chart">
+            <div class="f1pro-bars" role="img" aria-label="迈凯伦车队前十一轮积分柱状图">
+              <div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:66%"></i><span>01</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:100%"></i><span>02</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:83%"></i><span>03</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:100%"></i><span>04</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:77%"></i><span>05</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:100%"></i><span>06</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:58%"></i><span>07</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:84%"></i><span>08</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:62%"></i><span>09</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:100%"></i><span>10</span></div><div class="f1pro-bar-wrap"><i class="f1pro-bar f1pro-bar--team" style="height:73%"></i><span>11</span></div>
+            </div>
+            <div class="f1pro-chart-caption"><span>两位车手合计</span><span>单轮最高 43 分</span></div>
+          </div>
+        </section>
+
+        <section class="f1pro-section" aria-labelledby="f1pro-team-results-title">
+          <div class="f1pro-section-head"><h2 id="f1pro-team-results-title">最近比赛</h2><span>车队积分</span></div>
+          <div class="f1pro-list">
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R11</strong>匈牙利</div><div class="f1pro-race"><strong>匈牙利大奖赛</strong><span>P3 · P5</span></div><div class="f1pro-result"><strong>25</strong><span>积分</span></div></div>
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R10</strong>比利时</div><div class="f1pro-race"><strong>比利时大奖赛</strong><span>P1 · P2</span></div><div class="f1pro-result"><strong>43</strong><span>积分</span></div></div>
+            <div class="f1pro-result-row"><div class="f1pro-round"><strong>R09</strong>英国</div><div class="f1pro-race"><strong>英国大奖赛</strong><span>P4 · P8</span></div><div class="f1pro-result"><strong>16</strong><span>积分</span></div></div>
+          </div>
+        </section>
+      </div>
+      <div class="f1pro-home-indicator" aria-hidden="true"></div>
+    </div>
+  </article>
+
+  <script>
+    (() => {
+      const root = document.getElementById('f1-profiles-high-fidelity');
+      const tabs = Array.from(root.querySelectorAll('[data-profile-tab]'));
+      const pages = Array.from(root.querySelectorAll('[data-profile-page]'));
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const selected = tab.getAttribute('data-profile-tab');
+          tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
+          pages.forEach((page) => { page.hidden = page.getAttribute('data-profile-page') !== selected; });
+        });
+      });
+    })();
+  </script>
+</main>

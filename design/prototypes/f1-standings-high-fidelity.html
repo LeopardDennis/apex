@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>F1 Standings High Fidelity</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="F1 Standings High Fidelity" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;F1 Standings High Fidelity&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;main id=&quot;f1-standings-high-fidelity&quot; aria-label=&quot;F1 iOS App 车手与车队积分榜高保真效果图&quot;&gt;
+  &lt;style&gt;
+    #f1-standings-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Display&quot;, &quot;SF Pro Text&quot;, &quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-standings-high-fidelity * { box-sizing: border-box; }
+    #f1-standings-high-fidelity .f1std-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #29292e;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-standings-high-fidelity .f1std-screen {
+      background:
+        radial-gradient(circle at 95% 1%, rgba(255,128,0,.14), transparent 25%),
+        linear-gradient(180deg, #0b0a09 0%, #050506 100%);
+    }
+    #f1-standings-high-fidelity .f1std-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-standings-high-fidelity .f1std-status-icons { display: flex; align-items: center; gap: 7px; }
+    #f1-standings-high-fidelity .f1std-signal { display: flex; align-items: end; gap: 2px; height: 12px; }
+    #f1-standings-high-fidelity .f1std-signal i { width: 3px; border-radius: 2px; background: #fff; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(1) { height: 4px; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(2) { height: 7px; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(3) { height: 10px; }
+    #f1-standings-high-fidelity .f1std-signal i:nth-child(4) { height: 12px; }
+    #f1-standings-high-fidelity .f1std-wifi {
+      width: 15px;
+      height: 11px;
+      position: relative;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+    }
+    #f1-standings-high-fidelity .f1std-wifi::after {
+      content: &quot;&quot;;
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-standings-high-fidelity .f1std-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      color: #09090a;
+      background: #fff;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-standings-high-fidelity .f1std-header { padding: 11px 20px 18px; }
+    #f1-standings-high-fidelity .f1std-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #f1-standings-high-fidelity .f1std-title {
+      color: #fff;
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 820;
+      letter-spacing: -.03em;
+    }
+    #f1-standings-high-fidelity .f1std-season {
+      min-height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      background: #17171a;
+      border: 1px solid #2d2d32;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-standings-high-fidelity .f1std-season svg { width: 15px; height: 15px; }
+    #f1-standings-high-fidelity .f1std-subtitle {
+      margin-top: 4px;
+      color: #898993;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-standings-high-fidelity .f1std-switch {
+      margin-top: 17px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background: #151518;
+      border: 1px solid #29292e;
+      border-radius: 17px;
+    }
+    #f1-standings-high-fidelity .f1std-switch-button {
+      min-height: 40px;
+      color: #85858f;
+      background: transparent;
+      border: 0;
+      border-radius: 13px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 720;
+    }
+    #f1-standings-high-fidelity .f1std-switch-button[aria-pressed=&quot;true&quot;] { color: #fff; background: #3a3a3f; }
+    #f1-standings-high-fidelity .f1std-content { padding: 0 16px 28px; }
+    #f1-standings-high-fidelity .f1std-panel[hidden] { display: none; }
+    #f1-standings-high-fidelity .f1std-panel { display: grid; gap: 20px; }
+    #f1-standings-high-fidelity .f1std-leader {
+      position: relative;
+      min-height: 255px;
+      overflow: hidden;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(255,128,0,.48), transparent 42%),
+        linear-gradient(145deg, #351b08 0%, #171015 55%, #0d0d10 100%);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 30px;
+      isolation: isolate;
+    }
+    #f1-standings-high-fidelity .f1std-leader--team {
+      background: radial-gradient(circle at 82% 22%, rgba(255,128,0,.48), transparent 42%), linear-gradient(145deg, #341a08 0%, #131014 60%, #0d0d10 100%);
+    }
+    #f1-standings-high-fidelity .f1std-watermark {
+      position: absolute;
+      right: 10px;
+      top: 22px;
+      z-index: -1;
+      color: rgba(255,255,255,.08);
+      font-size: 118px;
+      line-height: 118px;
+      font-weight: 850;
+      letter-spacing: -.08em;
+    }
+    #f1-standings-high-fidelity .f1std-leader-kicker {
+      color: #ffbd83;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 760;
+      letter-spacing: .04em;
+    }
+    #f1-standings-high-fidelity .f1std-leader-name {
+      max-width: 78%;
+      margin-top: 7px;
+      color: #fff;
+      font-size: 29px;
+      line-height: 35px;
+      font-weight: 830;
+      letter-spacing: -.03em;
+    }
+    #f1-standings-high-fidelity .f1std-leader-team {
+      margin-top: 3px;
+      color: #ff9800;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 730;
+    }
+    #f1-standings-high-fidelity .f1std-leader-metrics {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      gap: 9px;
+    }
+    #f1-standings-high-fidelity .f1std-metric span {
+      display: block;
+      color: #a9a9b1;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-metric strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 23px;
+      line-height: 27px;
+      font-weight: 820;
+    }
+    #f1-standings-high-fidelity .f1std-list-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0 3px;
+    }
+    #f1-standings-high-fidelity .f1std-list-head h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 770;
+    }
+    #f1-standings-high-fidelity .f1std-list-head span {
+      color: #82828b;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-list {
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid #29292e;
+      border-radius: 25px;
+    }
+    #f1-standings-high-fidelity .f1std-row {
+      min-height: 68px;
+      padding: 9px 14px;
+      display: grid;
+      grid-template-columns: 29px 5px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2f;
+    }
+    #f1-standings-high-fidelity .f1std-row:last-child { border-bottom: 0; }
+    #f1-standings-high-fidelity .f1std-position {
+      color: #f5f5f7;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 800;
+    }
+    #f1-standings-high-fidelity .f1std-color { width: 5px; height: 31px; border-radius: 3px; }
+    #f1-standings-high-fidelity .f1std-color--mcl { background: #ff8000; }
+    #f1-standings-high-fidelity .f1std-color--mer { background: #27f4d2; }
+    #f1-standings-high-fidelity .f1std-color--fer { background: #e8002d; }
+    #f1-standings-high-fidelity .f1std-color--rbr { background: #3671c6; }
+    #f1-standings-high-fidelity .f1std-color--ast { background: #229971; }
+    #f1-standings-high-fidelity .f1std-color--wil { background: #64c4ff; }
+    #f1-standings-high-fidelity .f1std-color--alp { background: #ff87bc; }
+    #f1-standings-high-fidelity .f1std-color--has { background: #b6babd; }
+    #f1-standings-high-fidelity .f1std-color--rbt { background: #6692ff; }
+    #f1-standings-high-fidelity .f1std-color--aud { background: #f50537; }
+    #f1-standings-high-fidelity .f1std-color--cad { background: #aeb7c3; }
+    #f1-standings-high-fidelity .f1std-name { min-width: 0; }
+    #f1-standings-high-fidelity .f1std-name strong {
+      display: block;
+      color: #fff;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 720;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-standings-high-fidelity .f1std-name span {
+      display: block;
+      margin-top: 2px;
+      color: #898993;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-standings-high-fidelity .f1std-points {
+      color: #fff;
+      font-size: 19px;
+      line-height: 23px;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+    #f1-standings-high-fidelity .f1std-points small {
+      margin-left: 2px;
+      color: #85858e;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-tabbar-wrap {
+      padding: 12px 16px 20px;
+      background: linear-gradient(180deg, rgba(5,5,6,0), #050506 18%);
+    }
+    #f1-standings-high-fidelity .f1std-tabbar {
+      min-height: 72px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      background: rgba(28,28,31,.96);
+      border: 1px solid #34343a;
+      border-radius: 25px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.34);
+    }
+    #f1-standings-high-fidelity .f1std-tab {
+      min-width: 0;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 3px;
+      color: #777780;
+      border-radius: 19px;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-standings-high-fidelity .f1std-tab svg { width: 20px; height: 20px; }
+    #f1-standings-high-fidelity .f1std-tab--active { color: #fff; background: #3a3a3f; }
+    #f1-standings-high-fidelity .f1std-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 7px auto 0;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-standings-high-fidelity .f1std-device { border-radius: 38px; }
+      #f1-standings-high-fidelity .f1std-status { padding-left: 21px; padding-right: 21px; }
+      #f1-standings-high-fidelity .f1std-header { padding-left: 16px; padding-right: 16px; }
+      #f1-standings-high-fidelity .f1std-title { font-size: 28px; line-height: 34px; }
+      #f1-standings-high-fidelity .f1std-content { padding-left: 12px; padding-right: 12px; }
+      #f1-standings-high-fidelity .f1std-leader { padding: 17px; border-radius: 26px; }
+      #f1-standings-high-fidelity .f1std-leader-name { font-size: 26px; line-height: 32px; }
+      #f1-standings-high-fidelity .f1std-leader-metrics { left: 17px; right: 17px; bottom: 17px; }
+      #f1-standings-high-fidelity .f1std-metric strong { font-size: 21px; }
+      #f1-standings-high-fidelity .f1std-row { padding-left: 11px; padding-right: 11px; grid-template-columns: 27px 4px minmax(0, 1fr) auto; gap: 7px; }
+      #f1-standings-high-fidelity .f1std-color { width: 4px; }
+      #f1-standings-high-fidelity .f1std-name strong { font-size: 13px; }
+      #f1-standings-high-fidelity .f1std-points { font-size: 17px; }
+    }
+  &lt;/style&gt;
+
+  &lt;article class=&quot;f1std-device&quot;&gt;
+    &lt;div class=&quot;f1std-screen&quot;&gt;
+      &lt;header&gt;
+        &lt;div class=&quot;f1std-status&quot; aria-label=&quot;状态栏&quot;&gt;
+          &lt;span&gt;09:41&lt;/span&gt;
+          &lt;div class=&quot;f1std-status-icons&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;f1std-signal&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class=&quot;f1std-wifi&quot;&gt;&lt;/span&gt;&lt;span class=&quot;f1std-battery&quot;&gt;85&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;f1std-header&quot;&gt;
+          &lt;div class=&quot;f1std-header-row&quot;&gt;&lt;div class=&quot;f1std-title&quot;&gt;积分榜&lt;/div&gt;&lt;button class=&quot;f1std-season&quot; type=&quot;button&quot;&gt;2026 赛季 &lt;i data-lucide=&quot;chevron-down&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1std-subtitle&quot;&gt;第 11 轮后 · 示例数据&lt;/div&gt;
+          &lt;div class=&quot;f1std-switch&quot; aria-label=&quot;积分榜类型&quot;&gt;
+            &lt;button class=&quot;f1std-switch-button&quot; type=&quot;button&quot; data-standing-tab=&quot;drivers&quot; aria-pressed=&quot;true&quot;&gt;车手&lt;/button&gt;
+            &lt;button class=&quot;f1std-switch-button&quot; type=&quot;button&quot; data-standing-tab=&quot;teams&quot; aria-pressed=&quot;false&quot;&gt;车队&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/header&gt;
+
+      &lt;div class=&quot;f1std-content&quot;&gt;
+        &lt;section class=&quot;f1std-panel&quot; data-standing-panel=&quot;drivers&quot; aria-label=&quot;车手积分榜&quot;&gt;
+          &lt;div class=&quot;f1std-leader&quot;&gt;
+            &lt;div class=&quot;f1std-watermark&quot;&gt;81&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-kicker&quot;&gt;车手积分领先者&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-name&quot;&gt;奥斯卡·皮亚斯特里&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-team&quot;&gt;迈凯伦车队 · PIA&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-metrics&quot;&gt;
+              &lt;div class=&quot;f1std-metric&quot;&gt;&lt;span&gt;积分&lt;/span&gt;&lt;strong&gt;198&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class=&quot;f1std-metric&quot;&gt;&lt;span&gt;获胜&lt;/span&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class=&quot;f1std-metric&quot;&gt;&lt;span&gt;领奖台&lt;/span&gt;&lt;strong&gt;7&lt;/strong&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;f1std-list-head&quot;&gt;&lt;h2&gt;车手排名&lt;/h2&gt;&lt;span&gt;积分&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1std-list&quot;&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;01&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--mcl&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;奥斯卡·皮亚斯特里&lt;/strong&gt;&lt;span&gt;迈凯伦 · PIA&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;198&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;02&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--mcl&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;兰多·诺里斯&lt;/strong&gt;&lt;span&gt;迈凯伦 · NOR&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;176&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;03&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--mer&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;乔治·拉塞尔&lt;/strong&gt;&lt;span&gt;梅赛德斯 · RUS&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;141&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;04&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--fer&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;夏尔·勒克莱尔&lt;/strong&gt;&lt;span&gt;法拉利 · LEC&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;138&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;05&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--rbr&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;马克斯·维斯塔潘&lt;/strong&gt;&lt;span&gt;红牛 · VER&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;128&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;06&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--fer&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;刘易斯·汉密尔顿&lt;/strong&gt;&lt;span&gt;法拉利 · HAM&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;109&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;07&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--ast&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;费尔南多·阿隆索&lt;/strong&gt;&lt;span&gt;阿斯顿·马丁 · ALO&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;92&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;08&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--wil&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;卡洛斯·塞恩斯&lt;/strong&gt;&lt;span&gt;威廉姆斯 · SAI&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;81&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;09&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--mer&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;安德烈亚·基米·安东内利&lt;/strong&gt;&lt;span&gt;梅赛德斯 · ANT&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;76&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;10&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--wil&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;亚历山大·阿尔本&lt;/strong&gt;&lt;span&gt;威廉姆斯 · ALB&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;64&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;f1std-panel&quot; data-standing-panel=&quot;teams&quot; aria-label=&quot;车队积分榜&quot; hidden&gt;
+          &lt;div class=&quot;f1std-leader f1std-leader--team&quot;&gt;
+            &lt;div class=&quot;f1std-watermark&quot;&gt;MCL&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-kicker&quot;&gt;车队积分领先者&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-name&quot;&gt;迈凯伦车队&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-team&quot;&gt;MCLAREN&lt;/div&gt;
+            &lt;div class=&quot;f1std-leader-metrics&quot;&gt;
+              &lt;div class=&quot;f1std-metric&quot;&gt;&lt;span&gt;积分&lt;/span&gt;&lt;strong&gt;374&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class=&quot;f1std-metric&quot;&gt;&lt;span&gt;获胜&lt;/span&gt;&lt;strong&gt;6&lt;/strong&gt;&lt;/div&gt;
+              &lt;div class=&quot;f1std-metric&quot;&gt;&lt;span&gt;杆位&lt;/span&gt;&lt;strong&gt;5&lt;/strong&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;f1std-list-head&quot;&gt;&lt;h2&gt;车队排名&lt;/h2&gt;&lt;span&gt;积分&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1std-list&quot;&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;01&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--mcl&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;迈凯伦车队&lt;/strong&gt;&lt;span&gt;MCLAREN&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;374&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;02&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--mer&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;梅赛德斯车队&lt;/strong&gt;&lt;span&gt;MERCEDES&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;234&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;03&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--fer&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;法拉利车队&lt;/strong&gt;&lt;span&gt;FERRARI&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;218&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;04&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--rbr&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;红牛车队&lt;/strong&gt;&lt;span&gt;RED BULL RACING&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;196&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;05&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--wil&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;威廉姆斯车队&lt;/strong&gt;&lt;span&gt;WILLIAMS&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;119&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;06&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--ast&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;阿斯顿·马丁车队&lt;/strong&gt;&lt;span&gt;ASTON MARTIN&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;88&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;07&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--alp&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;阿尔派车队&lt;/strong&gt;&lt;span&gt;ALPINE&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;61&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;08&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--has&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;哈斯车队&lt;/strong&gt;&lt;span&gt;HAAS&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;49&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;09&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--rbt&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;小红牛车队&lt;/strong&gt;&lt;span&gt;RACING BULLS&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;37&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;10&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--aud&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;奥迪车队&lt;/strong&gt;&lt;span&gt;AUDI&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;25&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;f1std-row&quot;&gt;&lt;span class=&quot;f1std-position&quot;&gt;11&lt;/span&gt;&lt;i class=&quot;f1std-color f1std-color--cad&quot;&gt;&lt;/i&gt;&lt;div class=&quot;f1std-name&quot;&gt;&lt;strong&gt;凯迪拉克车队&lt;/strong&gt;&lt;span&gt;CADILLAC&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;f1std-points&quot;&gt;12&lt;small&gt;分&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+      &lt;/div&gt;
+
+      &lt;nav class=&quot;f1std-tabbar-wrap&quot; aria-label=&quot;主导航&quot;&gt;
+        &lt;div class=&quot;f1std-tabbar&quot;&gt;
+          &lt;div class=&quot;f1std-tab&quot;&gt;&lt;i data-lucide=&quot;house&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;首页&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1std-tab&quot;&gt;&lt;i data-lucide=&quot;calendar-days&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;赛历&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;f1std-tab f1std-tab--active&quot;&gt;&lt;i data-lucide=&quot;trophy&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;积分榜&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;f1std-home-indicator&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;f1-standings-high-fidelity&#x27;);
+      const tabs = Array.from(root.querySelectorAll(&#x27;[data-standing-tab]&#x27;));
+      const panels = Array.from(root.querySelectorAll(&#x27;[data-standing-panel]&#x27;));
+      tabs.forEach((tab) =&gt; {
+        tab.addEventListener(&#x27;click&#x27;, () =&gt; {
+          const selected = tab.getAttribute(&#x27;data-standing-tab&#x27;);
+          tabs.forEach((item) =&gt; item.setAttribute(&#x27;aria-pressed&#x27;, String(item === tab)));
+          panels.forEach((panel) =&gt; { panel.hidden = panel.getAttribute(&#x27;data-standing-panel&#x27;) !== selected; });
+        });
+      });
+    })();
+  &lt;/script&gt;
+&lt;/main&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

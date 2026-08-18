@@ -1,0 +1,396 @@
+<div id="race-results-wireframes">
+  <style>
+    #race-results-wireframes {
+      width: 100%;
+      padding: 8px 0 18px;
+      color: #f7f7f8;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+      background: transparent;
+      box-sizing: border-box;
+    }
+    #race-results-wireframes * { box-sizing: border-box; }
+    #race-results-wireframes .rr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      gap: 22px;
+      align-items: start;
+    }
+    #race-results-wireframes .rr-frame { min-width: 0; }
+    #race-results-wireframes .rr-caption {
+      margin: 0 0 8px 8px;
+      color: #74747d;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    #race-results-wireframes .rr-phone {
+      position: relative;
+      width: min(100%, 340px);
+      height: 720px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid #34343b;
+      border-radius: 35px;
+      background: #08080a;
+      box-shadow: 0 18px 44px rgba(0,0,0,.28);
+    }
+    #race-results-wireframes .rr-status {
+      height: 38px;
+      padding: 13px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #f5f5f6;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    #race-results-wireframes .rr-scroll {
+      height: 672px;
+      overflow: hidden;
+      padding: 8px 15px 30px;
+    }
+    #race-results-wireframes .rr-subscroll { height: 622px; }
+    #race-results-wireframes .rr-head {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    #race-results-wireframes .rr-back {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #34343b;
+      border-radius: 50%;
+      color: #ededf0;
+      background: #16161a;
+      font-size: 14px;
+    }
+    #race-results-wireframes .rr-round,
+    #race-results-wireframes .rr-update {
+      color: #7f7f88;
+      font-size: 9px;
+      font-weight: 700;
+    }
+    #race-results-wireframes .rr-title {
+      font-size: 25px;
+      font-weight: 820;
+      letter-spacing: -.04em;
+    }
+    #race-results-wireframes .rr-subtitle {
+      margin-top: 3px;
+      color: #94949d;
+      font-size: 10px;
+    }
+    #race-results-wireframes .rr-session-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin: 15px 0 13px;
+      padding: 4px;
+      border-radius: 14px;
+      background: #17171b;
+    }
+    #race-results-wireframes .rr-session-tab {
+      padding: 7px 2px;
+      text-align: center;
+      border-radius: 10px;
+      color: #74747d;
+      font-size: 9px;
+      font-weight: 800;
+    }
+    #race-results-wireframes .rr-session-tab-on { color: #fff; background: #38383f; }
+    #race-results-wireframes .rr-podium {
+      position: relative;
+      min-height: 118px;
+      overflow: hidden;
+      padding: 15px;
+      border: 1px solid #26262c;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #17171c, #0e0e12);
+    }
+    #race-results-wireframes .rr-podium-label {
+      color: #898992;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    #race-results-wireframes .rr-podium-row {
+      display: grid;
+      grid-template-columns: 24px 5px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      min-height: 27px;
+      font-size: 10px;
+    }
+    #race-results-wireframes .rr-podium-row strong { font-size: 13px; }
+    #race-results-wireframes .rr-colorline { width: 4px; height: 17px; border-radius: 3px; }
+    #race-results-wireframes .rr-fastest {
+      margin-top: 10px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #28282e;
+      color: #b67cff;
+      font-size: 9px;
+      font-weight: 700;
+    }
+    #race-results-wireframes .rr-section-title {
+      margin: 16px 2px 7px;
+      font-size: 14px;
+      font-weight: 760;
+    }
+    #race-results-wireframes .rr-result-row {
+      min-height: 66px;
+      display: grid;
+      grid-template-columns: 29px 5px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #232329;
+    }
+    #race-results-wireframes .rr-position { font-size: 17px; font-weight: 800; }
+    #race-results-wireframes .rr-driver { font-size: 11px; font-weight: 760; }
+    #race-results-wireframes .rr-team { margin-top: 3px; color: #8b8b94; font-size: 9px; }
+    #race-results-wireframes .rr-change { margin-top: 3px; color: #a7a7af; font-size: 8px; }
+    #race-results-wireframes .rr-points { text-align: right; font-size: 15px; font-weight: 820; }
+    #race-results-wireframes .rr-points span { display: block; margin-top: 2px; color: #777780; font-size: 8px; font-weight: 600; }
+    #race-results-wireframes .rr-dnf { color: #8a8a93; }
+    #race-results-wireframes .rr-quali-lead {
+      padding: 14px;
+      border: 1px solid #27272d;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(255,40,0,.13), #101014 70%);
+    }
+    #race-results-wireframes .rr-quali-lead .rr-driver { margin-top: 4px; font-size: 18px; }
+    #race-results-wireframes .rr-quali-time { margin-top: 7px; font-size: 28px; font-weight: 820; font-variant-numeric: tabular-nums; }
+    #race-results-wireframes .rr-quali-row {
+      min-height: 77px;
+      padding: 9px 0;
+      display: grid;
+      grid-template-columns: 29px 5px 1fr;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #232329;
+    }
+    #race-results-wireframes .rr-quali-times {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      margin-top: 7px;
+    }
+    #race-results-wireframes .rr-quali-times div {
+      padding: 6px 4px;
+      border-radius: 8px;
+      background: #151519;
+      color: #dbdbe0;
+      font-size: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    #race-results-wireframes .rr-quali-times span { display: block; margin-bottom: 2px; color: #6f6f78; font-size: 7px; }
+    #race-results-wireframes .rr-apphead {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    #race-results-wireframes .rr-season { font-size: 23px; font-weight: 820; letter-spacing: -.04em; }
+    #race-results-wireframes .rr-standing-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin-bottom: 12px;
+      padding: 4px;
+      border-radius: 14px;
+      background: #17171b;
+    }
+    #race-results-wireframes .rr-standing-tab {
+      padding: 8px;
+      text-align: center;
+      border-radius: 10px;
+      color: #777780;
+      font-size: 10px;
+      font-weight: 800;
+    }
+    #race-results-wireframes .rr-standing-tab-on { color: #fff; background: #38383f; }
+    #race-results-wireframes .rr-leader {
+      position: relative;
+      min-height: 148px;
+      overflow: hidden;
+      padding: 17px;
+      border: 1px solid #245f5c;
+      border-radius: 22px;
+      background: radial-gradient(circle at 92% 15%, rgba(0,161,156,.34), transparent 42%), linear-gradient(145deg, #101b1b, #0d0d10 70%);
+    }
+    #race-results-wireframes .rr-leader-rank { color: #8faaa8; font-size: 10px; font-weight: 800; }
+    #race-results-wireframes .rr-leader-name { margin-top: 8px; max-width: 210px; font-size: 22px; font-weight: 820; letter-spacing: -.04em; }
+    #race-results-wireframes .rr-leader-team { margin-top: 3px; color: #40c9c2; font-size: 10px; font-weight: 700; }
+    #race-results-wireframes .rr-leader-score { position: absolute; right: 16px; bottom: 15px; text-align: right; font-size: 28px; font-weight: 820; }
+    #race-results-wireframes .rr-leader-score span { display: block; color: #8c8c95; font-size: 8px; }
+    #race-results-wireframes .rr-standing-list-row {
+      min-height: 64px;
+      display: grid;
+      grid-template-columns: 30px 5px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #232329;
+    }
+    #race-results-wireframes .rr-rank { font-size: 16px; font-weight: 800; }
+    #race-results-wireframes .rr-standing-name { font-size: 11px; font-weight: 760; }
+    #race-results-wireframes .rr-standing-meta { margin-top: 3px; color: #83838c; font-size: 8px; }
+    #race-results-wireframes .rr-standing-points { text-align: right; font-size: 16px; font-weight: 820; }
+    #race-results-wireframes .rr-standing-points span { display: block; color: #777780; font-size: 8px; }
+    #race-results-wireframes .rr-team-leader {
+      position: relative;
+      min-height: 153px;
+      padding: 17px;
+      overflow: hidden;
+      border: 1px solid #245f5c;
+      border-radius: 22px;
+      background: radial-gradient(circle at 92% 12%, rgba(0,161,156,.34), transparent 43%), linear-gradient(145deg, #101b1b, #0d0d10 72%);
+    }
+    #race-results-wireframes .rr-team-leader .rr-leader-team { color: #40c9c2; }
+    #race-results-wireframes .rr-driver-split {
+      margin-top: 13px;
+      display: flex;
+      gap: 12px;
+      color: #c5c5cb;
+      font-size: 9px;
+    }
+    #race-results-wireframes .rr-team-row {
+      min-height: 77px;
+      display: grid;
+      grid-template-columns: 30px 5px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid #232329;
+    }
+    #race-results-wireframes .rr-team-drivers { margin-top: 5px; color: #83838c; font-size: 8px; }
+    #race-results-wireframes .rr-tabs {
+      position: absolute;
+      left: 11px;
+      right: 11px;
+      bottom: 11px;
+      height: 55px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 5px;
+      border: 1px solid #323238;
+      border-radius: 22px;
+      background: #17171b;
+    }
+    #race-results-wireframes .rr-tab {
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      color: #707079;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    #race-results-wireframes .rr-tab-on { color: #fff; background: #36363d; }
+    @media (max-width: 390px) {
+      #race-results-wireframes .rr-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="rr-grid">
+    <section class="rr-frame" aria-label="正赛结果低保真线框">
+      <div class="rr-caption">04 · 正赛结果</div>
+      <div class="rr-phone">
+        <div class="rr-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="rr-scroll">
+          <div class="rr-head"><div class="rr-back">←</div><div></div><div class="rr-round">第 12 站</div></div>
+          <div class="rr-title">荷兰大奖赛</div>
+          <div class="rr-subtitle">正赛结果 · 最新数据 22:46</div>
+          <div class="rr-session-tabs"><span class="rr-session-tab">FP1</span><span class="rr-session-tab">FP2</span><span class="rr-session-tab">FP3</span><span class="rr-session-tab">Q</span><span class="rr-session-tab rr-session-tab-on">R</span></div>
+          <div class="rr-podium">
+            <div class="rr-podium-label">领奖台</div>
+            <div class="rr-podium-row"><strong>01</strong><i class="rr-colorline" style="background:#00a19c"></i><span>基米·安托内利</span><b>25</b></div>
+            <div class="rr-podium-row"><strong>02</strong><i class="rr-colorline" style="background:#e8002d"></i><span>夏尔·勒克莱尔</span><b>18</b></div>
+            <div class="rr-podium-row"><strong>03</strong><i class="rr-colorline" style="background:#3671c6"></i><span>马克斯·维斯塔潘</span><b>15</b></div>
+            <div class="rr-fastest"><span>◷ 最快圈 · 兰多·诺里斯</span><span>1:12.345</span></div>
+          </div>
+          <div class="rr-section-title">完整结果</div>
+          <div class="rr-result-row"><span class="rr-position">01</span><i class="rr-colorline" style="background:#00a19c"></i><div><div class="rr-driver">基米·安托内利</div><div class="rr-team">梅赛德斯车队 · ANT</div><div class="rr-change">发车 P3 · ↑2</div></div><div class="rr-points">25<span>积分</span></div></div>
+          <div class="rr-result-row"><span class="rr-position">02</span><i class="rr-colorline" style="background:#e8002d"></i><div><div class="rr-driver">夏尔·勒克莱尔</div><div class="rr-team">法拉利车队 · LEC</div><div class="rr-change">发车 P1 · ↓1 · +4.286</div></div><div class="rr-points">18<span>积分</span></div></div>
+          <div class="rr-result-row"><span class="rr-position">03</span><i class="rr-colorline" style="background:#3671c6"></i><div><div class="rr-driver">马克斯·维斯塔潘</div><div class="rr-team">红牛车队 · VER</div><div class="rr-change">发车 P4 · ↑1 · +8.513</div></div><div class="rr-points">15<span>积分</span></div></div>
+          <div class="rr-result-row"><span class="rr-position">04</span><i class="rr-colorline" style="background:#ff8000"></i><div><div class="rr-driver">兰多·诺里斯</div><div class="rr-team">迈凯伦车队 · NOR</div><div class="rr-change">发车 P2 · ↓2 · +11.020</div></div><div class="rr-points">12<span>积分</span></div></div>
+          <div class="rr-result-row rr-dnf"><span class="rr-position">—</span><i class="rr-colorline" style="background:#229971"></i><div><div class="rr-driver">费尔南多·阿隆索</div><div class="rr-team">阿斯顿·马丁车队 · ALO</div><div class="rr-change">DNF · 机械故障</div></div><div class="rr-points">0<span>积分</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rr-frame" aria-label="排位赛结果低保真线框">
+      <div class="rr-caption">05 · 排位赛结果</div>
+      <div class="rr-phone">
+        <div class="rr-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="rr-scroll">
+          <div class="rr-head"><div class="rr-back">←</div><div></div><div class="rr-round">第 12 站</div></div>
+          <div class="rr-title">排位赛结果</div>
+          <div class="rr-subtitle">荷兰大奖赛 · 最新数据 22:46</div>
+          <div class="rr-session-tabs"><span class="rr-session-tab">FP1</span><span class="rr-session-tab">FP2</span><span class="rr-session-tab">FP3</span><span class="rr-session-tab rr-session-tab-on">Q</span><span class="rr-session-tab">R</span></div>
+          <div class="rr-quali-lead">
+            <div class="rr-podium-label">杆位</div>
+            <div class="rr-driver">夏尔·勒克莱尔</div>
+            <div class="rr-team" style="color:#e8002d">法拉利车队 · LEC</div>
+            <div class="rr-quali-time">1:11.742</div>
+          </div>
+          <div class="rr-section-title">完整结果</div>
+          <div class="rr-quali-row"><span class="rr-position">01</span><i class="rr-colorline" style="background:#e8002d"></i><div><div class="rr-driver">夏尔·勒克莱尔 · LEC</div><div class="rr-quali-times"><div><span>Q1</span>1:12.321</div><div><span>Q2</span>1:11.982</div><div><span>Q3</span>1:11.742</div></div></div></div>
+          <div class="rr-quali-row"><span class="rr-position">02</span><i class="rr-colorline" style="background:#ff8000"></i><div><div class="rr-driver">兰多·诺里斯 · NOR</div><div class="rr-quali-times"><div><span>Q1</span>1:12.415</div><div><span>Q2</span>1:12.004</div><div><span>Q3</span>1:11.801</div></div></div></div>
+          <div class="rr-quali-row"><span class="rr-position">03</span><i class="rr-colorline" style="background:#3671c6"></i><div><div class="rr-driver">马克斯·维斯塔潘 · VER</div><div class="rr-quali-times"><div><span>Q1</span>1:12.389</div><div><span>Q2</span>1:12.102</div><div><span>Q3</span>1:11.924</div></div></div></div>
+          <div class="rr-quali-row"><span class="rr-position">11</span><i class="rr-colorline" style="background:#00a19c"></i><div><div class="rr-driver">乔治·拉塞尔 · RUS</div><div class="rr-quali-times"><div><span>Q1</span>1:12.820</div><div><span>Q2</span>1:12.510</div><div><span>Q3</span>—</div></div></div></div>
+          <div class="rr-quali-row"><span class="rr-position">16</span><i class="rr-colorline" style="background:#229971"></i><div><div class="rr-driver">费尔南多·阿隆索 · ALO</div><div class="rr-quali-times"><div><span>Q1</span>无有效成绩</div><div><span>Q2</span>—</div><div><span>Q3</span>—</div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rr-frame" aria-label="车手积分榜低保真线框">
+      <div class="rr-caption">06 · 车手积分榜</div>
+      <div class="rr-phone">
+        <div class="rr-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="rr-scroll rr-subscroll">
+          <div class="rr-apphead"><div><div class="rr-season">2026 积分榜</div><div class="rr-subtitle">第 12 站结束后</div></div><div class="rr-update">更新于 22:46</div></div>
+          <div class="rr-standing-tabs"><span class="rr-standing-tab rr-standing-tab-on">车手</span><span class="rr-standing-tab">车队</span></div>
+          <div class="rr-leader">
+            <div class="rr-leader-rank">01 · 领先</div>
+            <div class="rr-leader-name">基米·安托内利</div>
+            <div class="rr-leader-team">梅赛德斯车队 · ANT</div>
+            <div class="rr-leader-score">219<span>积分 · 6 胜</span></div>
+          </div>
+          <div class="rr-section-title">完整排名</div>
+          <div class="rr-standing-list-row"><span class="rr-rank">02</span><i class="rr-colorline" style="background:#e8002d"></i><div><div class="rr-standing-name">夏尔·勒克莱尔 · LEC</div><div class="rr-standing-meta">法拉利车队 · 距榜首 50 分 · ↑1</div></div><div class="rr-standing-points">169<span>积分</span></div></div>
+          <div class="rr-standing-list-row"><span class="rr-rank">03</span><i class="rr-colorline" style="background:#3671c6"></i><div><div class="rr-standing-name">马克斯·维斯塔潘 · VER</div><div class="rr-standing-meta">红牛车队 · 距榜首 59 分 · ↓1</div></div><div class="rr-standing-points">160<span>积分</span></div></div>
+          <div class="rr-standing-list-row"><span class="rr-rank">04</span><i class="rr-colorline" style="background:#ff8000"></i><div><div class="rr-standing-name">兰多·诺里斯 · NOR</div><div class="rr-standing-meta">迈凯伦车队 · 距榜首 81 分</div></div><div class="rr-standing-points">138<span>积分</span></div></div>
+          <div class="rr-standing-list-row"><span class="rr-rank">05</span><i class="rr-colorline" style="background:#00a19c"></i><div><div class="rr-standing-name">乔治·拉塞尔 · RUS</div><div class="rr-standing-meta">梅赛德斯车队 · 距榜首 91 分</div></div><div class="rr-standing-points">128<span>积分</span></div></div>
+          <div class="rr-standing-list-row"><span class="rr-rank">06</span><i class="rr-colorline" style="background:#e8002d"></i><div><div class="rr-standing-name">刘易斯·汉密尔顿 · HAM</div><div class="rr-standing-meta">法拉利车队 · 距榜首 110 分</div></div><div class="rr-standing-points">109<span>积分</span></div></div>
+        </div>
+        <nav class="rr-tabs" aria-label="主导航"><div class="rr-tab">首页</div><div class="rr-tab">赛历</div><div class="rr-tab rr-tab-on">积分榜</div></nav>
+      </div>
+    </section>
+
+    <section class="rr-frame" aria-label="车队积分榜低保真线框">
+      <div class="rr-caption">07 · 车队积分榜</div>
+      <div class="rr-phone">
+        <div class="rr-status"><span>9:41</span><span>●●● Wi‑Fi 82%</span></div>
+        <div class="rr-scroll rr-subscroll">
+          <div class="rr-apphead"><div><div class="rr-season">2026 积分榜</div><div class="rr-subtitle">第 12 站结束后</div></div><div class="rr-update">更新于 22:46</div></div>
+          <div class="rr-standing-tabs"><span class="rr-standing-tab">车手</span><span class="rr-standing-tab rr-standing-tab-on">车队</span></div>
+          <div class="rr-team-leader">
+            <div class="rr-leader-rank">01 · 领先</div>
+            <div class="rr-leader-name">梅赛德斯-AMG车队</div>
+            <div class="rr-leader-team">Mercedes-AMG</div>
+            <div class="rr-driver-split"><span>ANT · 219</span><span>RUS · 128</span></div>
+            <div class="rr-leader-score">347<span>积分 · 6 胜</span></div>
+          </div>
+          <div class="rr-section-title">完整排名</div>
+          <div class="rr-team-row"><span class="rr-rank">02</span><i class="rr-colorline" style="background:#e8002d"></i><div><div class="rr-standing-name">法拉利车队</div><div class="rr-team-drivers">勒克莱尔 169 · 汉密尔顿 109 · 距榜首 69</div></div><div class="rr-standing-points">278<span>积分</span></div></div>
+          <div class="rr-team-row"><span class="rr-rank">03</span><i class="rr-colorline" style="background:#ff8000"></i><div><div class="rr-standing-name">迈凯伦车队</div><div class="rr-team-drivers">诺里斯 138 · 皮亚斯特里 126 · 距榜首 83</div></div><div class="rr-standing-points">264<span>积分</span></div></div>
+          <div class="rr-team-row"><span class="rr-rank">04</span><i class="rr-colorline" style="background:#3671c6"></i><div><div class="rr-standing-name">红牛车队</div><div class="rr-team-drivers">维斯塔潘 160 · 车手 B 42 · 距榜首 145</div></div><div class="rr-standing-points">202<span>积分</span></div></div>
+          <div class="rr-team-row"><span class="rr-rank">05</span><i class="rr-colorline" style="background:#229971"></i><div><div class="rr-standing-name">阿斯顿·马丁车队</div><div class="rr-team-drivers">阿隆索 52 · 斯特罗尔 31</div></div><div class="rr-standing-points">83<span>积分</span></div></div>
+          <div class="rr-team-row"><span class="rr-rank">06</span><i class="rr-colorline" style="background:#64c4ff"></i><div><div class="rr-standing-name">威廉姆斯车队</div><div class="rr-team-drivers">车手 A 38 · 车手 B 21</div></div><div class="rr-standing-points">59<span>积分</span></div></div>
+        </div>
+        <nav class="rr-tabs" aria-label="主导航"><div class="rr-tab">首页</div><div class="rr-tab">赛历</div><div class="rr-tab rr-tab-on">积分榜</div></nav>
+      </div>
+    </section>
+  </div>
+</div>

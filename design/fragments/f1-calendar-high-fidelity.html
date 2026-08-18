@@ -1,0 +1,560 @@
+<main id="f1-calendar-high-fidelity" aria-label="F1 iOS App 赛历页面高保真效果图">
+  <style>
+    #f1-calendar-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-calendar-high-fidelity * { box-sizing: border-box; }
+    #f1-calendar-high-fidelity .f1cal-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #28282d;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-calendar-high-fidelity .f1cal-screen {
+      background:
+        radial-gradient(circle at 96% 1%, rgba(255,86,51,.13), transparent 24%),
+        linear-gradient(180deg, #09090b 0%, #050506 100%);
+    }
+    #f1-calendar-high-fidelity .f1cal-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-status-icons { display: flex; align-items: center; gap: 7px; }
+    #f1-calendar-high-fidelity .f1cal-signal { display: flex; align-items: end; gap: 2px; height: 12px; }
+    #f1-calendar-high-fidelity .f1cal-signal i { width: 3px; border-radius: 2px; background: #fff; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(1) { height: 4px; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(2) { height: 7px; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(3) { height: 10px; }
+    #f1-calendar-high-fidelity .f1cal-signal i:nth-child(4) { height: 12px; }
+    #f1-calendar-high-fidelity .f1cal-wifi {
+      width: 15px;
+      height: 11px;
+      position: relative;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+    }
+    #f1-calendar-high-fidelity .f1cal-wifi::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-calendar-high-fidelity .f1cal-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      color: #09090a;
+      background: #fff;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-calendar-high-fidelity .f1cal-header { padding: 11px 20px 18px; }
+    #f1-calendar-high-fidelity .f1cal-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #f1-calendar-high-fidelity .f1cal-title {
+      color: #fff;
+      font-size: 30px;
+      line-height: 36px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+    #f1-calendar-high-fidelity .f1cal-season-button {
+      min-height: 42px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      background: #17171a;
+      border: 1px solid #2d2d32;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-season-button svg { width: 15px; height: 15px; }
+    #f1-calendar-high-fidelity .f1cal-subtitle {
+      margin-top: 4px;
+      color: #898993;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-calendar-high-fidelity .f1cal-state-switch {
+      margin-top: 17px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      background: #151518;
+      border: 1px solid #28282d;
+      border-radius: 16px;
+    }
+    #f1-calendar-high-fidelity .f1cal-state-item {
+      min-height: 38px;
+      display: grid;
+      place-items: center;
+      color: #85858e;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-state-item--active {
+      color: #fff;
+      background: #36363b;
+    }
+    #f1-calendar-high-fidelity .f1cal-content {
+      padding: 0 16px 28px;
+      display: grid;
+      gap: 25px;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(255,122,68,.38), transparent 39%),
+        linear-gradient(145deg, #36170f 0%, #181014 52%, #0c0c0f 100%);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 30px;
+      isolation: isolate;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-kicker {
+      color: #ff785c;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 750;
+      letter-spacing: .04em;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-round {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: #b8b8c0;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-title {
+      margin-top: 5px;
+      color: #fff;
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-track-name {
+      margin-top: 2px;
+      color: #ff8067;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-date {
+      margin-top: 3px;
+      color: #a0a0aa;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-calendar-high-fidelity .f1cal-track-preview {
+      height: 188px;
+      margin-top: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.025);
+      border-radius: 22px;
+    }
+    #f1-calendar-high-fidelity .f1cal-track-preview svg {
+      width: 100%;
+      height: 180px;
+      overflow: visible;
+    }
+    #f1-calendar-high-fidelity .f1cal-track-outline {
+      fill: none;
+      stroke: #ff6546;
+      stroke-width: 11;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 9px 11px rgba(255,101,70,.18));
+    }
+    #f1-calendar-high-fidelity .f1cal-turn circle { fill: #25252b; stroke: #595962; stroke-width: 1; }
+    #f1-calendar-high-fidelity .f1cal-turn text {
+      fill: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 11px;
+      font-weight: 750;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-footer {
+      margin-top: 13px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 15px;
+      align-items: end;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-footer span {
+      display: block;
+      color: #93939c;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-feature-footer strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 750;
+    }
+    #f1-calendar-high-fidelity .f1cal-countdown {
+      color: #ff7a61;
+      font-size: 26px;
+      line-height: 29px;
+      font-weight: 820;
+      letter-spacing: -.035em;
+      white-space: nowrap;
+    }
+    #f1-calendar-high-fidelity .f1cal-countdown small {
+      margin-left: 3px;
+      color: #b7b7bf;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    #f1-calendar-high-fidelity .f1cal-month {
+      display: grid;
+      gap: 12px;
+    }
+    #f1-calendar-high-fidelity .f1cal-month-heading {
+      padding: 0 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    #f1-calendar-high-fidelity .f1cal-month-heading h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 760;
+    }
+    #f1-calendar-high-fidelity .f1cal-month-heading span {
+      color: #808089;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-list {
+      overflow: hidden;
+      background: #111114;
+      border: 1px solid #28282d;
+      border-radius: 25px;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-row {
+      min-height: 132px;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr) 100px;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid #29292e;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-row:last-child { border-bottom: 0; }
+    #f1-calendar-high-fidelity .f1cal-race-date {
+      align-self: stretch;
+      padding-top: 5px;
+      color: #ff7358;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 750;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-date strong {
+      display: block;
+      color: #fff;
+      font-size: 24px;
+      line-height: 27px;
+      font-weight: 800;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-main { min-width: 0; }
+    #f1-calendar-high-fidelity .f1cal-race-round {
+      color: #85858f;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+      letter-spacing: .03em;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-name {
+      margin-top: 3px;
+      color: #fff;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 750;
+    }
+    #f1-calendar-high-fidelity .f1cal-circuit-name {
+      margin-top: 3px;
+      color: #8e8e98;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-type {
+      margin-top: 8px;
+      color: #c3c3ca;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-race-type b { color: #ff7459; font-weight: 750; }
+    #f1-calendar-high-fidelity .f1cal-thumb {
+      position: relative;
+      width: 100px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      background: #18181c;
+      border-radius: 18px;
+    }
+    #f1-calendar-high-fidelity .f1cal-thumb svg { width: 82px; height: 70px; overflow: visible; }
+    #f1-calendar-high-fidelity .f1cal-thumb path {
+      fill: none;
+      stroke: #f2f2f5;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    #f1-calendar-high-fidelity .f1cal-thumb-label {
+      position: absolute;
+      right: 8px;
+      bottom: 6px;
+      color: #777780;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 700;
+    }
+    #f1-calendar-high-fidelity .f1cal-tabbar-wrap {
+      padding: 12px 16px 20px;
+      background: linear-gradient(180deg, rgba(5,5,6,0), #050506 18%);
+    }
+    #f1-calendar-high-fidelity .f1cal-tabbar {
+      min-height: 72px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      background: rgba(28,28,31,.96);
+      border: 1px solid #34343a;
+      border-radius: 25px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.34);
+    }
+    #f1-calendar-high-fidelity .f1cal-tab {
+      min-width: 0;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 3px;
+      color: #777780;
+      border-radius: 19px;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-calendar-high-fidelity .f1cal-tab svg { width: 20px; height: 20px; }
+    #f1-calendar-high-fidelity .f1cal-tab--active { color: #fff; background: #3a3a3f; }
+    #f1-calendar-high-fidelity .f1cal-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 7px auto 0;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-calendar-high-fidelity .f1cal-device { border-radius: 38px; }
+      #f1-calendar-high-fidelity .f1cal-status { padding-left: 21px; padding-right: 21px; }
+      #f1-calendar-high-fidelity .f1cal-header { padding-left: 16px; padding-right: 16px; }
+      #f1-calendar-high-fidelity .f1cal-title { font-size: 28px; line-height: 34px; }
+      #f1-calendar-high-fidelity .f1cal-content { padding-left: 12px; padding-right: 12px; }
+      #f1-calendar-high-fidelity .f1cal-feature { padding: 17px; border-radius: 26px; }
+      #f1-calendar-high-fidelity .f1cal-feature-title { font-size: 26px; line-height: 32px; }
+      #f1-calendar-high-fidelity .f1cal-feature-round { right: 17px; top: 17px; }
+      #f1-calendar-high-fidelity .f1cal-track-preview { height: 171px; }
+      #f1-calendar-high-fidelity .f1cal-track-preview svg { height: 165px; }
+      #f1-calendar-high-fidelity .f1cal-race-row {
+        min-height: 126px;
+        padding: 13px;
+        grid-template-columns: 46px minmax(0, 1fr) 82px;
+        gap: 9px;
+      }
+      #f1-calendar-high-fidelity .f1cal-race-date strong { font-size: 22px; }
+      #f1-calendar-high-fidelity .f1cal-race-name { font-size: 15px; }
+      #f1-calendar-high-fidelity .f1cal-thumb { width: 82px; height: 82px; border-radius: 16px; }
+      #f1-calendar-high-fidelity .f1cal-thumb svg { width: 67px; height: 60px; }
+    }
+  </style>
+
+  <article class="f1cal-device">
+    <div class="f1cal-screen">
+      <header>
+        <div class="f1cal-status" aria-label="状态栏">
+          <span>09:41</span>
+          <div class="f1cal-status-icons" aria-hidden="true">
+            <span class="f1cal-signal"><i></i><i></i><i></i><i></i></span>
+            <span class="f1cal-wifi"></span>
+            <span class="f1cal-battery">85</span>
+          </div>
+        </div>
+        <div class="f1cal-header">
+          <div class="f1cal-header-row">
+            <div class="f1cal-title">赛历</div>
+            <button class="f1cal-season-button" type="button">2026 赛季 <i data-lucide="chevron-down" aria-hidden="true"></i></button>
+          </div>
+          <div class="f1cal-subtitle">示例数据 · 所有时间均为本地时间</div>
+          <div class="f1cal-state-switch" aria-label="赛程状态">
+            <div class="f1cal-state-item f1cal-state-item--active">即将进行</div>
+            <div class="f1cal-state-item">已结束</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="f1cal-content">
+        <section class="f1cal-feature" aria-labelledby="f1cal-next-title">
+          <div class="f1cal-feature-kicker">下一个比赛周末</div>
+          <div class="f1cal-feature-round">R16</div>
+          <div class="f1cal-feature-title" id="f1cal-next-title">意大利大奖赛</div>
+          <div class="f1cal-feature-track-name">蒙扎国家赛车场</div>
+          <div class="f1cal-feature-date">09 月 05–07 日 · 蒙扎</div>
+
+          <div class="f1cal-track-preview">
+            <svg viewBox="0 0 330 180" role="img" aria-label="蒙扎赛道预览，标记 T1 到 T11、发车线与行驶方向">
+              <path class="f1cal-track-outline" d="M43 128 L58 45 Q60 28 80 25 L121 20 Q135 18 147 31 L175 61 Q185 72 198 69 L264 62 Q287 60 292 78 L294 107 Q295 126 275 130 L202 137 Q180 139 164 132 L128 117 Q116 112 107 120 L89 134 Q75 145 61 139 Z" />
+              <line x1="190" y1="129" x2="192" y2="143" stroke="#fff" stroke-width="4" />
+              <g class="f1cal-turn" transform="translate(218 148)"><circle r="11"/><text>T1</text></g>
+              <g class="f1cal-turn" transform="translate(162 148)"><circle r="11"/><text>T2</text></g>
+              <g class="f1cal-turn" transform="translate(103 140)"><circle r="11"/><text>T3</text></g>
+              <g class="f1cal-turn" transform="translate(65 153)"><circle r="11"/><text>T4</text></g>
+              <g class="f1cal-turn" transform="translate(35 116)"><circle r="11"/><text>T5</text></g>
+              <g class="f1cal-turn" transform="translate(42 67)"><circle r="11"/><text>T6</text></g>
+              <g class="f1cal-turn" transform="translate(77 12)"><circle r="11"/><text>T7</text></g>
+              <g class="f1cal-turn" transform="translate(137 11)"><circle r="11"/><text>T8</text></g>
+              <g class="f1cal-turn" transform="translate(178 48)"><circle r="11"/><text>T9</text></g>
+              <g class="f1cal-turn" transform="translate(233 51)"><circle r="11"/><text>T10</text></g>
+              <g class="f1cal-turn" transform="translate(307 92)"><circle r="11"/><text>T11</text></g>
+              <path d="M247 131 l12 -6 l-2 7 l7 3 z" fill="#fff" aria-hidden="true" />
+            </svg>
+          </div>
+
+          <div class="f1cal-feature-footer">
+            <div><span>下一节</span><strong>第一节练习赛 · 周五 19:30</strong></div>
+            <div class="f1cal-countdown">03<small>天</small></div>
+          </div>
+        </section>
+
+        <section class="f1cal-month" aria-labelledby="f1cal-september">
+          <div class="f1cal-month-heading"><h2 id="f1cal-september">九月</h2><span>2 场比赛</span></div>
+          <div class="f1cal-race-list">
+            <article class="f1cal-race-row">
+              <div class="f1cal-race-date"><strong>05</strong>– 07</div>
+              <div class="f1cal-race-main">
+                <div class="f1cal-race-round">R16 · ITA</div>
+                <div class="f1cal-race-name">意大利大奖赛</div>
+                <div class="f1cal-circuit-name">蒙扎国家赛车场</div>
+                <div class="f1cal-race-type"><b>标准周末</b> · 5 个 Session</div>
+              </div>
+              <div class="f1cal-thumb" aria-label="蒙扎赛道缩略图">
+                <svg viewBox="0 0 100 78" role="img" aria-label="蒙扎赛道轮廓"><path d="M13 58 L23 18 L40 13 L53 21 L65 14 L85 39 L79 61 L55 64 L40 55 L26 65 Z"/></svg>
+                <span class="f1cal-thumb-label">11 弯</span>
+              </div>
+            </article>
+            <article class="f1cal-race-row">
+              <div class="f1cal-race-date"><strong>19</strong>– 21</div>
+              <div class="f1cal-race-main">
+                <div class="f1cal-race-round">R17 · AZE</div>
+                <div class="f1cal-race-name">阿塞拜疆大奖赛</div>
+                <div class="f1cal-circuit-name">巴库城市赛道</div>
+                <div class="f1cal-race-type"><b>标准周末</b> · 5 个 Session</div>
+              </div>
+              <div class="f1cal-thumb" aria-label="巴库赛道缩略图">
+                <svg viewBox="0 0 100 78" role="img" aria-label="巴库赛道轮廓"><path d="M10 54 L37 54 L41 21 L55 18 L59 40 L86 40 L86 61 L58 62 L53 52 L26 66 Z"/></svg>
+                <span class="f1cal-thumb-label">20 弯</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="f1cal-month" aria-labelledby="f1cal-october">
+          <div class="f1cal-month-heading"><h2 id="f1cal-october">十月</h2><span>2 场比赛</span></div>
+          <div class="f1cal-race-list">
+            <article class="f1cal-race-row">
+              <div class="f1cal-race-date"><strong>03</strong>– 05</div>
+              <div class="f1cal-race-main">
+                <div class="f1cal-race-round">R18 · SGP</div>
+                <div class="f1cal-race-name">新加坡大奖赛</div>
+                <div class="f1cal-circuit-name">滨海湾街道赛道</div>
+                <div class="f1cal-race-type"><b>夜赛</b> · 5 个 Session</div>
+              </div>
+              <div class="f1cal-thumb" aria-label="滨海湾赛道缩略图">
+                <svg viewBox="0 0 100 78" role="img" aria-label="滨海湾赛道轮廓"><path d="M12 49 L26 21 L42 30 L53 18 L69 31 L87 26 L79 50 L87 62 L62 59 L48 68 L35 52 L21 61 Z"/></svg>
+                <span class="f1cal-thumb-label">19 弯</span>
+              </div>
+            </article>
+            <article class="f1cal-race-row">
+              <div class="f1cal-race-date"><strong>17</strong>– 19</div>
+              <div class="f1cal-race-main">
+                <div class="f1cal-race-round">R19 · USA</div>
+                <div class="f1cal-race-name">美国大奖赛</div>
+                <div class="f1cal-circuit-name">美洲赛道</div>
+                <div class="f1cal-race-type"><b>冲刺周末</b> · 5 个 Session</div>
+              </div>
+              <div class="f1cal-thumb" aria-label="美洲赛道缩略图">
+                <svg viewBox="0 0 100 78" role="img" aria-label="美洲赛道轮廓"><path d="M11 51 L23 22 L36 16 L46 31 L60 20 L82 27 L88 44 L67 56 L53 52 L43 66 L24 62 Z"/></svg>
+                <span class="f1cal-thumb-label">20 弯</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <nav class="f1cal-tabbar-wrap" aria-label="主导航">
+        <div class="f1cal-tabbar">
+          <div class="f1cal-tab"><i data-lucide="house" aria-hidden="true"></i><span>首页</span></div>
+          <div class="f1cal-tab f1cal-tab--active"><i data-lucide="calendar-days" aria-hidden="true"></i><span>赛历</span></div>
+          <div class="f1cal-tab"><i data-lucide="trophy" aria-hidden="true"></i><span>积分榜</span></div>
+        </div>
+        <div class="f1cal-home-indicator" aria-hidden="true"></div>
+      </nav>
+    </div>
+  </article>
+</main>

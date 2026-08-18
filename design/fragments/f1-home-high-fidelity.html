@@ -1,0 +1,779 @@
+<main id="f1-home-high-fidelity" aria-label="F1 iOS App 首页高保真效果图">
+  <style>
+    #f1-home-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-home-high-fidelity * { box-sizing: border-box; }
+    #f1-home-high-fidelity .f1home-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      background: #050506;
+      border: 1px solid #28282d;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-home-high-fidelity .f1home-screen {
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 90% 3%, rgba(255,82,52,.13), transparent 26%),
+        linear-gradient(180deg, #09090b 0%, #050506 100%);
+    }
+    #f1-home-high-fidelity .f1home-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-home-high-fidelity .f1home-status-icons {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    #f1-home-high-fidelity .f1home-signal {
+      display: flex;
+      align-items: end;
+      gap: 2px;
+      height: 12px;
+    }
+    #f1-home-high-fidelity .f1home-signal i {
+      width: 3px;
+      border-radius: 2px;
+      background: #fff;
+    }
+    #f1-home-high-fidelity .f1home-signal i:nth-child(1) { height: 4px; }
+    #f1-home-high-fidelity .f1home-signal i:nth-child(2) { height: 7px; }
+    #f1-home-high-fidelity .f1home-signal i:nth-child(3) { height: 10px; }
+    #f1-home-high-fidelity .f1home-signal i:nth-child(4) { height: 12px; }
+    #f1-home-high-fidelity .f1home-wifi {
+      width: 15px;
+      height: 11px;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      position: relative;
+    }
+    #f1-home-high-fidelity .f1home-wifi::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-home-high-fidelity .f1home-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      color: #09090a;
+      background: #fff;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-home-high-fidelity .f1home-topbar {
+      padding: 12px 20px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #f1-home-high-fidelity .f1home-season {
+      color: #8e8e97;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 650;
+      letter-spacing: .02em;
+    }
+    #f1-home-high-fidelity .f1home-page-title {
+      margin-top: 2px;
+      color: #fff;
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: 780;
+      letter-spacing: -.025em;
+    }
+    #f1-home-high-fidelity .f1home-settings {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: #f2f2f4;
+      background: #17171a;
+      border: 1px solid #2b2b30;
+      border-radius: 50%;
+    }
+    #f1-home-high-fidelity .f1home-settings svg { width: 19px; height: 19px; }
+    #f1-home-high-fidelity .f1home-content {
+      padding: 0 16px 28px;
+      display: grid;
+      gap: 26px;
+    }
+    #f1-home-high-fidelity .f1home-hero {
+      position: relative;
+      min-height: 474px;
+      overflow: hidden;
+      padding: 20px;
+      background:
+        radial-gradient(circle at 88% 18%, rgba(255,121,67,.42), transparent 38%),
+        linear-gradient(145deg, #35170f 0%, #171014 48%, #0c0c0f 100%);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 30px;
+      isolation: isolate;
+    }
+    #f1-home-high-fidelity .f1home-hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -90px;
+      z-index: -1;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,86,45,.1);
+      filter: blur(8px);
+    }
+    #f1-home-high-fidelity .f1home-hero-label {
+      color: #ff795f;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 750;
+      letter-spacing: .04em;
+    }
+    #f1-home-high-fidelity .f1home-hero-title {
+      margin-top: 4px;
+      color: #fff;
+      font-size: 29px;
+      line-height: 35px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+    #f1-home-high-fidelity .f1home-hero-subtitle {
+      margin-top: 2px;
+      color: #ff8067;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 700;
+    }
+    #f1-home-high-fidelity .f1home-hero-date {
+      margin-top: 3px;
+      color: #aaaab2;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-home-high-fidelity .f1home-track-preview {
+      height: 184px;
+      margin-top: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.025);
+      border-radius: 23px;
+    }
+    #f1-home-high-fidelity .f1home-track-preview svg {
+      width: 100%;
+      height: 176px;
+      overflow: visible;
+    }
+    #f1-home-high-fidelity .f1home-track-outline {
+      fill: none;
+      stroke: #ff6546;
+      stroke-width: 11;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 9px 11px rgba(255,101,70,.18));
+    }
+    #f1-home-high-fidelity .f1home-turn circle { fill: #26262c; stroke: #565660; stroke-width: 1; }
+    #f1-home-high-fidelity .f1home-turn text {
+      fill: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 11px;
+      font-weight: 750;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    #f1-home-high-fidelity .f1home-finish { stroke: #fff; stroke-width: 4; }
+    #f1-home-high-fidelity .f1home-countdown-label {
+      margin-top: 13px;
+      color: #9a9aa3;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-countdown {
+      margin-top: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    #f1-home-high-fidelity .f1home-countdown strong {
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: 820;
+      letter-spacing: -.04em;
+    }
+    #f1-home-high-fidelity .f1home-countdown span {
+      color: #c9c9ce;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+    #f1-home-high-fidelity .f1home-next-session {
+      margin-top: 13px;
+      padding: 13px 14px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      background: rgba(8,8,10,.72);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+    }
+    #f1-home-high-fidelity .f1home-next-session span {
+      display: block;
+      color: #92929b;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-next-session strong {
+      display: block;
+      margin-top: 1px;
+      color: #fff;
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 750;
+    }
+    #f1-home-high-fidelity .f1home-next-time {
+      text-align: right;
+      color: #ff7d63;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+    #f1-home-high-fidelity .f1home-section {
+      display: grid;
+      gap: 12px;
+    }
+    #f1-home-high-fidelity .f1home-section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3px;
+    }
+    #f1-home-high-fidelity .f1home-section-heading h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 760;
+      letter-spacing: -.015em;
+    }
+    #f1-home-high-fidelity .f1home-section-link {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      color: #92929b;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-section-link svg { width: 14px; height: 14px; }
+    #f1-home-high-fidelity .f1home-schedule {
+      padding: 5px 15px;
+      background: #111114;
+      border: 1px solid #252529;
+      border-radius: 24px;
+    }
+    #f1-home-high-fidelity .f1home-session-row {
+      min-height: 72px;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid #29292e;
+    }
+    #f1-home-high-fidelity .f1home-session-row:last-child { border-bottom: 0; }
+    #f1-home-high-fidelity .f1home-session-day {
+      color: #ff7458;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 750;
+    }
+    #f1-home-high-fidelity .f1home-session-day strong {
+      display: block;
+      color: #fff;
+      font-size: 19px;
+      line-height: 22px;
+      font-weight: 780;
+    }
+    #f1-home-high-fidelity .f1home-session-info strong {
+      display: block;
+      color: #f8f8fa;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 700;
+    }
+    #f1-home-high-fidelity .f1home-session-info span {
+      display: block;
+      margin-top: 2px;
+      color: #8e8e98;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+    }
+    #f1-home-high-fidelity .f1home-session-clock {
+      color: #c6c6cc;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    #f1-home-high-fidelity .f1home-ranking-surface {
+      padding: 9px 15px;
+      background: #111114;
+      border: 1px solid #252529;
+      border-radius: 24px;
+    }
+    #f1-home-high-fidelity .f1home-rank-row {
+      min-height: 62px;
+      display: grid;
+      grid-template-columns: 25px 5px minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid #29292e;
+    }
+    #f1-home-high-fidelity .f1home-rank-row:last-child { border-bottom: 0; }
+    #f1-home-high-fidelity .f1home-rank-number {
+      color: #8d8d96;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 750;
+    }
+    #f1-home-high-fidelity .f1home-team-color {
+      width: 5px;
+      height: 29px;
+      border-radius: 3px;
+    }
+    #f1-home-high-fidelity .f1home-team-color--mcl { background: #ff8000; }
+    #f1-home-high-fidelity .f1home-team-color--mer { background: #27f4d2; }
+    #f1-home-high-fidelity .f1home-team-color--fer { background: #e8002d; }
+    #f1-home-high-fidelity .f1home-team-color--rbr { background: #3671c6; }
+    #f1-home-high-fidelity .f1home-rank-name { min-width: 0; }
+    #f1-home-high-fidelity .f1home-rank-name strong {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 720;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-home-high-fidelity .f1home-rank-name span {
+      display: block;
+      margin-top: 1px;
+      color: #8f8f98;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-home-high-fidelity .f1home-rank-points {
+      color: #fff;
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    #f1-home-high-fidelity .f1home-rank-points small {
+      margin-left: 2px;
+      color: #81818b;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-podium {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 92% 0%, rgba(39,244,210,.16), transparent 40%),
+        linear-gradient(145deg, #14151a, #0e0e11 72%);
+      border: 1px solid #28282d;
+      border-radius: 26px;
+    }
+    #f1-home-high-fidelity .f1home-podium-race {
+      color: #90909a;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-podium-title {
+      margin-top: 2px;
+      color: #fff;
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: 760;
+    }
+    #f1-home-high-fidelity .f1home-podium-grid {
+      min-height: 154px;
+      margin-top: 17px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      align-items: end;
+    }
+    #f1-home-high-fidelity .f1home-podium-person {
+      min-width: 0;
+      text-align: center;
+    }
+    #f1-home-high-fidelity .f1home-helmet {
+      width: 45px;
+      height: 45px;
+      margin: 0 auto 6px;
+      display: grid;
+      place-items: center;
+      border-radius: 50% 50% 45% 45%;
+      color: #060607;
+      font-size: 12px;
+      font-weight: 820;
+      background: #d7d7dc;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 18px rgba(0,0,0,.28);
+    }
+    #f1-home-high-fidelity .f1home-helmet--one { width: 55px; height: 55px; background: #ff8000; }
+    #f1-home-high-fidelity .f1home-helmet--three { background: #e8002d; color: #fff; }
+    #f1-home-high-fidelity .f1home-podium-person strong {
+      display: block;
+      color: #fff;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 720;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-home-high-fidelity .f1home-podium-person span {
+      display: block;
+      margin-top: 1px;
+      color: #85858f;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-podium-step {
+      margin-top: 8px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px 10px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 800;
+      background: #24242a;
+    }
+    #f1-home-high-fidelity .f1home-podium-step--two { height: 50px; }
+    #f1-home-high-fidelity .f1home-podium-step--one { height: 76px; background: #34271e; }
+    #f1-home-high-fidelity .f1home-podium-step--three { height: 38px; }
+    #f1-home-high-fidelity .f1home-progress-surface {
+      padding: 18px;
+      background: #111114;
+      border: 1px solid #252529;
+      border-radius: 24px;
+    }
+    #f1-home-high-fidelity .f1home-progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    #f1-home-high-fidelity .f1home-progress-head strong {
+      color: #fff;
+      font-size: 22px;
+      line-height: 27px;
+      font-weight: 800;
+    }
+    #f1-home-high-fidelity .f1home-progress-head span {
+      color: #91919a;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-progress-track {
+      height: 8px;
+      margin-top: 14px;
+      overflow: hidden;
+      background: #29292e;
+      border-radius: 6px;
+    }
+    #f1-home-high-fidelity .f1home-progress-fill {
+      width: 46%;
+      height: 100%;
+      background: linear-gradient(90deg, #ff6546, #ff9b52);
+      border-radius: inherit;
+    }
+    #f1-home-high-fidelity .f1home-progress-caption {
+      margin-top: 9px;
+      display: flex;
+      justify-content: space-between;
+      color: #7f7f88;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+    #f1-home-high-fidelity .f1home-tabbar-wrap {
+      padding: 12px 16px 20px;
+      background: linear-gradient(180deg, rgba(5,5,6,0), #050506 18%);
+    }
+    #f1-home-high-fidelity .f1home-tabbar {
+      min-height: 72px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      background: rgba(28,28,31,.96);
+      border: 1px solid #34343a;
+      border-radius: 25px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.34);
+    }
+    #f1-home-high-fidelity .f1home-tab {
+      min-width: 0;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 3px;
+      color: #777780;
+      border-radius: 19px;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-home-high-fidelity .f1home-tab svg { width: 20px; height: 20px; }
+    #f1-home-high-fidelity .f1home-tab--active {
+      color: #fff;
+      background: #3a3a3f;
+    }
+    #f1-home-high-fidelity .f1home-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 7px auto 0;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-home-high-fidelity .f1home-device { border-radius: 38px; }
+      #f1-home-high-fidelity .f1home-status { padding-left: 21px; padding-right: 21px; }
+      #f1-home-high-fidelity .f1home-topbar { padding-left: 16px; padding-right: 16px; }
+      #f1-home-high-fidelity .f1home-content { padding-left: 12px; padding-right: 12px; }
+      #f1-home-high-fidelity .f1home-hero { padding: 17px; border-radius: 26px; }
+      #f1-home-high-fidelity .f1home-hero-title { font-size: 27px; line-height: 33px; }
+      #f1-home-high-fidelity .f1home-track-preview { height: 168px; }
+      #f1-home-high-fidelity .f1home-track-preview svg { height: 160px; }
+      #f1-home-high-fidelity .f1home-countdown strong { font-size: 33px; line-height: 37px; }
+      #f1-home-high-fidelity .f1home-rank-row { grid-template-columns: 22px 4px minmax(0, 1fr) auto; gap: 7px; }
+      #f1-home-high-fidelity .f1home-rank-name strong { font-size: 14px; }
+      #f1-home-high-fidelity .f1home-rank-points { font-size: 16px; }
+      #f1-home-high-fidelity .f1home-podium { padding: 16px 12px; }
+      #f1-home-high-fidelity .f1home-podium-grid { gap: 4px; }
+      #f1-home-high-fidelity .f1home-helmet { width: 41px; height: 41px; }
+      #f1-home-high-fidelity .f1home-helmet--one { width: 50px; height: 50px; }
+    }
+  </style>
+
+  <article class="f1home-device">
+    <div class="f1home-screen">
+      <header>
+        <div class="f1home-status" aria-label="状态栏">
+          <span>09:41</span>
+          <div class="f1home-status-icons" aria-hidden="true">
+            <span class="f1home-signal"><i></i><i></i><i></i><i></i></span>
+            <span class="f1home-wifi"></span>
+            <span class="f1home-battery">85</span>
+          </div>
+        </div>
+        <div class="f1home-topbar">
+          <div>
+            <div class="f1home-season">2026 赛季 · 示例数据</div>
+            <div class="f1home-page-title">比赛中心</div>
+          </div>
+          <button class="f1home-settings" type="button" aria-label="设置"><i data-lucide="settings" aria-hidden="true"></i></button>
+        </div>
+      </header>
+
+      <div class="f1home-content">
+        <section class="f1home-hero" aria-labelledby="f1home-next-race">
+          <div class="f1home-hero-label">下一站 · R16</div>
+          <div class="f1home-hero-title" id="f1home-next-race">意大利大奖赛</div>
+          <div class="f1home-hero-subtitle">蒙扎国家赛车场</div>
+          <div class="f1home-hero-date">09 月 05–07 日 · 蒙扎</div>
+
+          <div class="f1home-track-preview">
+            <svg viewBox="0 0 330 178" role="img" aria-label="蒙扎赛道预览，标记 T1 到 T11、发车线与行驶方向">
+              <path class="f1home-track-outline" d="M43 128 L58 45 Q60 28 80 25 L121 20 Q135 18 147 31 L175 61 Q185 72 198 69 L264 62 Q287 60 292 78 L294 107 Q295 126 275 130 L202 137 Q180 139 164 132 L128 117 Q116 112 107 120 L89 134 Q75 145 61 139 Z" />
+              <line class="f1home-finish" x1="190" y1="129" x2="192" y2="143" />
+              <g class="f1home-turn" transform="translate(218 147)"><circle r="11"/><text>T1</text></g>
+              <g class="f1home-turn" transform="translate(162 147)"><circle r="11"/><text>T2</text></g>
+              <g class="f1home-turn" transform="translate(103 139)"><circle r="11"/><text>T3</text></g>
+              <g class="f1home-turn" transform="translate(65 151)"><circle r="11"/><text>T4</text></g>
+              <g class="f1home-turn" transform="translate(35 116)"><circle r="11"/><text>T5</text></g>
+              <g class="f1home-turn" transform="translate(42 67)"><circle r="11"/><text>T6</text></g>
+              <g class="f1home-turn" transform="translate(77 12)"><circle r="11"/><text>T7</text></g>
+              <g class="f1home-turn" transform="translate(137 11)"><circle r="11"/><text>T8</text></g>
+              <g class="f1home-turn" transform="translate(178 48)"><circle r="11"/><text>T9</text></g>
+              <g class="f1home-turn" transform="translate(233 51)"><circle r="11"/><text>T10</text></g>
+              <g class="f1home-turn" transform="translate(307 92)"><circle r="11"/><text>T11</text></g>
+              <path d="M247 131 l12 -6 l-2 7 l7 3 z" fill="#fff" aria-hidden="true" />
+            </svg>
+          </div>
+
+          <div class="f1home-countdown-label">距离正赛</div>
+          <div class="f1home-countdown"><strong>03</strong><span>天</span><strong>05</strong><span>小时</span><strong>42</strong><span>分</span></div>
+
+          <div class="f1home-next-session">
+            <div><span>下一节</span><strong>第一节练习赛</strong></div>
+            <div class="f1home-next-time">周五<br>19:30</div>
+          </div>
+        </section>
+
+        <section class="f1home-section" aria-labelledby="f1home-weekend-title">
+          <div class="f1home-section-heading">
+            <h2 id="f1home-weekend-title">比赛周末</h2>
+            <span class="f1home-section-link">完整赛程 <i data-lucide="chevron-right" aria-hidden="true"></i></span>
+          </div>
+          <div class="f1home-schedule">
+            <div class="f1home-session-row">
+              <div class="f1home-session-day"><strong>05</strong>周五</div>
+              <div class="f1home-session-info"><strong>第一节练习赛</strong><span>Practice 1</span></div>
+              <time class="f1home-session-clock">19:30</time>
+            </div>
+            <div class="f1home-session-row">
+              <div class="f1home-session-day"><strong>06</strong>周六</div>
+              <div class="f1home-session-info"><strong>排位赛</strong><span>Qualifying</span></div>
+              <time class="f1home-session-clock">22:00</time>
+            </div>
+            <div class="f1home-session-row">
+              <div class="f1home-session-day"><strong>07</strong>周日</div>
+              <div class="f1home-session-info"><strong>正赛</strong><span>Race</span></div>
+              <time class="f1home-session-clock">21:00</time>
+            </div>
+          </div>
+        </section>
+
+        <section class="f1home-section" aria-labelledby="f1home-driver-title">
+          <div class="f1home-section-heading">
+            <h2 id="f1home-driver-title">车手积分榜</h2>
+            <span class="f1home-section-link">查看全部 <i data-lucide="chevron-right" aria-hidden="true"></i></span>
+          </div>
+          <div class="f1home-ranking-surface">
+            <div class="f1home-rank-row">
+              <span class="f1home-rank-number">01</span><i class="f1home-team-color f1home-team-color--mcl"></i>
+              <div class="f1home-rank-name"><strong>奥斯卡·皮亚斯特里</strong><span>迈凯伦 · PIA</span></div>
+              <span class="f1home-rank-points">198<small>分</small></span>
+            </div>
+            <div class="f1home-rank-row">
+              <span class="f1home-rank-number">02</span><i class="f1home-team-color f1home-team-color--mcl"></i>
+              <div class="f1home-rank-name"><strong>兰多·诺里斯</strong><span>迈凯伦 · NOR</span></div>
+              <span class="f1home-rank-points">176<small>分</small></span>
+            </div>
+            <div class="f1home-rank-row">
+              <span class="f1home-rank-number">03</span><i class="f1home-team-color f1home-team-color--mer"></i>
+              <div class="f1home-rank-name"><strong>乔治·拉塞尔</strong><span>梅赛德斯 · RUS</span></div>
+              <span class="f1home-rank-points">141<small>分</small></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="f1home-section" aria-labelledby="f1home-team-title">
+          <div class="f1home-section-heading">
+            <h2 id="f1home-team-title">车队积分榜</h2>
+            <span class="f1home-section-link">查看全部 <i data-lucide="chevron-right" aria-hidden="true"></i></span>
+          </div>
+          <div class="f1home-ranking-surface">
+            <div class="f1home-rank-row">
+              <span class="f1home-rank-number">01</span><i class="f1home-team-color f1home-team-color--mcl"></i>
+              <div class="f1home-rank-name"><strong>迈凯伦车队</strong><span>MCLAREN</span></div>
+              <span class="f1home-rank-points">374<small>分</small></span>
+            </div>
+            <div class="f1home-rank-row">
+              <span class="f1home-rank-number">02</span><i class="f1home-team-color f1home-team-color--mer"></i>
+              <div class="f1home-rank-name"><strong>梅赛德斯车队</strong><span>MERCEDES</span></div>
+              <span class="f1home-rank-points">234<small>分</small></span>
+            </div>
+            <div class="f1home-rank-row">
+              <span class="f1home-rank-number">03</span><i class="f1home-team-color f1home-team-color--fer"></i>
+              <div class="f1home-rank-name"><strong>法拉利车队</strong><span>FERRARI</span></div>
+              <span class="f1home-rank-points">218<small>分</small></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="f1home-section" aria-labelledby="f1home-last-race-title">
+          <div class="f1home-section-heading">
+            <h2 id="f1home-last-race-title">上一场比赛</h2>
+            <span class="f1home-section-link">完整结果 <i data-lucide="chevron-right" aria-hidden="true"></i></span>
+          </div>
+          <div class="f1home-podium">
+            <div class="f1home-podium-race">R15 · 荷兰大奖赛</div>
+            <div class="f1home-podium-title">正赛领奖台</div>
+            <div class="f1home-podium-grid">
+              <div class="f1home-podium-person">
+                <div class="f1home-helmet">VER</div>
+                <strong>马克斯·维斯塔潘</strong><span>红牛</span>
+                <div class="f1home-podium-step f1home-podium-step--two">2</div>
+              </div>
+              <div class="f1home-podium-person">
+                <div class="f1home-helmet f1home-helmet--one">NOR</div>
+                <strong>兰多·诺里斯</strong><span>迈凯伦</span>
+                <div class="f1home-podium-step f1home-podium-step--one">1</div>
+              </div>
+              <div class="f1home-podium-person">
+                <div class="f1home-helmet f1home-helmet--three">LEC</div>
+                <strong>夏尔·勒克莱尔</strong><span>法拉利</span>
+                <div class="f1home-podium-step f1home-podium-step--three">3</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="f1home-section" aria-labelledby="f1home-progress-title">
+          <div class="f1home-section-heading"><h2 id="f1home-progress-title">赛季进度</h2></div>
+          <div class="f1home-progress-surface">
+            <div class="f1home-progress-head"><strong>11 / 24</strong><span>46% 已完成</span></div>
+            <div class="f1home-progress-track" role="progressbar" aria-label="赛季进度" aria-valuemin="0" aria-valuemax="24" aria-valuenow="11"><div class="f1home-progress-fill"></div></div>
+            <div class="f1home-progress-caption"><span>澳大利亚</span><span>阿布扎比</span></div>
+          </div>
+        </section>
+      </div>
+
+      <nav class="f1home-tabbar-wrap" aria-label="主导航">
+        <div class="f1home-tabbar">
+          <div class="f1home-tab f1home-tab--active"><i data-lucide="house" aria-hidden="true"></i><span>首页</span></div>
+          <div class="f1home-tab"><i data-lucide="calendar-days" aria-hidden="true"></i><span>赛历</span></div>
+          <div class="f1home-tab"><i data-lucide="trophy" aria-hidden="true"></i><span>积分榜</span></div>
+        </div>
+        <div class="f1home-home-indicator" aria-hidden="true"></div>
+      </nav>
+    </div>
+  </article>
+</main>

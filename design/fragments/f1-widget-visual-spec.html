@@ -1,0 +1,725 @@
+<section id="f1-widget-visual-spec" aria-label="F1 iOS App Widget 高保真排版与布局规格">
+  <style>
+    #f1-widget-visual-spec {
+      width: 100%;
+      color: #f7f7f7;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+      background: transparent;
+    }
+    #f1-widget-visual-spec * { box-sizing: border-box; }
+    #f1-widget-visual-spec .f1ws-board {
+      width: min(100%, 736px);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+    #f1-widget-visual-spec .f1ws-spec-surface,
+    #f1-widget-visual-spec .f1ws-preview-surface {
+      background: #0b0b0d;
+      border: 1px solid #25252b;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    #f1-widget-visual-spec .f1ws-spec-surface { padding: 24px; }
+    #f1-widget-visual-spec .f1ws-kicker {
+      margin: 0 0 5px;
+      color: #ff624a;
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    #f1-widget-visual-spec .f1ws-heading {
+      margin: 0;
+      color: #fff;
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: 750;
+      letter-spacing: -.025em;
+    }
+    #f1-widget-visual-spec .f1ws-note {
+      margin: 8px 0 0;
+      color: #9999a2;
+      font-size: 15px;
+      line-height: 21px;
+      font-weight: 500;
+    }
+    #f1-widget-visual-spec .f1ws-type-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: #2b2b31;
+      border: 1px solid #2b2b31;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    #f1-widget-visual-spec .f1ws-type-item {
+      min-height: 94px;
+      padding: 14px;
+      background: #151518;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 9px;
+    }
+    #f1-widget-visual-spec .f1ws-type-name {
+      color: #898993;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+    #f1-widget-visual-spec .f1ws-type-sample { color: #fff; white-space: nowrap; }
+    #f1-widget-visual-spec .f1ws-type-sample--hero { font-size: 34px; line-height: 36px; font-weight: 780; }
+    #f1-widget-visual-spec .f1ws-type-sample--title { font-size: 20px; line-height: 24px; font-weight: 730; }
+    #f1-widget-visual-spec .f1ws-type-sample--body { font-size: 15px; line-height: 20px; font-weight: 600; }
+    #f1-widget-visual-spec .f1ws-type-sample--caption { font-size: 11px; line-height: 14px; font-weight: 600; }
+    #f1-widget-visual-spec .f1ws-rules {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    #f1-widget-visual-spec .f1ws-rule {
+      min-height: 68px;
+      padding: 12px 14px;
+      background: #151518;
+      border: 1px solid #27272c;
+      border-radius: 16px;
+    }
+    #f1-widget-visual-spec .f1ws-rule strong {
+      display: block;
+      color: #fff;
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 740;
+    }
+    #f1-widget-visual-spec .f1ws-rule span {
+      display: block;
+      margin-top: 3px;
+      color: #8e8e98;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-preview-header {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid #25252b;
+    }
+    #f1-widget-visual-spec .f1ws-preview-list {
+      display: grid;
+      gap: 28px;
+      padding: 26px 20px 30px;
+    }
+    #f1-widget-visual-spec .f1ws-preview-item {
+      display: grid;
+      grid-template-columns: minmax(116px, 1fr) minmax(0, 2.25fr);
+      align-items: start;
+      gap: 18px;
+    }
+    #f1-widget-visual-spec .f1ws-preview-meta {
+      padding-top: 8px;
+    }
+    #f1-widget-visual-spec .f1ws-preview-index {
+      color: #ff624a;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 750;
+      letter-spacing: .05em;
+    }
+    #f1-widget-visual-spec .f1ws-preview-name {
+      margin-top: 4px;
+      color: #fff;
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 730;
+    }
+    #f1-widget-visual-spec .f1ws-preview-size {
+      margin-top: 5px;
+      color: #85858e;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-shell {
+      width: 100%;
+      max-width: 486px;
+      justify-self: end;
+      background: #151519;
+      padding: 8px;
+      border-radius: 31px;
+      box-shadow: 0 18px 38px rgba(0,0,0,.32);
+    }
+    #f1-widget-visual-spec .f1ws-shell--large { max-width: 372px; }
+    #f1-widget-visual-spec .f1ws-widget {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: #07070a;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 24px;
+      isolation: isolate;
+    }
+    #f1-widget-visual-spec .f1ws-widget--large { aspect-ratio: 1 / 1; padding: 16px; }
+    #f1-widget-visual-spec .f1ws-widget--medium { aspect-ratio: 2.08 / 1; padding: 16px; }
+    #f1-widget-visual-spec .f1ws-widget::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 9% 12%, rgba(255,83,47,.2), transparent 36%),
+        linear-gradient(145deg, #111116 0%, #050507 62%);
+    }
+    #f1-widget-visual-spec .f1ws-widget--driver::before {
+      background: radial-gradient(circle at 82% 8%, rgba(255,128,0,.28), transparent 44%), linear-gradient(145deg, #111116 0%, #050507 68%);
+    }
+    #f1-widget-visual-spec .f1ws-widget--team::before {
+      background: radial-gradient(circle at 84% 2%, rgba(54,113,198,.3), transparent 46%), linear-gradient(145deg, #10131a 0%, #050507 70%);
+    }
+    #f1-widget-visual-spec .f1ws-large-layout {
+      height: 100%;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 13px;
+    }
+    #f1-widget-visual-spec .f1ws-large-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+      gap: 13px;
+      min-height: 0;
+    }
+    #f1-widget-visual-spec .f1ws-large-identity {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    #f1-widget-visual-spec .f1ws-round {
+      color: #ff765f;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 750;
+      letter-spacing: .04em;
+    }
+    #f1-widget-visual-spec .f1ws-gp {
+      margin-top: 3px;
+      color: #fff;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 780;
+      letter-spacing: -.015em;
+    }
+    #f1-widget-visual-spec .f1ws-circuit {
+      margin-top: 2px;
+      color: #aaaab2;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-track-zone {
+      min-height: 72px;
+      display: grid;
+      place-items: center;
+      margin-top: 5px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+    }
+    #f1-widget-visual-spec .f1ws-track-zone svg { width: 88%; height: 67px; overflow: visible; }
+    #f1-widget-visual-spec .f1ws-track-line {
+      fill: none;
+      stroke: #ff5e3f;
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 7px 10px rgba(255,94,63,.17));
+    }
+    #f1-widget-visual-spec .f1ws-countdown-label {
+      color: #8c8c95;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-countdown {
+      margin-top: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    #f1-widget-visual-spec .f1ws-countdown strong { font-size: 34px; line-height: 36px; font-weight: 800; letter-spacing: -.04em; }
+    #f1-widget-visual-spec .f1ws-countdown span { font-size: 13px; line-height: 16px; font-weight: 700; color: #c7c7cd; }
+    #f1-widget-visual-spec .f1ws-session-list {
+      min-width: 0;
+      display: grid;
+      align-content: start;
+      gap: 9px;
+    }
+    #f1-widget-visual-spec .f1ws-session-title {
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 730;
+    }
+    #f1-widget-visual-spec .f1ws-session-date {
+      margin-top: 1px;
+      color: #9b9ba4;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-session-time {
+      color: #ff7962;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+    }
+    #f1-widget-visual-spec .f1ws-next-session {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px 12px;
+      background: #19191e;
+      border: 1px solid #2b2b31;
+      border-radius: 15px;
+    }
+    #f1-widget-visual-spec .f1ws-next-session span {
+      display: block;
+      color: #90909a;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-next-session strong {
+      display: block;
+      margin-top: 1px;
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 730;
+    }
+    #f1-widget-visual-spec .f1ws-next-session time {
+      color: #ff765f;
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+    #f1-widget-visual-spec .f1ws-medium-schedule {
+      height: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.45fr);
+      gap: 15px;
+    }
+    #f1-widget-visual-spec .f1ws-medium-visual {
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+    #f1-widget-visual-spec .f1ws-medium-visual .f1ws-gp { font-size: 17px; line-height: 21px; }
+    #f1-widget-visual-spec .f1ws-medium-visual .f1ws-track-zone { min-height: 0; margin: 2px 0; }
+    #f1-widget-visual-spec .f1ws-medium-visual .f1ws-track-zone svg { height: 46px; }
+    #f1-widget-visual-spec .f1ws-medium-date {
+      color: #aaaab3;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-widget-visual-spec .f1ws-compact-sessions {
+      min-width: 0;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+    }
+    #f1-widget-visual-spec .f1ws-compact-row {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: baseline;
+    }
+    #f1-widget-visual-spec .f1ws-compact-row strong {
+      min-width: 0;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-widget-visual-spec .f1ws-compact-row time {
+      color: #b2b2bb;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-layout {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 7px;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-lead {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 10px;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-label {
+      color: #a4a4ad;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-lead strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 760;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-team {
+      margin-top: 2px;
+      color: #ff8000;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 700;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-score {
+      color: #fff;
+      font-size: 27px;
+      line-height: 29px;
+      font-weight: 820;
+      letter-spacing: -.035em;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-unit {
+      margin-left: 4px;
+      color: #9c9ca6;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-widget-visual-spec .f1ws-ranking-list {
+      min-width: 0;
+      display: grid;
+      align-content: center;
+      gap: 5px;
+    }
+    #f1-widget-visual-spec .f1ws-standing-row {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 18px 5px minmax(0, 1fr) auto;
+      gap: 7px;
+      align-items: center;
+    }
+    #f1-widget-visual-spec .f1ws-standing-pos {
+      color: #8e8e98;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 700;
+    }
+    #f1-widget-visual-spec .f1ws-color-bar { width: 5px; height: 24px; border-radius: 3px; }
+    #f1-widget-visual-spec .f1ws-color-bar--mcl { background: #ff8000; }
+    #f1-widget-visual-spec .f1ws-color-bar--mer { background: #27f4d2; }
+    #f1-widget-visual-spec .f1ws-color-bar--fer { background: #e8002d; }
+    #f1-widget-visual-spec .f1ws-color-bar--rbr { background: #3671c6; }
+    #f1-widget-visual-spec .f1ws-standing-name { min-width: 0; }
+    #f1-widget-visual-spec .f1ws-standing-name strong {
+      display: block;
+      color: #f7f7f8;
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-widget-visual-spec .f1ws-standing-name span {
+      display: block;
+      color: #898993;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #f1-widget-visual-spec .f1ws-standing-points {
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+    #f1-widget-visual-spec .f1ws-standing-points small {
+      margin-left: 2px;
+      color: #8c8c95;
+      font-size: 11px;
+      font-weight: 650;
+    }
+    #f1-widget-visual-spec .f1ws-data-stamp {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      color: rgba(255,255,255,.4);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-widget-visual-spec .f1ws-no-overlap {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #8f8f98;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 600;
+    }
+    #f1-widget-visual-spec .f1ws-no-overlap i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #43d17a;
+      box-shadow: 0 0 0 4px rgba(67,209,122,.11);
+    }
+    @media (max-width: 620px) {
+      #f1-widget-visual-spec .f1ws-type-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #f1-widget-visual-spec .f1ws-rules { grid-template-columns: 1fr; }
+      #f1-widget-visual-spec .f1ws-preview-item { grid-template-columns: 1fr; gap: 9px; }
+      #f1-widget-visual-spec .f1ws-preview-meta { padding-top: 0; }
+      #f1-widget-visual-spec .f1ws-shell { justify-self: center; }
+    }
+    @media (max-width: 390px) {
+      #f1-widget-visual-spec .f1ws-spec-surface { padding: 20px 16px; }
+      #f1-widget-visual-spec .f1ws-preview-header { padding: 20px 16px 16px; }
+      #f1-widget-visual-spec .f1ws-preview-list { padding: 22px 10px 26px; }
+      #f1-widget-visual-spec .f1ws-shell { padding: 6px; border-radius: 27px; }
+      #f1-widget-visual-spec .f1ws-widget--large,
+      #f1-widget-visual-spec .f1ws-widget--medium { padding: 14px; }
+      #f1-widget-visual-spec .f1ws-widget { border-radius: 21px; }
+      #f1-widget-visual-spec .f1ws-large-top { gap: 10px; }
+      #f1-widget-visual-spec .f1ws-session-list { gap: 7px; }
+      #f1-widget-visual-spec .f1ws-medium-schedule { gap: 10px; }
+      #f1-widget-visual-spec .f1ws-compact-row strong { font-size: 14px; }
+      #f1-widget-visual-spec .f1ws-ranking-lead strong { font-size: 14px; line-height: 18px; }
+      #f1-widget-visual-spec .f1ws-ranking-score { font-size: 25px; }
+      #f1-widget-visual-spec .f1ws-standing-row { grid-template-columns: 15px 4px minmax(0, 1fr) auto; gap: 5px; }
+      #f1-widget-visual-spec .f1ws-color-bar { width: 4px; height: 22px; }
+      #f1-widget-visual-spec .f1ws-standing-name strong { font-size: 12px; }
+      #f1-widget-visual-spec .f1ws-standing-points { font-size: 13px; }
+    }
+  </style>
+
+  <div class="f1ws-board">
+    <section class="f1ws-spec-surface" aria-labelledby="f1ws-spec-title">
+      <p class="f1ws-kicker">HIGH-FIDELITY BASELINE</p>
+      <h2 class="f1ws-heading" id="f1ws-spec-title">排版与安全区已锁定</h2>
+      <p class="f1ws-note">系统字体 · 中文优先 · 数字等宽 · 所有正文不低于 11 pt</p>
+
+      <div class="f1ws-type-grid" aria-label="Widget 字体层级">
+        <div class="f1ws-type-item">
+          <span class="f1ws-type-name">关键数字 · 34 pt</span>
+          <span class="f1ws-type-sample f1ws-type-sample--hero">03 天</span>
+        </div>
+        <div class="f1ws-type-item">
+          <span class="f1ws-type-name">主标题 · 20 pt</span>
+          <span class="f1ws-type-sample f1ws-type-sample--title">意大利大奖赛</span>
+        </div>
+        <div class="f1ws-type-item">
+          <span class="f1ws-type-name">核心信息 · 15 pt</span>
+          <span class="f1ws-type-sample f1ws-type-sample--body">正赛 · 21:00</span>
+        </div>
+        <div class="f1ws-type-item">
+          <span class="f1ws-type-name">最小文字 · 11 pt</span>
+          <span class="f1ws-type-sample f1ws-type-sample--caption">本地时间 · 示例数据</span>
+        </div>
+      </div>
+
+      <div class="f1ws-rules" aria-label="布局规则">
+        <div class="f1ws-rule"><strong>16 pt</strong><span>Widget 标准内容边距</span></div>
+        <div class="f1ws-rule"><strong>图文分区</strong><span>赛道或车手图不进入文字区</span></div>
+        <div class="f1ws-rule"><strong>动态缩放</strong><span>优先换行与减项，不压缩字号</span></div>
+      </div>
+    </section>
+
+    <section class="f1ws-preview-surface" aria-labelledby="f1ws-preview-title">
+      <header class="f1ws-preview-header">
+        <p class="f1ws-kicker">WIDGET FAMILY</p>
+        <h2 class="f1ws-heading" id="f1ws-preview-title">四种 Widget 高保真预览</h2>
+        <p class="f1ws-note">无收藏逻辑 · 无提醒入口 · 无日历入口</p>
+      </header>
+
+      <div class="f1ws-preview-list">
+        <article class="f1ws-preview-item">
+          <div class="f1ws-preview-meta">
+            <div class="f1ws-preview-index">01</div>
+            <div class="f1ws-preview-name">比赛周末</div>
+            <div class="f1ws-preview-size">systemLarge</div>
+            <div class="f1ws-no-overlap"><i></i>赛道图独立区域</div>
+          </div>
+          <div class="f1ws-shell f1ws-shell--large">
+            <div class="f1ws-widget f1ws-widget--large">
+              <span class="f1ws-data-stamp">示例数据</span>
+              <div class="f1ws-large-layout">
+                <div class="f1ws-large-top">
+                  <div class="f1ws-large-identity">
+                    <div>
+                      <div class="f1ws-round">R16 · 05–07 九月</div>
+                      <div class="f1ws-gp">意大利大奖赛</div>
+                      <div class="f1ws-circuit">蒙扎国家赛车场</div>
+                    </div>
+                    <div class="f1ws-track-zone" aria-label="蒙扎赛道轮廓示意">
+                      <svg viewBox="0 0 150 82" role="img" aria-label="赛道轮廓">
+                        <path class="f1ws-track-line" d="M18 59 L31 20 L54 15 L70 22 L84 12 L105 20 L126 48 L119 67 L81 69 L60 62 L39 69 Z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="f1ws-countdown-label">距离正赛</div>
+                      <div class="f1ws-countdown"><strong>03</strong><span>天</span><strong>05</strong><span>小时</span></div>
+                    </div>
+                  </div>
+                  <div class="f1ws-session-list" aria-label="比赛周末日程">
+                    <div>
+                      <div class="f1ws-session-time">周五 · 19:30</div>
+                      <div class="f1ws-session-title">第一节练习赛</div>
+                      <div class="f1ws-session-date">09 月 05 日</div>
+                    </div>
+                    <div>
+                      <div class="f1ws-session-time">周六 · 22:00</div>
+                      <div class="f1ws-session-title">排位赛</div>
+                      <div class="f1ws-session-date">09 月 06 日</div>
+                    </div>
+                    <div>
+                      <div class="f1ws-session-time">周日 · 21:00</div>
+                      <div class="f1ws-session-title">正赛</div>
+                      <div class="f1ws-session-date">09 月 07 日</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="f1ws-next-session">
+                  <div><span>下一场</span><strong>第一节练习赛</strong></div>
+                  <time>19:30</time>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="f1ws-preview-item">
+          <div class="f1ws-preview-meta">
+            <div class="f1ws-preview-index">02</div>
+            <div class="f1ws-preview-name">紧凑赛程</div>
+            <div class="f1ws-preview-size">systemMedium</div>
+            <div class="f1ws-no-overlap"><i></i>只保留 3 个关键 Session</div>
+          </div>
+          <div class="f1ws-shell">
+            <div class="f1ws-widget f1ws-widget--medium">
+              <span class="f1ws-data-stamp">示例数据</span>
+              <div class="f1ws-medium-schedule">
+                <div class="f1ws-medium-visual">
+                  <div>
+                    <div class="f1ws-round">R16</div>
+                    <div class="f1ws-gp">意大利站</div>
+                  </div>
+                  <div class="f1ws-track-zone" aria-label="蒙扎赛道轮廓示意">
+                    <svg viewBox="0 0 150 82" role="img" aria-label="赛道轮廓">
+                      <path class="f1ws-track-line" d="M18 59 L31 20 L54 15 L70 22 L84 12 L105 20 L126 48 L119 67 L81 69 L60 62 L39 69 Z" />
+                    </svg>
+                  </div>
+                  <div class="f1ws-medium-date">05–07 九月 · 本地时间</div>
+                </div>
+                <div class="f1ws-compact-sessions">
+                  <div class="f1ws-compact-row"><strong>第一节练习赛</strong><time>周五 19:30</time></div>
+                  <div class="f1ws-compact-row"><strong>排位赛</strong><time>周六 22:00</time></div>
+                  <div class="f1ws-compact-row"><strong>正赛</strong><time>周日 21:00</time></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="f1ws-preview-item">
+          <div class="f1ws-preview-meta">
+            <div class="f1ws-preview-index">03</div>
+            <div class="f1ws-preview-name">车手积分</div>
+            <div class="f1ws-preview-size">systemMedium</div>
+            <div class="f1ws-no-overlap"><i></i>中文全名始终完整优先</div>
+          </div>
+          <div class="f1ws-shell">
+            <div class="f1ws-widget f1ws-widget--medium f1ws-widget--driver">
+              <div class="f1ws-ranking-layout">
+                <div class="f1ws-ranking-lead">
+                  <div><div class="f1ws-ranking-label">赛季排名</div><strong>车手积分榜</strong></div>
+                  <div class="f1ws-round">第 11 轮</div>
+                </div>
+                <div class="f1ws-ranking-list">
+                  <div class="f1ws-standing-row">
+                    <span class="f1ws-standing-pos">01</span><i class="f1ws-color-bar f1ws-color-bar--mcl"></i>
+                    <div class="f1ws-standing-name"><strong>奥斯卡·皮亚斯特里</strong><span>迈凯伦 · PIA</span></div>
+                    <span class="f1ws-standing-points">198<small>分</small></span>
+                  </div>
+                  <div class="f1ws-standing-row">
+                    <span class="f1ws-standing-pos">02</span><i class="f1ws-color-bar f1ws-color-bar--mcl"></i>
+                    <div class="f1ws-standing-name"><strong>兰多·诺里斯</strong><span>迈凯伦 · NOR</span></div>
+                    <span class="f1ws-standing-points">176<small>分</small></span>
+                  </div>
+                  <div class="f1ws-standing-row">
+                    <span class="f1ws-standing-pos">03</span><i class="f1ws-color-bar f1ws-color-bar--mer"></i>
+                    <div class="f1ws-standing-name"><strong>乔治·拉塞尔</strong><span>梅赛德斯 · RUS</span></div>
+                    <span class="f1ws-standing-points">141<small>分</small></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="f1ws-preview-item">
+          <div class="f1ws-preview-meta">
+            <div class="f1ws-preview-index">04</div>
+            <div class="f1ws-preview-name">车队积分</div>
+            <div class="f1ws-preview-size">systemMedium</div>
+            <div class="f1ws-no-overlap"><i></i>官方主题色只作识别标记</div>
+          </div>
+          <div class="f1ws-shell">
+            <div class="f1ws-widget f1ws-widget--medium f1ws-widget--team">
+              <div class="f1ws-ranking-layout">
+                <div class="f1ws-ranking-lead">
+                  <div><div class="f1ws-ranking-label">赛季排名</div><strong>车队积分榜</strong></div>
+                  <div class="f1ws-round">第 11 轮</div>
+                </div>
+                <div class="f1ws-ranking-list">
+                  <div class="f1ws-standing-row">
+                    <span class="f1ws-standing-pos">01</span><i class="f1ws-color-bar f1ws-color-bar--mcl"></i>
+                    <div class="f1ws-standing-name"><strong>迈凯伦车队</strong><span>MCLAREN</span></div>
+                    <span class="f1ws-standing-points">374<small>分</small></span>
+                  </div>
+                  <div class="f1ws-standing-row">
+                    <span class="f1ws-standing-pos">02</span><i class="f1ws-color-bar f1ws-color-bar--mer"></i>
+                    <div class="f1ws-standing-name"><strong>梅赛德斯车队</strong><span>MERCEDES</span></div>
+                    <span class="f1ws-standing-points">234<small>分</small></span>
+                  </div>
+                  <div class="f1ws-standing-row">
+                    <span class="f1ws-standing-pos">03</span><i class="f1ws-color-bar f1ws-color-bar--fer"></i>
+                    <div class="f1ws-standing-name"><strong>法拉利车队</strong><span>FERRARI</span></div>
+                    <span class="f1ws-standing-points">218<small>分</small></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</section>

@@ -1,0 +1,491 @@
+<main id="f1-grand-prix-detail-high-fidelity" aria-label="F1 iOS App 大奖赛详情与赛道页面高保真效果图">
+  <style>
+    #f1-grand-prix-detail-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-grand-prix-detail-high-fidelity * { box-sizing: border-box; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-device {
+      width: min(100%, 420px);
+      margin: 0 auto;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #29292e;
+      border-radius: 48px;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-screen {
+      background:
+        radial-gradient(circle at 96% 2%, rgba(255,88,50,.18), transparent 25%),
+        linear-gradient(180deg, #0b090a 0%, #050506 100%);
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-status {
+      height: 54px;
+      padding: 16px 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: #fff;
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-status-icons { display: flex; align-items: center; gap: 7px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-signal { display: flex; align-items: end; gap: 2px; height: 12px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-signal i { width: 3px; border-radius: 2px; background: #fff; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-signal i:nth-child(1) { height: 4px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-signal i:nth-child(2) { height: 7px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-signal i:nth-child(3) { height: 10px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-signal i:nth-child(4) { height: 12px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-wifi {
+      width: 15px;
+      height: 11px;
+      position: relative;
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-wifi::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-battery {
+      min-width: 26px;
+      height: 13px;
+      padding: 1px 3px;
+      display: grid;
+      place-items: center;
+      color: #09090a;
+      background: #fff;
+      border: 1.5px solid #fff;
+      border-radius: 4px;
+      font-size: 9px;
+      line-height: 10px;
+      font-weight: 800;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-nav {
+      padding: 10px 18px 17px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-nav-button {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #17171a;
+      border: 1px solid #303035;
+      border-radius: 50%;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-nav-button svg { width: 20px; height: 20px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-nav-caption {
+      color: #8e8e97;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 650;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-content {
+      padding: 0 16px 30px;
+      display: grid;
+      gap: 26px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-identity { padding: 0 4px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-round {
+      color: #ff7658;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 760;
+      letter-spacing: .04em;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-title {
+      margin-top: 5px;
+      color: #fff;
+      font-size: 32px;
+      line-height: 38px;
+      font-weight: 820;
+      letter-spacing: -.035em;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-name {
+      margin-top: 3px;
+      color: #ff7d61;
+      font-size: 17px;
+      line-height: 22px;
+      font-weight: 730;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-date {
+      margin-top: 4px;
+      color: #95959e;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-panel {
+      position: relative;
+      min-height: 375px;
+      overflow: hidden;
+      padding: 15px;
+      background:
+        radial-gradient(circle at 86% 10%, rgba(255,116,66,.34), transparent 40%),
+        linear-gradient(150deg, #2d160f 0%, #121014 58%, #0c0c0e 100%);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 30px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-panel-head strong {
+      color: #fff;
+      font-size: 18px;
+      line-height: 23px;
+      font-weight: 760;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-panel-head span {
+      color: #aaaab3;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-map {
+      height: 295px;
+      margin-top: 4px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.02);
+      border-radius: 23px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-track-map svg {
+      width: 100%;
+      height: 286px;
+      overflow: visible;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-course {
+      fill: none;
+      stroke: #ff6546;
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 10px 12px rgba(255,101,70,.2));
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-pit {
+      fill: none;
+      stroke: #a5a5ad;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 7 6;
+      opacity: .8;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-turn circle { fill: #25252b; stroke: #5d5d66; stroke-width: 1; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-turn text {
+      fill: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 11px;
+      font-weight: 760;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-map-label {
+      fill: #d0d0d6;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-legend {
+      margin-top: 10px;
+      padding: 0 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #93939c;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-legend-item { display: flex; align-items: center; gap: 6px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-legend-line { width: 18px; height: 4px; border-radius: 3px; background: #ff6546; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-legend-line--pit { background: #9999a2; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-section { display: grid; gap: 12px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-section h2 {
+      margin: 0 3px;
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+      font-weight: 770;
+      letter-spacing: -.015em;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-stat {
+      min-height: 92px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #111114;
+      border: 1px solid #28282d;
+      border-radius: 21px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-stat span {
+      color: #898993;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 650;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-stat strong {
+      color: #fff;
+      font-size: 25px;
+      line-height: 29px;
+      font-weight: 820;
+      letter-spacing: -.025em;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-stat strong small {
+      margin-left: 3px;
+      color: #a1a1aa;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 650;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-schedule {
+      padding: 5px 15px;
+      background: #111114;
+      border: 1px solid #28282d;
+      border-radius: 25px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session {
+      min-height: 75px;
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      border-bottom: 1px solid #29292e;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session:last-child { border-bottom: 0; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session-date {
+      color: #ff7358;
+      font-size: 11px;
+      line-height: 15px;
+      font-weight: 760;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session-date strong {
+      display: block;
+      color: #fff;
+      font-size: 20px;
+      line-height: 23px;
+      font-weight: 800;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session-name strong {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 720;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session-name span {
+      display: block;
+      margin-top: 2px;
+      color: #85858f;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-session-time {
+      color: #c8c8ce;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 720;
+      white-space: nowrap;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-record {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255,101,70,.13), transparent 46%),
+        #111114;
+      border: 1px solid #28282d;
+      border-radius: 23px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-record-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: #ff7459;
+      background: #211613;
+      border-radius: 15px;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-record-icon svg { width: 21px; height: 21px; }
+    #f1-grand-prix-detail-high-fidelity .f1gp-record-copy span {
+      color: #888892;
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 650;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-record-copy strong {
+      display: block;
+      margin-top: 2px;
+      color: #fff;
+      font-size: 15px;
+      line-height: 19px;
+      font-weight: 720;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-record-time {
+      color: #fff;
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    #f1-grand-prix-detail-high-fidelity .f1gp-home-indicator {
+      width: 128px;
+      height: 5px;
+      margin: 16px auto 12px;
+      border-radius: 4px;
+      background: #fff;
+      opacity: .9;
+    }
+    @media (max-width: 390px) {
+      #f1-grand-prix-detail-high-fidelity .f1gp-device { border-radius: 38px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-status { padding-left: 21px; padding-right: 21px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-content { padding-left: 12px; padding-right: 12px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-title { font-size: 29px; line-height: 35px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-track-panel { padding: 12px; border-radius: 26px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-track-map { height: 275px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-track-map svg { height: 268px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-stat { padding: 13px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-stat strong { font-size: 23px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-session { grid-template-columns: 44px minmax(0, 1fr) auto; gap: 9px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-record { grid-template-columns: 40px minmax(0, 1fr) auto; gap: 9px; padding: 15px; }
+      #f1-grand-prix-detail-high-fidelity .f1gp-record-time { font-size: 16px; }
+    }
+  </style>
+
+  <article class="f1gp-device">
+    <div class="f1gp-screen">
+      <header>
+        <div class="f1gp-status" aria-label="状态栏">
+          <span>09:41</span>
+          <div class="f1gp-status-icons" aria-hidden="true">
+            <span class="f1gp-signal"><i></i><i></i><i></i><i></i></span>
+            <span class="f1gp-wifi"></span>
+            <span class="f1gp-battery">85</span>
+          </div>
+        </div>
+        <div class="f1gp-nav">
+          <button class="f1gp-nav-button" type="button" aria-label="返回赛历"><i data-lucide="arrow-left" aria-hidden="true"></i></button>
+          <span class="f1gp-nav-caption">示例数据 · 本地时间</span>
+          <span aria-hidden="true" style="width:42px"></span>
+        </div>
+      </header>
+
+      <div class="f1gp-content">
+        <section class="f1gp-identity" aria-labelledby="f1gp-title">
+          <div class="f1gp-round">R16 · 2026 赛季</div>
+          <div class="f1gp-title" id="f1gp-title">意大利大奖赛</div>
+          <div class="f1gp-track-name">蒙扎国家赛车场</div>
+          <div class="f1gp-date">09 月 05–07 日 · 意大利，蒙扎</div>
+        </section>
+
+        <section class="f1gp-track-panel" aria-labelledby="f1gp-map-title">
+          <div class="f1gp-track-panel-head"><strong id="f1gp-map-title">赛道预览</strong><span>单色赛道线</span></div>
+          <div class="f1gp-track-map">
+            <svg viewBox="0 0 390 286" role="img" aria-label="蒙扎赛道预览，标记 T1 到 T11、发车线、行驶方向与维修区通道">
+              <path class="f1gp-course" d="M330 218 L121 218 Q92 218 83 201 L76 181 Q72 168 63 158 L48 142 Q39 132 45 118 L53 105 Q57 98 52 90 L43 75 Q37 65 44 56 L56 44 Q62 38 72 39 L104 41 Q115 41 121 51 L133 73 Q143 91 157 104 L180 126 Q190 137 201 149 L219 165 Q229 174 245 174 L316 174 Q344 174 350 194 Q356 216 330 218 Z" />
+              <path class="f1gp-pit" d="M192 234 L306 234 Q322 234 330 219" />
+              <line x1="191" y1="208" x2="191" y2="227" stroke="#fff" stroke-width="4" />
+              <path d="M271 211 l14 -7 l-2 8 l8 3 z" fill="#fff" aria-hidden="true" />
+              <text class="f1gp-map-label" x="198" y="253">维修区通道</text>
+              <text class="f1gp-map-label" x="152" y="201">发车线</text>
+              <g class="f1gp-turn" transform="translate(122 238)"><circle r="12"/><text>T1</text></g>
+              <g class="f1gp-turn" transform="translate(79 207)"><circle r="12"/><text>T2</text></g>
+              <g class="f1gp-turn" transform="translate(62 173)"><circle r="12"/><text>T3</text></g>
+              <g class="f1gp-turn" transform="translate(34 145)"><circle r="12"/><text>T4</text></g>
+              <g class="f1gp-turn" transform="translate(40 104)"><circle r="12"/><text>T5</text></g>
+              <g class="f1gp-turn" transform="translate(31 70)"><circle r="12"/><text>T6</text></g>
+              <g class="f1gp-turn" transform="translate(71 25)"><circle r="12"/><text>T7</text></g>
+              <g class="f1gp-turn" transform="translate(124 39)"><circle r="12"/><text>T8</text></g>
+              <g class="f1gp-turn" transform="translate(166 105)"><circle r="12"/><text>T9</text></g>
+              <g class="f1gp-turn" transform="translate(219 151)"><circle r="12"/><text>T10</text></g>
+              <g class="f1gp-turn" transform="translate(360 196)"><circle r="12"/><text>T11</text></g>
+            </svg>
+          </div>
+          <div class="f1gp-legend" aria-label="赛道图例">
+            <span class="f1gp-legend-item"><i class="f1gp-legend-line"></i>赛道</span>
+            <span class="f1gp-legend-item"><i class="f1gp-legend-line f1gp-legend-line--pit"></i>维修区</span>
+            <span class="f1gp-legend-item">△ 行驶方向</span>
+          </div>
+        </section>
+
+        <section class="f1gp-section" aria-labelledby="f1gp-stats-title">
+          <h2 id="f1gp-stats-title">赛道数据</h2>
+          <div class="f1gp-stats">
+            <div class="f1gp-stat"><span>单圈长度</span><strong>5.793<small>公里</small></strong></div>
+            <div class="f1gp-stat"><span>正赛圈数</span><strong>53<small>圈</small></strong></div>
+            <div class="f1gp-stat"><span>弯角数量</span><strong>11<small>个</small></strong></div>
+            <div class="f1gp-stat"><span>正赛里程</span><strong>306.7<small>公里</small></strong></div>
+          </div>
+        </section>
+
+        <section class="f1gp-section" aria-labelledby="f1gp-schedule-title">
+          <h2 id="f1gp-schedule-title">比赛周末</h2>
+          <div class="f1gp-schedule">
+            <div class="f1gp-session">
+              <div class="f1gp-session-date"><strong>05</strong>周五</div>
+              <div class="f1gp-session-name"><strong>第一节练习赛</strong><span>Practice 1</span></div>
+              <time class="f1gp-session-time">19:30</time>
+            </div>
+            <div class="f1gp-session">
+              <div class="f1gp-session-date"><strong>05</strong>周五</div>
+              <div class="f1gp-session-name"><strong>第二节练习赛</strong><span>Practice 2</span></div>
+              <time class="f1gp-session-time">23:00</time>
+            </div>
+            <div class="f1gp-session">
+              <div class="f1gp-session-date"><strong>06</strong>周六</div>
+              <div class="f1gp-session-name"><strong>第三节练习赛</strong><span>Practice 3</span></div>
+              <time class="f1gp-session-time">18:30</time>
+            </div>
+            <div class="f1gp-session">
+              <div class="f1gp-session-date"><strong>06</strong>周六</div>
+              <div class="f1gp-session-name"><strong>排位赛</strong><span>Qualifying</span></div>
+              <time class="f1gp-session-time">22:00</time>
+            </div>
+            <div class="f1gp-session">
+              <div class="f1gp-session-date"><strong>07</strong>周日</div>
+              <div class="f1gp-session-name"><strong>正赛</strong><span>Race</span></div>
+              <time class="f1gp-session-time">21:00</time>
+            </div>
+          </div>
+        </section>
+
+        <section class="f1gp-section" aria-labelledby="f1gp-record-title">
+          <h2 id="f1gp-record-title">赛道纪录</h2>
+          <div class="f1gp-record">
+            <div class="f1gp-record-icon"><i data-lucide="timer" aria-hidden="true"></i></div>
+            <div class="f1gp-record-copy"><span>正赛最快圈</span><strong>鲁本斯·巴里切罗 · 2004</strong></div>
+            <div class="f1gp-record-time">1:21.046</div>
+          </div>
+        </section>
+      </div>
+      <div class="f1gp-home-indicator" aria-hidden="true"></div>
+    </div>
+  </article>
+</main>
