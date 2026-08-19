@@ -71,6 +71,23 @@
 
 ![设置与状态页面](previews/f1-settings-states-high-fidelity.png)
 
+## iPad 高保真方案
+
+- [浏览器版本](prototypes/f1-ipad-high-fidelity.html)
+- [源片段](fragments/f1-ipad-high-fidelity.html)
+
+iPad 采用主从分栏：左侧保留赛历或积分榜列表，右侧展示赛道、车手或车队详情。原型包含三个可切换状态：
+
+- 赛历与赛道
+- 积分榜与资料
+- iPad Widget
+
+![iPad 赛历与赛道](previews/f1-ipad-high-fidelity-calendar.png)
+
+![iPad 积分榜与资料](previews/f1-ipad-high-fidelity-standings.png)
+
+![iPad Widget](previews/f1-ipad-high-fidelity-widgets.png)
+
 ## Widget
 
 - [Widget 视觉规格](prototypes/f1-widget-visual-spec.html)

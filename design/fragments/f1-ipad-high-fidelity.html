@@ -1,0 +1,371 @@
+<main id="f1-ipad-high-fidelity" aria-label="Apex Atlas iPad 高保真设计">
+  <style>
+    #f1-ipad-high-fidelity {
+      width: 100%;
+      background: transparent;
+      color: #f8f8fa;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    #f1-ipad-high-fidelity * { box-sizing: border-box; }
+    #f1-ipad-high-fidelity button { font: inherit; }
+    #f1-ipad-high-fidelity .f1pad-preview-switch {
+      width: min(100%, 500px);
+      margin: 0 auto 14px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      background: #151518;
+      border: 1px solid #29292e;
+      border-radius: 17px;
+    }
+    #f1-ipad-high-fidelity .f1pad-preview-button {
+      min-height: 40px;
+      padding: 0 8px;
+      color: #85858f;
+      background: transparent;
+      border: 0;
+      border-radius: 13px;
+      font-size: 13px;
+      line-height: 17px;
+      font-weight: 720;
+    }
+    #f1-ipad-high-fidelity .f1pad-preview-button[aria-pressed="true"] { color: #fff; background: #3a3a3f; }
+    #f1-ipad-high-fidelity .f1pad-page[hidden] { display: none; }
+    #f1-ipad-high-fidelity .f1pad-device {
+      width: 100%;
+      overflow: hidden;
+      color: #f8f8fa;
+      background: #050506;
+      border: 1px solid #29292e;
+      border-radius: 30px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.36);
+    }
+    #f1-ipad-high-fidelity .f1pad-status {
+      min-height: 45px;
+      padding: 13px 18px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      background: #060607;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+    }
+    #f1-ipad-high-fidelity .f1pad-status-right { display: flex; align-items: center; gap: 7px; }
+    #f1-ipad-high-fidelity .f1pad-status-right svg { width: 15px; height: 15px; }
+    #f1-ipad-high-fidelity .f1pad-battery { padding: 1px 6px; color: #09090a; background: #fff; border-radius: 5px; font-size: 9px; line-height: 12px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-split {
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: minmax(255px, 40%) minmax(0, 60%);
+      background: #050506;
+    }
+    #f1-ipad-high-fidelity .f1pad-master {
+      min-width: 0;
+      background: #070708;
+      border-right: 1px solid #2a2a2e;
+    }
+    #f1-ipad-high-fidelity .f1pad-detail {
+      min-width: 0;
+      background: radial-gradient(circle at 100% 0%, rgba(255,128,0,.15), transparent 32%), #060607;
+    }
+    #f1-ipad-high-fidelity .f1pad-detail--teal { background: radial-gradient(circle at 100% 0%, rgba(0,213,190,.2), transparent 38%), #060808; }
+    #f1-ipad-high-fidelity .f1pad-master-head {
+      min-height: 116px;
+      padding: 14px 16px;
+      display: grid;
+      gap: 13px;
+      align-content: start;
+    }
+    #f1-ipad-high-fidelity .f1pad-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    #f1-ipad-high-fidelity .f1pad-brand { color: #fff; font-size: 21px; line-height: 25px; font-weight: 850; letter-spacing: -.05em; }
+    #f1-ipad-high-fidelity .f1pad-brand span { color: #e1262f; }
+    #f1-ipad-high-fidelity .f1pad-sidebar-button {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #1b1b1f;
+      border: 1px solid #36363c;
+      border-radius: 13px;
+    }
+    #f1-ipad-high-fidelity .f1pad-sidebar-button svg { width: 18px; height: 18px; }
+    #f1-ipad-high-fidelity .f1pad-segmented {
+      width: 100%;
+      padding: 3px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      background: #19191c;
+      border-radius: 14px;
+    }
+    #f1-ipad-high-fidelity .f1pad-segmented button {
+      min-height: 34px;
+      color: #8c8c95;
+      background: transparent;
+      border: 0;
+      border-radius: 11px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+    }
+    #f1-ipad-high-fidelity .f1pad-segmented button[aria-pressed="true"] { color: #09090a; background: #f1f1f3; }
+    #f1-ipad-high-fidelity .f1pad-feature {
+      width: 100%;
+      min-height: 198px;
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      text-align: left;
+      color: #fff;
+      background: linear-gradient(145deg,#301706,#14100e 62%,#111113);
+      border: 0;
+      border-top: 1px solid #252529;
+      border-bottom: 1px solid #252529;
+    }
+    #f1-ipad-high-fidelity .f1pad-feature span { color: #ff8c2b; font-size: 11px; line-height: 14px; font-weight: 730; }
+    #f1-ipad-high-fidelity .f1pad-feature h1 { max-width: 49%; margin: 5px 0 0; color: #fff; font-size: 21px; line-height: 26px; font-weight: 820; letter-spacing: -.025em; }
+    #f1-ipad-high-fidelity .f1pad-feature p { margin: 3px 0 0; color: #9b9ba4; font-size: 11px; line-height: 15px; font-weight: 600; }
+    #f1-ipad-high-fidelity .f1pad-feature time { position: absolute; left: 18px; bottom: 17px; color: #fff; font-size: 12px; line-height: 16px; font-weight: 700; }
+    #f1-ipad-high-fidelity .f1pad-feature-track { position: absolute; right: 10px; top: 58px; width: 96px; height: 80px; }
+    #f1-ipad-high-fidelity .f1pad-feature-track svg { width: 100%; height: 100%; }
+    #f1-ipad-high-fidelity .f1pad-list { overflow: hidden; }
+    #f1-ipad-high-fidelity .f1pad-row {
+      width: 100%;
+      min-height: 72px;
+      padding: 10px 14px;
+      display: grid;
+      grid-template-columns: 38px minmax(0,1fr) 45px;
+      gap: 9px;
+      align-items: center;
+      color: #fff;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #2a2a2e;
+      text-align: left;
+    }
+    #f1-ipad-high-fidelity .f1pad-row--selected { background: #171719; }
+    #f1-ipad-high-fidelity .f1pad-date strong { display: block; color: #fff; text-align: center; font-size: 18px; line-height: 21px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-date span { display: block; color: #85858f; text-align: center; font-size: 10px; line-height: 13px; font-weight: 620; }
+    #f1-ipad-high-fidelity .f1pad-copy strong { display: block; color: #fff; font-size: 13px; line-height: 17px; font-weight: 720; }
+    #f1-ipad-high-fidelity .f1pad-copy span { display: block; margin-top: 2px; color: #85858f; font-size: 10px; line-height: 13px; font-weight: 590; }
+    #f1-ipad-high-fidelity .f1pad-copy em { color: #ff8b2b; font-style: normal; }
+    #f1-ipad-high-fidelity .f1pad-track-icon { width: 40px; height: 29px; color: #b3b3bc; }
+    #f1-ipad-high-fidelity .f1pad-track-icon svg { width: 100%; height: 100%; }
+    #f1-ipad-high-fidelity .f1pad-detail-head { min-height: 110px; padding: 18px 20px 10px; }
+    #f1-ipad-high-fidelity .f1pad-kicker { color: #ff983f; font-size: 11px; line-height: 15px; font-weight: 720; }
+    #f1-ipad-high-fidelity .f1pad-detail-head h1 { margin: 5px 0 0; color: #fff; font-size: 29px; line-height: 34px; font-weight: 840; letter-spacing: -.035em; }
+    #f1-ipad-high-fidelity .f1pad-detail-head p { margin: 2px 0 0; color: #ff8b2b; font-size: 16px; line-height: 21px; font-weight: 720; }
+    #f1-ipad-high-fidelity .f1pad-race-hero {
+      min-height: 330px;
+      position: relative;
+      padding: 0 20px 16px;
+    }
+    #f1-ipad-high-fidelity .f1pad-track-large { width: 280px; max-width: 72%; height: 178px; margin: 2px 4px 0 auto; }
+    #f1-ipad-high-fidelity .f1pad-track-large svg { width: 100%; height: 100%; }
+    #f1-ipad-high-fidelity .f1pad-race-facts { position: absolute; left: 20px; bottom: 18px; display: grid; grid-template-columns: repeat(2, minmax(88px, 1fr)); gap: 13px 20px; }
+    #f1-ipad-high-fidelity .f1pad-fact span { display: block; color: #8d8d96; font-size: 10px; line-height: 13px; font-weight: 600; }
+    #f1-ipad-high-fidelity .f1pad-fact strong { display: block; margin-top: 1px; color: #fff; font-size: 18px; line-height: 22px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-detail-section { padding: 0 20px 20px; }
+    #f1-ipad-high-fidelity .f1pad-section-title { margin: 0 0 8px; color: #fff; font-size: 18px; line-height: 23px; font-weight: 770; }
+    #f1-ipad-high-fidelity .f1pad-session-list { overflow: hidden; border-top: 1px solid #2d2d32; }
+    #f1-ipad-high-fidelity .f1pad-session {
+      min-height: 60px;
+      padding: 9px 4px;
+      display: grid;
+      grid-template-columns: 40px minmax(0,1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid #2d2d32;
+    }
+    #f1-ipad-high-fidelity .f1pad-session strong { color: #fff; font-size: 13px; line-height: 17px; font-weight: 720; }
+    #f1-ipad-high-fidelity .f1pad-session time { color: #c1c1c8; font-size: 11px; line-height: 15px; font-weight: 620; }
+    #f1-ipad-high-fidelity .f1pad-ranking-row {
+      width: 100%;
+      min-height: 68px;
+      padding: 10px 14px;
+      display: grid;
+      grid-template-columns: 31px 5px minmax(0,1fr) auto;
+      gap: 9px;
+      align-items: center;
+      color: #fff;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #2a2a2e;
+      text-align: left;
+    }
+    #f1-ipad-high-fidelity .f1pad-ranking-row--selected { background: #171719; }
+    #f1-ipad-high-fidelity .f1pad-position { color: #fff; font-size: 17px; line-height: 21px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-team-color { width: 5px; height: 34px; border-radius: 4px; background: #ff8000; }
+    #f1-ipad-high-fidelity .f1pad-team-color--red { background: #ef1a2d; }
+    #f1-ipad-high-fidelity .f1pad-team-color--blue { background: #3671c6; }
+    #f1-ipad-high-fidelity .f1pad-team-color--teal { background: #00d2be; }
+    #f1-ipad-high-fidelity .f1pad-points { color: #fff; text-align: right; font-size: 17px; line-height: 20px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-points span { display: block; color: #85858f; font-size: 10px; line-height: 12px; font-weight: 600; }
+    #f1-ipad-high-fidelity .f1pad-driver-hero {
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      background: radial-gradient(circle at 86% 20%, rgba(0,210,190,.58), transparent 43%), linear-gradient(145deg,#003e3c 0%,#101314 62%,#08090a 100%);
+    }
+    #f1-ipad-high-fidelity .f1pad-driver-hero h1 { max-width: 55%; margin: 0; color: #fff; font-size: 33px; line-height: 38px; font-weight: 850; letter-spacing: -.04em; }
+    #f1-ipad-high-fidelity .f1pad-driver-hero h1 span { display: block; color: #04cec0; }
+    #f1-ipad-high-fidelity .f1pad-driver-hero p { margin: 10px 0 0; color: #d1d1d7; font-size: 12px; line-height: 16px; font-weight: 620; }
+    #f1-ipad-high-fidelity .f1pad-helmet { position: absolute; right: 3%; top: 36px; width: 205px; max-width: 45%; height: 235px; }
+    #f1-ipad-high-fidelity .f1pad-helmet svg { width: 100%; height: 100%; }
+    #f1-ipad-high-fidelity .f1pad-driver-stats { position: absolute; left: 22px; bottom: 22px; display: grid; grid-template-columns: repeat(2, minmax(80px,1fr)); gap: 17px 27px; }
+    #f1-ipad-high-fidelity .f1pad-driver-stat span { display: block; color: #9a9aa3; font-size: 10px; line-height: 13px; font-weight: 600; }
+    #f1-ipad-high-fidelity .f1pad-driver-stat strong { display: block; margin-top: 2px; color: #fff; font-size: 23px; line-height: 27px; font-weight: 820; }
+    #f1-ipad-high-fidelity .f1pad-chart-wrap { padding: 18px 20px; }
+    #f1-ipad-high-fidelity .f1pad-bars { height: 150px; display: grid; grid-template-columns: repeat(11,1fr); gap: 7px; align-items: end; }
+    #f1-ipad-high-fidelity .f1pad-bar { height: 100%; display: grid; align-items: end; justify-items: center; gap: 5px; color: #71717a; font-size: 10px; line-height: 12px; font-weight: 620; }
+    #f1-ipad-high-fidelity .f1pad-bar i { width: 14px; max-width: 80%; background: #00c7ba; border-radius: 6px 6px 2px 2px; }
+    #f1-ipad-high-fidelity .f1pad-widget-surface {
+      min-height: 760px;
+      padding: 25px;
+      background: radial-gradient(circle at 10% 10%,rgba(0,170,155,.18),transparent 25%),radial-gradient(circle at 90% 8%,rgba(255,128,0,.16),transparent 24%),#0b0b0d;
+    }
+    #f1-ipad-high-fidelity .f1pad-widget-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 22px; }
+    #f1-ipad-high-fidelity .f1pad-widget-head h1 { margin: 0; color: #fff; font-size: 29px; line-height: 34px; font-weight: 830; }
+    #f1-ipad-high-fidelity .f1pad-widget-head p { margin: 4px 0 0; color: #85858f; font-size: 12px; line-height: 16px; font-weight: 580; }
+    #f1-ipad-high-fidelity .f1pad-size-label { color: #aaaab2; font-size: 11px; line-height: 15px; font-weight: 650; }
+    #f1-ipad-high-fidelity .f1pad-widget-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 16px; align-items: start; }
+    #f1-ipad-high-fidelity .f1pad-widget-column { display: grid; gap: 16px; }
+    #f1-ipad-high-fidelity .f1pad-widget {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background: #111114;
+      border: 1px solid #303035;
+      border-radius: 28px;
+    }
+    #f1-ipad-high-fidelity .f1pad-widget--schedule { min-height: 360px; display: grid; grid-template-columns: .82fr 1.18fr; }
+    #f1-ipad-high-fidelity .f1pad-widget-race { padding: 21px; background: radial-gradient(circle at 80% 20%,rgba(255,128,0,.45),transparent 43%),#09090a; }
+    #f1-ipad-high-fidelity .f1pad-widget-race span { color: #ff8f2d; font-size: 11px; line-height: 14px; font-weight: 710; }
+    #f1-ipad-high-fidelity .f1pad-widget-race h2 { margin: 7px 0 0; color: #fff; font-size: 21px; line-height: 25px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-widget-race p { margin: 2px 0 0; color: #ff8f2d; font-size: 12px; line-height: 16px; font-weight: 680; }
+    #f1-ipad-high-fidelity .f1pad-widget-count { position: absolute; left: 21px; bottom: 22px; color: #ff8f2d; font-size: 32px; line-height: 40px; font-weight: 830; }
+    #f1-ipad-high-fidelity .f1pad-widget-count span { margin-left: 4px; color: #fff; font-size: 13px; font-weight: 650; }
+    #f1-ipad-high-fidelity .f1pad-widget-sessions { padding: 18px 20px; background: #151517; }
+    #f1-ipad-high-fidelity .f1pad-widget-day { margin-bottom: 13px; color: #ff8f2d; font-size: 11px; line-height: 14px; font-weight: 710; }
+    #f1-ipad-high-fidelity .f1pad-widget-session { margin-bottom: 12px; display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 8px; }
+    #f1-ipad-high-fidelity .f1pad-widget-session strong { color: #fff; font-size: 11px; line-height: 14px; font-weight: 700; }
+    #f1-ipad-high-fidelity .f1pad-widget-session span { display: block; color: #9a9aa3; font-size: 10px; line-height: 13px; font-weight: 560; }
+    #f1-ipad-high-fidelity .f1pad-widget--summary { min-height: 172px; padding: 18px; background: radial-gradient(circle at 100% 0%,rgba(0,210,190,.32),transparent 48%),#101314; }
+    #f1-ipad-high-fidelity .f1pad-widget--team { background: radial-gradient(circle at 100% 0%,rgba(255,128,0,.32),transparent 48%),#13100d; }
+    #f1-ipad-high-fidelity .f1pad-widget--summary h2 { max-width: 75%; margin: 0; color: #fff; font-size: 18px; line-height: 23px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-widget--summary p { margin: 2px 0 0; color: #00cdbf; font-size: 11px; line-height: 14px; font-weight: 680; }
+    #f1-ipad-high-fidelity .f1pad-widget--team p { color: #ff8e2c; }
+    #f1-ipad-high-fidelity .f1pad-widget-metrics { position: absolute; left: 18px; right: 18px; bottom: 17px; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    #f1-ipad-high-fidelity .f1pad-widget-metric span { display: block; color: #8f8f98; font-size: 9px; line-height: 12px; font-weight: 580; }
+    #f1-ipad-high-fidelity .f1pad-widget-metric strong { display: block; color: #fff; font-size: 19px; line-height: 23px; font-weight: 800; }
+    #f1-ipad-high-fidelity .f1pad-widget-note { margin-top: 16px; color: #6f6f78; text-align: center; font-size: 11px; line-height: 15px; font-weight: 570; }
+    @media (max-width: 620px) {
+      #f1-ipad-high-fidelity .f1pad-preview-switch { grid-template-columns: 1fr; width: min(100%, 300px); }
+      #f1-ipad-high-fidelity .f1pad-split { grid-template-columns: 1fr; }
+      #f1-ipad-high-fidelity .f1pad-master { border-right: 0; border-bottom: 1px solid #2a2a2e; }
+      #f1-ipad-high-fidelity .f1pad-detail-head h1 { font-size: 26px; line-height: 31px; }
+      #f1-ipad-high-fidelity .f1pad-track-large { max-width: 82%; }
+      #f1-ipad-high-fidelity .f1pad-driver-hero h1 { font-size: 28px; line-height: 34px; }
+      #f1-ipad-high-fidelity .f1pad-helmet { width: 160px; max-width: 48%; }
+      #f1-ipad-high-fidelity .f1pad-widget-surface { padding: 16px; }
+      #f1-ipad-high-fidelity .f1pad-widget-head { align-items: start; flex-direction: column; }
+      #f1-ipad-high-fidelity .f1pad-widget-grid { grid-template-columns: 1fr; }
+      #f1-ipad-high-fidelity .f1pad-widget--schedule { grid-template-columns: 1fr; }
+      #f1-ipad-high-fidelity .f1pad-widget-race { min-height: 210px; }
+      #f1-ipad-high-fidelity .f1pad-widget-count { position: static; margin-top: 34px; }
+    }
+  </style>
+
+  <div class="f1pad-preview-switch" aria-label="切换 iPad 设计预览">
+    <button class="f1pad-preview-button" type="button" data-ipad-tab="calendar" aria-pressed="true">赛历与赛道</button>
+    <button class="f1pad-preview-button" type="button" data-ipad-tab="standings" aria-pressed="false">积分榜与资料</button>
+    <button class="f1pad-preview-button" type="button" data-ipad-tab="widgets" aria-pressed="false">iPad Widget</button>
+  </div>
+
+  <article class="f1pad-page f1pad-device" data-ipad-page="calendar">
+    <div class="f1pad-status"><span>09:41 · 8月19日 周三</span><span class="f1pad-status-right"><i data-lucide="wifi" aria-hidden="true"></i><span>82%</span><span class="f1pad-battery">82</span></span></div>
+    <div class="f1pad-split">
+      <section class="f1pad-master" aria-label="赛历列表">
+        <div class="f1pad-master-head"><div class="f1pad-toolbar"><button class="f1pad-sidebar-button" type="button" aria-label="打开侧边栏"><i data-lucide="panel-left" aria-hidden="true"></i></button><div class="f1pad-brand">APEX<span>°</span></div></div><div class="f1pad-segmented"><button type="button" aria-pressed="true">即将举行</button><button type="button" aria-pressed="false">过往比赛</button></div></div>
+        <button class="f1pad-feature" type="button"><span>第 12 轮</span><h1>荷兰大奖赛</h1><p>Zandvoort</p><span class="f1pad-feature-track" aria-hidden="true"><svg viewBox="0 0 140 110"><path d="M19 76 C14 50 37 20 67 18 C89 17 94 40 111 42 C132 45 135 64 121 77 C106 90 82 79 65 88 C45 98 24 94 19 76 Z" fill="none" stroke="#ff8b2d" stroke-width="13" stroke-linecap="round"/><path d="M23 73 L34 68" stroke="#fff" stroke-width="3"/></svg></span><time>8月21–23日</time></button>
+        <div class="f1pad-list">
+          <button class="f1pad-row" type="button"><span class="f1pad-date"><strong>06</strong><span>9月</span></span><span class="f1pad-copy"><strong>意大利大奖赛</strong><span>R13 · <em>蒙扎</em></span></span><span class="f1pad-track-icon"><svg viewBox="0 0 50 32"><path d="M5 23 L10 7 L21 4 L31 13 L45 16 L42 26 L18 28 Z" fill="none" stroke="currentColor" stroke-width="3"/></svg></span></button>
+          <button class="f1pad-row" type="button"><span class="f1pad-date"><strong>13</strong><span>9月</span></span><span class="f1pad-copy"><strong>西班牙大奖赛</strong><span>R14 · <em>马德里</em></span></span><span class="f1pad-track-icon"><svg viewBox="0 0 50 32"><path d="M5 8 L18 5 L21 12 L42 8 L44 20 L34 27 L13 25 Z" fill="none" stroke="currentColor" stroke-width="3"/></svg></span></button>
+          <button class="f1pad-row" type="button"><span class="f1pad-date"><strong>26</strong><span>9月</span></span><span class="f1pad-copy"><strong>阿塞拜疆大奖赛</strong><span>R15 · <em>巴库</em></span></span><span class="f1pad-track-icon"><svg viewBox="0 0 50 32"><path d="M5 24 L10 8 L28 6 L28 13 L43 13 L44 25 L22 27 Z" fill="none" stroke="currentColor" stroke-width="3"/></svg></span></button>
+          <button class="f1pad-row" type="button"><span class="f1pad-date"><strong>04</strong><span>10月</span></span><span class="f1pad-copy"><strong>新加坡大奖赛</strong><span>R16 · <em>滨海湾</em></span></span><span class="f1pad-track-icon"><svg viewBox="0 0 50 32"><path d="M5 10 L17 5 L28 10 L43 7 L45 22 L32 28 L12 24 Z" fill="none" stroke="currentColor" stroke-width="3"/></svg></span></button>
+        </div>
+      </section>
+      <section class="f1pad-detail" aria-label="荷兰大奖赛详情">
+        <div class="f1pad-detail-head"><span class="f1pad-kicker">第 12 轮</span><h1>荷兰大奖赛</h1><p>Zandvoort Circuit · 8月21–23日</p></div>
+        <div class="f1pad-race-hero">
+          <div class="f1pad-track-large" role="img" aria-label="赞德沃特赛道预览，标出十四个弯角、起终点与行驶方向"><svg viewBox="0 0 310 185"><path d="M44 122 C29 86 59 36 111 30 C142 26 151 58 183 62 C231 68 270 80 263 116 C257 150 205 137 168 146 C114 159 57 152 44 122 Z" fill="none" stroke="#ff8b2d" stroke-width="15" stroke-linecap="round"/><path d="M54 119 L70 112" stroke="#fff" stroke-width="5"/><path d="M203 69 L218 75 L205 82" fill="none" stroke="#fff" stroke-width="4"/><g fill="#1d1d21" stroke="#55555e" stroke-width="1"><circle cx="73" cy="142" r="9"/><circle cx="49" cy="111" r="9"/><circle cx="58" cy="67" r="9"/><circle cx="91" cy="37" r="9"/><circle cx="133" cy="38" r="9"/><circle cx="162" cy="64" r="9"/><circle cx="202" cy="69" r="9"/><circle cx="243" cy="87" r="9"/><circle cx="258" cy="119" r="9"/><circle cx="222" cy="139" r="9"/><circle cx="176" cy="145" r="9"/><circle cx="126" cy="151" r="9"/><circle cx="91" cy="149" r="9"/><circle cx="62" cy="135" r="9"/></g><g fill="#fff" font-size="8" font-weight="700" text-anchor="middle" dominant-baseline="middle"><text x="73" y="142">1</text><text x="49" y="111">2</text><text x="58" y="67">3</text><text x="91" y="37">4</text><text x="133" y="38">5</text><text x="162" y="64">6</text><text x="202" y="69">7</text><text x="243" y="87">8</text><text x="258" y="119">9</text><text x="222" y="139">10</text><text x="176" y="145">11</text><text x="126" y="151">12</text><text x="91" y="149">13</text><text x="62" y="135">14</text></g></svg></div>
+          <div class="f1pad-race-facts"><div class="f1pad-fact"><span>赛道长度</span><strong>4.259 km</strong></div><div class="f1pad-fact"><span>正赛圈数</span><strong>72</strong></div><div class="f1pad-fact"><span>弯角</span><strong>14</strong></div><div class="f1pad-fact"><span>方向</span><strong>顺时针</strong></div></div>
+        </div>
+        <div class="f1pad-detail-section"><h2 class="f1pad-section-title">比赛周末</h2><div class="f1pad-session-list"><div class="f1pad-session"><span class="f1pad-date"><strong>21</strong><span>周五</span></span><strong>第一次练习</strong><time>18:30–19:30</time></div><div class="f1pad-session"><span class="f1pad-date"><strong>22</strong><span>周六</span></span><strong>排位赛</strong><time>22:00–23:00</time></div><div class="f1pad-session"><span class="f1pad-date"><strong>23</strong><span>周日</span></span><strong>正赛</strong><time>21:00–23:00</time></div></div></div>
+      </section>
+    </div>
+  </article>
+
+  <article class="f1pad-page f1pad-device" data-ipad-page="standings" hidden>
+    <div class="f1pad-status"><span>09:41 · 8月19日 周三</span><span class="f1pad-status-right"><i data-lucide="wifi" aria-hidden="true"></i><span>82%</span><span class="f1pad-battery">82</span></span></div>
+    <div class="f1pad-split">
+      <section class="f1pad-master" aria-label="积分榜列表">
+        <div class="f1pad-master-head"><div class="f1pad-toolbar"><button class="f1pad-sidebar-button" type="button" aria-label="打开侧边栏"><i data-lucide="panel-left" aria-hidden="true"></i></button><div class="f1pad-brand">APEX<span>°</span></div></div><div class="f1pad-segmented"><button type="button" aria-pressed="true">车手</button><button type="button" aria-pressed="false">车队</button></div></div>
+        <div class="f1pad-list">
+          <button class="f1pad-ranking-row f1pad-ranking-row--selected" type="button"><span class="f1pad-position">01</span><span class="f1pad-team-color"></span><span class="f1pad-copy"><strong>奥斯卡·皮亚斯特里</strong><span>迈凯伦车队 · PIA</span></span><span class="f1pad-points">198<span>积分</span></span></button>
+          <button class="f1pad-ranking-row" type="button"><span class="f1pad-position">02</span><span class="f1pad-team-color"></span><span class="f1pad-copy"><strong>兰多·诺里斯</strong><span>迈凯伦车队 · NOR</span></span><span class="f1pad-points">176<span>积分</span></span></button>
+          <button class="f1pad-ranking-row" type="button"><span class="f1pad-position">03</span><span class="f1pad-team-color f1pad-team-color--red"></span><span class="f1pad-copy"><strong>夏尔·勒克莱尔</strong><span>法拉利车队 · LEC</span></span><span class="f1pad-points">154<span>积分</span></span></button>
+          <button class="f1pad-ranking-row" type="button"><span class="f1pad-position">04</span><span class="f1pad-team-color f1pad-team-color--blue"></span><span class="f1pad-copy"><strong>马克斯·维斯塔潘</strong><span>红牛车队 · VER</span></span><span class="f1pad-points">143<span>积分</span></span></button>
+          <button class="f1pad-ranking-row" type="button"><span class="f1pad-position">05</span><span class="f1pad-team-color f1pad-team-color--teal"></span><span class="f1pad-copy"><strong>乔治·拉塞尔</strong><span>梅赛德斯车队 · RUS</span></span><span class="f1pad-points">121<span>积分</span></span></button>
+          <button class="f1pad-ranking-row" type="button"><span class="f1pad-position">06</span><span class="f1pad-team-color f1pad-team-color--red"></span><span class="f1pad-copy"><strong>刘易斯·汉密尔顿</strong><span>法拉利车队 · HAM</span></span><span class="f1pad-points">118<span>积分</span></span></button>
+        </div>
+      </section>
+      <section class="f1pad-detail f1pad-detail--teal" aria-label="车手详情">
+        <div class="f1pad-driver-hero"><h1>奥斯卡<span>皮亚斯特里</span></h1><p>Oscar Piastri · PIA · 迈凯伦车队</p><span class="f1pad-helmet" aria-hidden="true"><svg viewBox="0 0 190 220"><path d="M43 144 Q19 111 30 66 Q45 17 94 15 Q146 17 168 59 Q179 88 163 137 L146 181 Q132 205 98 207 L69 202 Q45 194 43 166 Z" fill="#ff8000" stroke="#fff" stroke-width="5"/><path d="M35 78 Q85 47 160 67 L170 91 Q112 112 42 96 Z" fill="#101317" stroke="#55d7ff" stroke-width="5"/><path d="M57 145 L154 135 L142 168 L79 177 Z" fill="#24262b"/><path d="M62 40 L86 16 L106 42 L124 23 L143 56" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><text x="109" y="163" fill="#fff" font-size="29" font-weight="800" text-anchor="middle">81</text></svg></span><div class="f1pad-driver-stats"><div class="f1pad-driver-stat"><span>赛季排名</span><strong>01</strong></div><div class="f1pad-driver-stat"><span>积分</span><strong>198</strong></div><div class="f1pad-driver-stat"><span>获胜</span><strong>4</strong></div><div class="f1pad-driver-stat"><span>领奖台</span><strong>7</strong></div></div></div>
+        <div class="f1pad-chart-wrap"><h2 class="f1pad-section-title">每轮积分</h2><div class="f1pad-bars" role="img" aria-label="皮亚斯特里前十一轮积分"><span class="f1pad-bar"><i style="height:72%"></i>01</span><span class="f1pad-bar"><i style="height:100%"></i>02</span><span class="f1pad-bar"><i style="height:80%"></i>03</span><span class="f1pad-bar"><i style="height:100%"></i>04</span><span class="f1pad-bar"><i style="height:60%"></i>05</span><span class="f1pad-bar"><i style="height:100%"></i>06</span><span class="f1pad-bar"><i style="height:32%"></i>07</span><span class="f1pad-bar"><i style="height:72%"></i>08</span><span class="f1pad-bar"><i style="height:40%"></i>09</span><span class="f1pad-bar"><i style="height:100%"></i>10</span><span class="f1pad-bar"><i style="height:60%"></i>11</span></div></div>
+        <div class="f1pad-detail-section"><h2 class="f1pad-section-title">赛季资料</h2><div class="f1pad-session-list"><div class="f1pad-session"><i data-lucide="hash" aria-hidden="true"></i><strong>车手号码</strong><time>81</time></div><div class="f1pad-session"><i data-lucide="flag" aria-hidden="true"></i><strong>车队</strong><time>迈凯伦车队</time></div><div class="f1pad-session"><i data-lucide="trophy" aria-hidden="true"></i><strong>最佳完赛</strong><time>P1 · 4 次</time></div></div></div>
+      </section>
+    </div>
+  </article>
+
+  <article class="f1pad-page f1pad-device" data-ipad-page="widgets" hidden>
+    <div class="f1pad-status"><span>09:41 · 8月19日 周三</span><span class="f1pad-status-right"><i data-lucide="wifi" aria-hidden="true"></i><span>82%</span><span class="f1pad-battery">82</span></span></div>
+    <div class="f1pad-widget-surface">
+      <div class="f1pad-widget-head"><div><h1>iPad Widget</h1><p>使用 iPad 的宽版与超大尺寸展示更多赛程信息</p></div><span class="f1pad-size-label">固定深色 · 设备时区</span></div>
+      <div class="f1pad-widget-grid">
+        <div class="f1pad-widget-column">
+          <section class="f1pad-widget f1pad-widget--schedule" aria-label="超大号比赛日程小组件"><div class="f1pad-widget-race"><span>第 12 轮</span><h2>荷兰大奖赛</h2><p>Zandvoort · 8月21–23日</p><div class="f1pad-widget-count">03<span>天</span><br>05<span>小时</span></div></div><div class="f1pad-widget-sessions"><div class="f1pad-widget-day">周五 · 8月21日</div><div class="f1pad-widget-session"><span>21</span><strong>第一次练习<span>18:30–19:30</span></strong></div><div class="f1pad-widget-day">周六 · 8月22日</div><div class="f1pad-widget-session"><span>22</span><strong>排位赛<span>22:00–23:00</span></strong></div><div class="f1pad-widget-day">周日 · 8月23日</div><div class="f1pad-widget-session"><span>23</span><strong>正赛<span>21:00–23:00</span></strong></div></div></section>
+          <div class="f1pad-size-label">Extra Large · 比赛周末完整日程</div>
+        </div>
+        <div class="f1pad-widget-column">
+          <section class="f1pad-widget f1pad-widget--summary" aria-label="车手赛季摘要小组件"><h2>奥斯卡·皮亚斯特里</h2><p>迈凯伦车队 · PIA</p><div class="f1pad-widget-metrics"><div class="f1pad-widget-metric"><span>排名</span><strong>01</strong></div><div class="f1pad-widget-metric"><span>积分</span><strong>198</strong></div><div class="f1pad-widget-metric"><span>获胜</span><strong>4</strong></div></div></section>
+          <section class="f1pad-widget f1pad-widget--summary f1pad-widget--team" aria-label="车队赛季摘要小组件"><h2>迈凯伦车队</h2><p>McLaren Racing</p><div class="f1pad-widget-metrics"><div class="f1pad-widget-metric"><span>排名</span><strong>01</strong></div><div class="f1pad-widget-metric"><span>积分</span><strong>374</strong></div><div class="f1pad-widget-metric"><span>获胜</span><strong>6</strong></div></div></section>
+          <div class="f1pad-size-label">Large · 可配置车手或车队摘要</div>
+        </div>
+      </div>
+      <div class="f1pad-widget-note">不包含提醒、通知或加入日历操作；Widget 只读取 App 已缓存的数据。</div>
+    </div>
+  </article>
+
+  <script>
+    (() => {
+      const root = document.getElementById('f1-ipad-high-fidelity');
+      const tabs = Array.from(root.querySelectorAll('[data-ipad-tab]'));
+      const pages = Array.from(root.querySelectorAll('[data-ipad-page]'));
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const selected = tab.getAttribute('data-ipad-tab');
+          tabs.forEach((item) => item.setAttribute('aria-pressed', String(item === tab)));
+          pages.forEach((page) => { page.hidden = page.getAttribute('data-ipad-page') !== selected; });
+        });
+      });
+    })();
+  </script>
+</main>

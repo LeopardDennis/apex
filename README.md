@@ -1,6 +1,6 @@
 # Apex Atlas（弯心图鉴）
 
-Apex Atlas 是一个面向个人使用的非官方方程式赛车 iOS 信息应用，聚焦赛历、赛道、比赛结果与赛季积分榜。
+Apex Atlas 是一个面向个人使用的非官方方程式赛车 iPhone 与 iPad 信息应用，聚焦赛历、赛道、比赛结果与赛季积分榜。
 
 ## 当前状态
 
@@ -16,6 +16,7 @@ Apex Atlas 是一个面向个人使用的非官方方程式赛车 iOS 信息应�
 - 资料页：车手详情、车队详情和赛季统计
 - Widget：下一场比赛、周末日程、车手与车队摘要
 - 设置：语言、设备时区、赛季与本地缓存
+- iPad：主从分栏浏览，以及 Large 与 Extra Large Widget
 
 ## 明确不做
 
@@ -36,6 +37,10 @@ Apex Atlas 是一个面向个人使用的非官方方程式赛车 iOS 信息应�
 [打开完整可点击原型](design/prototypes/f1-clickable-prototype.html)
 
 ![Apex Atlas 完整可点击原型](design/previews/f1-clickable-prototype.png)
+
+[打开 iPad 高保真原型](design/prototypes/f1-ipad-high-fidelity.html)
+
+![Apex Atlas iPad 高保真原型](design/previews/f1-ipad-high-fidelity-calendar.png)
 
 ## 说明
 
