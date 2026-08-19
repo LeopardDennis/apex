@@ -32,11 +32,14 @@ jq -e '
   and ([.circuits[].round] == [range(1; 24)])
   and ([.circuits[].meetingKey] | unique | length == 23)
   and ([.circuits[].trackAssetId] | unique | length == 23)
-  and ([.circuits[] | select(.geometryStatus == "pendingManual")] | length == 2)
+  and (all(.circuits[]; .geometryStatus == "available"))
 ' "$circuits" >/dev/null
 
 track_count=$(find "$tracks" -name 'circuit-*-2026.json' -type f | wc -l | tr -d ' ')
 test "$track_count" -eq 23
+
+available_track_count=$(find "$tracks" -name 'circuit-*-2026.json' -type f -exec jq -r 'select(.geometryStatus == "available") | .trackAssetId' {} \; | wc -l | tr -d ' ')
+test "$available_track_count" -eq 23
 
 for track in "$tracks"/circuit-*-2026.json; do
   jq -e '
