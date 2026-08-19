@@ -1,4 +1,4 @@
-# Apex Atlas 技术设计
+# Apex 技术设计
 
 版本：0.1
 
@@ -6,7 +6,7 @@
 
 ## 1. 技术结论
 
-Apex Atlas 首发采用原生 Apple 技术栈：
+Apex 首发采用原生 Apple 技术栈：
 
 - 最低系统：iOS 17、iPadOS 17
 - 界面：SwiftUI
@@ -50,7 +50,7 @@ Apex Atlas 首发采用原生 Apple 技术栈：
 | 车手列表 | `{season}/drivers.json?limit=100` |
 | 车队列表 | `{season}/constructors.json?limit=100` |
 
-客户端必须发送类似 `ApexAtlas/1.0 iOS` 的自定义 User-Agent。匿名访问限流当前为每秒 4 次、每小时 500 次，因此所有请求都必须经过本地缓存、请求合并和退避处理。
+客户端必须发送类似 `Apex/1.0 iOS` 的自定义 User-Agent。匿名访问限流当前为每秒 4 次、每小时 500 次，因此所有请求都必须经过本地缓存、请求合并和退避处理。
 
 ### 2.2 OpenF1：环节补充数据
 
@@ -144,10 +144,10 @@ OpenF1 没有与 Jolpica round 完全相同的公共主键，因此按以下顺�
 建议创建两个 Target 和一个本地 Swift Package：
 
 ```text
-ApexAtlas/
-├── ApexAtlas.xcodeproj
+Apex/
+├── Apex.xcodeproj
 ├── App/
-│   ├── ApexAtlasApp.swift
+│   ├── ApexApp.swift
 │   ├── AppEnvironment.swift
 │   └── Features/
 │       ├── Home/
@@ -158,15 +158,15 @@ ApexAtlas/
 │       ├── Profiles/
 │       └── Settings/
 ├── Widgets/
-│   ├── ApexAtlasWidgets.swift
+│   ├── ApexWidgets.swift
 │   ├── ScheduleWidget/
 │   ├── CountdownWidget/
 │   ├── DriverLeaderWidget/
 │   └── TeamLeaderWidget/
-├── Packages/ApexAtlasCore/
-│   ├── Sources/ApexAtlasDomain/
-│   ├── Sources/ApexAtlasData/
-│   ├── Sources/ApexAtlasResources/
+├── Packages/ApexCore/
+│   ├── Sources/ApexDomain/
+│   ├── Sources/ApexData/
+│   ├── Sources/ApexResources/
 │   └── Tests/
 └── Resources/
     ├── Localization/
@@ -177,14 +177,14 @@ ApexAtlas/
 
 ### 4.1 Target
 
-- `ApexAtlas`：iPhone 与 iPad 主 App。
-- `ApexAtlasWidgets`：Widget Extension，不包含 Live Activity 和可配置 App Intent。
+- `Apex`：iPhone 与 iPad 主 App。
+- `ApexWidgets`：Widget Extension，不包含 Live Activity 和可配置 App Intent。
 
-### 4.2 ApexAtlasCore
+### 4.2 ApexCore
 
-- `ApexAtlasDomain`：纯 Swift 领域模型、状态枚举和业务规则。
-- `ApexAtlasData`：DTO、API 客户端、Repository、SwiftData 记录和映射器。
-- `ApexAtlasResources`：中文映射、主题色和赛道静态资源解析。
+- `ApexDomain`：纯 Swift 领域模型、状态枚举和业务规则。
+- `ApexData`：DTO、API 客户端、Repository、SwiftData 记录和映射器。
+- `ApexResources`：中文映射、主题色和赛道静态资源解析。
 
 Feature View 不直接访问 URLSession 或 SwiftData，只依赖 Repository 协议。
 
@@ -286,9 +286,9 @@ WidgetSnapshot
 └── sourceUpdatedAt
 ```
 
-建议 Bundle ID：`com.leoparddennis.apexatlas`
+建议 Bundle ID：`com.leoparddennis.apex`
 
-建议 App Group：`group.com.leoparddennis.apexatlas`
+建议 App Group：`group.com.leoparddennis.apex`
 
 正式创建开发者签名配置时再确认最终标识符。
 
@@ -439,7 +439,7 @@ UI 映射：
 ## 15. 实施顺序
 
 1. 创建 Xcode 工程、两个 Target 和 App Group。
-2. 建立 ApexAtlasCore 与领域模型。
+2. 建立 ApexCore 与领域模型。
 3. 完成 Jolpica 客户端、Fixture 和 Decoder 测试。
 4. 完成 OpenF1 补充客户端与映射测试。
 5. 建立 SwiftData 与离线 Repository。
