@@ -30,6 +30,7 @@ Apex Atlas 是一个面向个人使用的非官方方程式赛车 iPhone 与 iPa
 
 - [产品规格](docs/product-spec.md)
 - [数据方案](docs/data-plan.md)
+- [技术设计](docs/technical-design.md)
 - [原型与设计稿](design/README.md)
 
 ## 原型预览
