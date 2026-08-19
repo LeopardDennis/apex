@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "trackAssetId": "circuit-153",
+  "circuitKey": 153,
+  "circuitName": "Madring",
+  "geometryStatus": "pendingManual",
+  "rendering": {
+    "stroke": "singleColor",
+    "showsCornerNumbers": true,
+    "showsSegmentColors": false
+  },
+  "source": {
+    "provider": "Apex manual asset",
+    "url": "https://api.openf1.org/v1/meetings?year=2026",
+    "sourceYear": null,
+    "note": "New 2026 circuit; outline and numbered corners require a verified manual asset."
+  },
+  "rotationDegrees": 0,
+  "viewBox": { "minX": 0, "minY": 0, "width": 0, "height": 0 },
+  "pathPoints": [],
+  "corners": [],
+  "startFinishMarker": null,
+  "directionMarker": null,
+  "pitLanePath": []
+}

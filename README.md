@@ -4,7 +4,7 @@ Apex 是一个面向个人使用的非官方方程式赛车 iPhone 与 iPad 信�
 
 ## 当前状态
 
-项目处于产品规格与视觉设计阶段，暂未开始编写 App 代码。
+产品范围、iPhone/iPad 视觉方案、数据与技术架构已经冻结。开发资源基线已建立，包含 Design Tokens、2026 种子数据和赛道几何资产；App 界面代码尚未开始。
 
 ## 首发范围
 
@@ -32,6 +32,14 @@ Apex 是一个面向个人使用的非官方方程式赛车 iPhone 与 iPad 信�
 - [数据方案](docs/data-plan.md)
 - [技术设计](docs/technical-design.md)
 - [原型与设计稿](design/README.md)
+- [开发资源包](Resources/README.md)
+
+## 开发资源
+
+- `Resources/DesignTokens`：颜色、字号、间距、圆角和自适应布局约束
+- `Resources/Seed/2026`：23 站赛历、22 位正赛车手和 11 支车队的中英文基线
+- `Resources/Tracks/2026`：单色赛道轮廓及弯角编号坐标
+- `Scripts/validate-resources.sh`：资源完整性自动校验
 
 ## 原型预览
 

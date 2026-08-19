@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "season": 2026,
+  "verifiedAt": "2026-08-19",
+  "sources": [
+    "https://api.jolpi.ca/ergast/f1/2026/drivers.json",
+    "https://api.openf1.org/v1/drivers?session_key=11342"
+  ],
+  "drivers": [
+    { "id": "norris", "number": 1, "code": "NOR", "name": "Lando Norris", "localizedName": "兰多·诺里斯", "teamId": "mclaren", "nationality": "British" },
+    { "id": "max_verstappen", "number": 3, "code": "VER", "name": "Max Verstappen", "localizedName": "马克斯·维斯塔潘", "teamId": "red_bull", "nationality": "Dutch" },
+    { "id": "bortoleto", "number": 5, "code": "BOR", "name": "Gabriel Bortoleto", "localizedName": "加布里埃尔·博托莱托", "teamId": "audi", "nationality": "Brazilian" },
+    { "id": "hadjar", "number": 6, "code": "HAD", "name": "Isack Hadjar", "localizedName": "伊萨克·哈贾尔", "teamId": "red_bull", "nationality": "French" },
+    { "id": "gasly", "number": 10, "code": "GAS", "name": "Pierre Gasly", "localizedName": "皮埃尔·加斯利", "teamId": "alpine", "nationality": "French" },
+    { "id": "perez", "number": 11, "code": "PER", "name": "Sergio Pérez", "localizedName": "塞尔吉奥·佩雷兹", "teamId": "cadillac", "nationality": "Mexican" },
+    { "id": "antonelli", "number": 12, "code": "ANT", "name": "Andrea Kimi Antonelli", "localizedName": "安德烈亚·基米·安东内利", "teamId": "mercedes", "nationality": "Italian" },
+    { "id": "alonso", "number": 14, "code": "ALO", "name": "Fernando Alonso", "localizedName": "费尔南多·阿隆索", "teamId": "aston_martin", "nationality": "Spanish" },
+    { "id": "leclerc", "number": 16, "code": "LEC", "name": "Charles Leclerc", "localizedName": "夏尔·勒克莱尔", "teamId": "ferrari", "nationality": "Monegasque" },
+    { "id": "stroll", "number": 18, "code": "STR", "name": "Lance Stroll", "localizedName": "兰斯·斯特罗尔", "teamId": "aston_martin", "nationality": "Canadian" },
+    { "id": "albon", "number": 23, "code": "ALB", "name": "Alexander Albon", "localizedName": "亚历山大·阿尔本", "teamId": "williams", "nationality": "Thai" },
+    { "id": "hulkenberg", "number": 27, "code": "HUL", "name": "Nico Hülkenberg", "localizedName": "尼科·霍肯伯格", "teamId": "audi", "nationality": "German" },
+    { "id": "lawson", "number": 30, "code": "LAW", "name": "Liam Lawson", "localizedName": "利亚姆·劳森", "teamId": "rb", "nationality": "New Zealander" },
+    { "id": "ocon", "number": 31, "code": "OCO", "name": "Esteban Ocon", "localizedName": "埃斯特班·奥康", "teamId": "haas", "nationality": "French" },
+    { "id": "arvid_lindblad", "number": 41, "code": "LIN", "name": "Arvid Lindblad", "localizedName": "阿维德·林德布拉德", "teamId": "rb", "nationality": "British" },
+    { "id": "colapinto", "number": 43, "code": "COL", "name": "Franco Colapinto", "localizedName": "弗兰科·科拉平托", "teamId": "alpine", "nationality": "Argentine" },
+    { "id": "hamilton", "number": 44, "code": "HAM", "name": "Lewis Hamilton", "localizedName": "刘易斯·汉密尔顿", "teamId": "ferrari", "nationality": "British" },
+    { "id": "sainz", "number": 55, "code": "SAI", "name": "Carlos Sainz", "localizedName": "小卡洛斯·塞恩斯", "teamId": "williams", "nationality": "Spanish" },
+    { "id": "russell", "number": 63, "code": "RUS", "name": "George Russell", "localizedName": "乔治·拉塞尔", "teamId": "mercedes", "nationality": "British" },
+    { "id": "bottas", "number": 77, "code": "BOT", "name": "Valtteri Bottas", "localizedName": "瓦尔特里·博塔斯", "teamId": "cadillac", "nationality": "Finnish" },
+    { "id": "piastri", "number": 81, "code": "PIA", "name": "Oscar Piastri", "localizedName": "奥斯卡·皮亚斯特里", "teamId": "mclaren", "nationality": "Australian" },
+    { "id": "bearman", "number": 87, "code": "BEA", "name": "Oliver Bearman", "localizedName": "奥利弗·贝尔曼", "teamId": "haas", "nationality": "British" }
+  ]
+}

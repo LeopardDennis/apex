@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "name": "Apex",
+  "appearance": "dark",
+  "fontFamilies": {
+    "display": "SF Pro Display",
+    "text": "SF Pro Text",
+    "roundedFallback": "SF Pro Rounded"
+  },
+  "colors": {
+    "background": "#050505",
+    "surface": "#111111",
+    "surfaceElevated": "#191919",
+    "surfaceSelected": "#2A2A2A",
+    "divider": "#2C2C2E",
+    "textPrimary": "#FFFFFF",
+    "textSecondary": "#A1A1AA",
+    "textTertiary": "#6E6E73",
+    "accent": "#FF6546",
+    "positive": "#30D158",
+    "negative": "#FF453A",
+    "warning": "#FFD60A",
+    "info": "#64D2FF"
+  },
+  "typography": {
+    "display": { "size": 34, "lineHeight": 41, "weight": "bold" },
+    "title1": { "size": 28, "lineHeight": 34, "weight": "bold" },
+    "title2": { "size": 22, "lineHeight": 28, "weight": "bold" },
+    "title3": { "size": 20, "lineHeight": 25, "weight": "semibold" },
+    "headline": { "size": 17, "lineHeight": 22, "weight": "semibold" },
+    "body": { "size": 17, "lineHeight": 22, "weight": "regular" },
+    "callout": { "size": 16, "lineHeight": 21, "weight": "regular" },
+    "subheadline": { "size": 15, "lineHeight": 20, "weight": "regular" },
+    "footnote": { "size": 13, "lineHeight": 18, "weight": "regular" },
+    "caption1": { "size": 12, "lineHeight": 16, "weight": "regular" },
+    "caption2": { "size": 11, "lineHeight": 14, "weight": "semibold" },
+    "widgetHero": { "size": 34, "lineHeight": 36, "weight": "heavy" },
+    "widgetTitle": { "size": 20, "lineHeight": 24, "weight": "bold" },
+    "widgetBody": { "size": 15, "lineHeight": 20, "weight": "semibold" },
+    "widgetMinimum": { "size": 11, "lineHeight": 14, "weight": "semibold" }
+  },
+  "spacing": {
+    "xxs": 4,
+    "xs": 8,
+    "sm": 12,
+    "md": 16,
+    "lg": 20,
+    "xl": 24,
+    "xxl": 32,
+    "xxxl": 40
+  },
+  "cornerRadius": {
+    "small": 8,
+    "medium": 12,
+    "large": 16,
+    "card": 24,
+    "hero": 30,
+    "devicePreview": 48,
+    "capsule": 999
+  },
+  "stroke": {
+    "hairline": 0.5,
+    "regular": 1,
+    "trackCompact": 4,
+    "trackRegular": 6
+  },
+  "layout": {
+    "minimumTapTarget": 44,
+    "iphoneHorizontalMargin": 16,
+    "ipadHorizontalMargin": 24,
+    "ipadSidebarFraction": 0.4,
+    "ipadDetailFraction": 0.6,
+    "ipadSidebarMinimumWidth": 340,
+    "ipadDetailMinimumWidth": 520,
+    "trackPreviewAspectRatio": 1.45,
+    "trackLabelMinimumDiameter": 20
+  },
+  "accessibility": {
+    "minimumContrastRatioNormalText": 4.5,
+    "minimumContrastRatioLargeText": 3.0,
+    "allowsDynamicType": true,
+    "widgetTextMayOverlapImages": false,
+    "criticalTextMayTruncate": false
+  }
+}

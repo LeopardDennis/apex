@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "season": 2026,
+  "verifiedAt": "2026-08-19",
+  "source": {
+    "name": "OpenF1 drivers",
+    "url": "https://api.openf1.org/v1/drivers?session_key=11342",
+    "sessionKey": 11342,
+    "colorField": "team_colour"
+  },
+  "teams": [
+    {
+      "teamId": "mercedes",
+      "name": "Mercedes",
+      "localizedName": "梅赛德斯车队",
+      "nationality": "German",
+      "primaryColor": "#00D7B6",
+      "onPrimaryColor": "#001F1A"
+    },
+    {
+      "teamId": "ferrari",
+      "name": "Ferrari",
+      "localizedName": "法拉利车队",
+      "nationality": "Italian",
+      "primaryColor": "#ED1131",
+      "onPrimaryColor": "#FFFFFF"
+    },
+    {
+      "teamId": "mclaren",
+      "name": "McLaren",
+      "localizedName": "迈凯伦车队",
+      "nationality": "British",
+      "primaryColor": "#F47600",
+      "onPrimaryColor": "#1A0B00"
+    },
+    {
+      "teamId": "red_bull",
+      "name": "Red Bull Racing",
+      "localizedName": "红牛车队",
+      "nationality": "Austrian",
+      "primaryColor": "#4781D7",
+      "onPrimaryColor": "#FFFFFF"
+    },
+    {
+      "teamId": "rb",
+      "name": "Racing Bulls",
+      "localizedName": "竞速公牛车队",
+      "nationality": "Italian",
+      "primaryColor": "#6C98FF",
+      "onPrimaryColor": "#071226"
+    },
+    {
+      "teamId": "alpine",
+      "name": "Alpine",
+      "localizedName": "阿尔派车队",
+      "nationality": "French",
+      "primaryColor": "#00A1E8",
+      "onPrimaryColor": "#00141E"
+    },
+    {
+      "teamId": "haas",
+      "name": "Haas F1 Team",
+      "localizedName": "哈斯车队",
+      "nationality": "American",
+      "primaryColor": "#9C9FA2",
+      "onPrimaryColor": "#111111"
+    },
+    {
+      "teamId": "audi",
+      "name": "Audi",
+      "localizedName": "奥迪车队",
+      "nationality": "German",
+      "primaryColor": "#F50537",
+      "onPrimaryColor": "#FFFFFF"
+    },
+    {
+      "teamId": "williams",
+      "name": "Williams",
+      "localizedName": "威廉姆斯车队",
+      "nationality": "British",
+      "primaryColor": "#1868DB",
+      "onPrimaryColor": "#FFFFFF"
+    },
+    {
+      "teamId": "aston_martin",
+      "name": "Aston Martin",
+      "localizedName": "阿斯顿·马丁车队",
+      "nationality": "British",
+      "primaryColor": "#229971",
+      "onPrimaryColor": "#FFFFFF"
+    },
+    {
+      "teamId": "cadillac",
+      "name": "Cadillac",
+      "localizedName": "凯迪拉克车队",
+      "nationality": "American",
+      "primaryColor": "#909090",
+      "onPrimaryColor": "#111111"
+    }
+  ]
+}

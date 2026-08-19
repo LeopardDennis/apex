@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://apex.local/schemas/track-asset.schema.json",
+  "title": "Apex Track Asset",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "trackAssetId",
+    "circuitKey",
+    "geometryStatus",
+    "rendering",
+    "source",
+    "viewBox",
+    "pathPoints",
+    "corners"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "trackAssetId": { "type": "string", "minLength": 1 },
+    "circuitKey": { "type": "integer", "minimum": 1 },
+    "circuitName": { "type": "string" },
+    "geometryStatus": { "enum": ["available", "pendingManual"] },
+    "rendering": {
+      "type": "object",
+      "required": ["stroke", "showsCornerNumbers", "showsSegmentColors"],
+      "properties": {
+        "stroke": { "const": "singleColor" },
+        "showsCornerNumbers": { "const": true },
+        "showsSegmentColors": { "const": false }
+      },
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "required": ["provider", "url"],
+      "properties": {
+        "provider": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "sourceYear": { "type": ["integer", "null"] },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "rotationDegrees": { "type": "number" },
+    "viewBox": {
+      "type": "object",
+      "required": ["minX", "minY", "width", "height"],
+      "properties": {
+        "minX": { "type": "number" },
+        "minY": { "type": "number" },
+        "width": { "type": "number", "minimum": 0 },
+        "height": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "pathPoints": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/point" }
+    },
+    "corners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["number", "angleDegrees", "x", "y"],
+        "properties": {
+          "number": { "type": "integer", "minimum": 1 },
+          "angleDegrees": { "type": "number" },
+          "x": { "type": "number", "minimum": 0, "maximum": 1 },
+          "y": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "startFinishMarker": {
+      "oneOf": [
+        { "$ref": "#/$defs/point" },
+        { "type": "null" }
+      ]
+    },
+    "directionMarker": {
+      "oneOf": [
+        { "$ref": "#/$defs/point" },
+        { "type": "null" }
+      ]
+    },
+    "pitLanePath": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/point" }
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
