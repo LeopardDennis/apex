@@ -23,9 +23,18 @@ func filePersistenceRoundTripsDomainSnapshots() async throws {
 
   try await store.saveSchedule(schedule, season: 2026)
   try await store.saveDriverStandings(driverStandings, season: 2026)
+  let history = SeasonHistory(
+    season: 2026,
+    subject: .driver("antonelli"),
+    sessions: [],
+    updatedAt: Date(timeIntervalSince1970: 123)
+  )
+  try await store.saveSeasonHistory(history)
 
   #expect(try await store.schedule(season: 2026) == schedule)
   #expect(try await store.driverStandings(season: 2026) == driverStandings)
+  #expect(
+    try await store.seasonHistory(season: 2026, subject: .driver("antonelli")) == history)
 
   try await store.clearAll()
   #expect(try await store.schedule(season: 2026) == nil)

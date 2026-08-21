@@ -66,6 +66,35 @@ func openF1MapsMeetingsSessionsAndPracticeResults() throws {
   #expect(result.entries[1].gap == "+4.201")
 }
 
+@Test
+func jolpicaMapsFilteredSeasonHistoryWithoutPerRoundRequests() throws {
+  let catalog = try loadCatalog()
+  let decoder = JolpicaDecoder()
+  let updatedAt = Date(timeIntervalSince1970: 500)
+
+  let race = try decoder.raceHistory(
+    from: fixture("jolpica-race-results"),
+    catalog: catalog,
+    updatedAt: updatedAt
+  )
+  let sprint = try decoder.sprintHistory(
+    from: fixture("jolpica-sprint-history"),
+    catalog: catalog,
+    updatedAt: updatedAt
+  )
+  let qualifying = try decoder.qualifyingHistory(
+    from: fixture("jolpica-qualifying-history"),
+    catalog: catalog,
+    updatedAt: updatedAt
+  )
+
+  #expect(race.first?.id == "2026-01-race")
+  #expect(race.first?.result.entries.first?.driverID == "antonelli")
+  #expect(sprint.first?.result.entries.first?.points == 7)
+  #expect(qualifying.first?.result.entries.first?.position == 1)
+  #expect(qualifying.first?.localizedGrandPrixName == "澳大利亚大奖赛")
+}
+
 private func fixture(_ name: String) throws -> Data {
   let url = try #require(
     Bundle.module.url(forResource: name, withExtension: "json", subdirectory: "Fixtures"))

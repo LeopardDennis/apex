@@ -93,6 +93,21 @@ actor SwiftDataApexPersistenceStore: ApexPersistenceStore {
     try save(standings, key: "team-standings:\(season)", season: season)
   }
 
+  func seasonHistory(season: Int, subject: SeasonHistorySubject) throws -> SeasonHistory? {
+    try value(
+      SeasonHistory.self,
+      for: "season-history:\(season):\(historySubjectKey(subject))"
+    )
+  }
+
+  func saveSeasonHistory(_ history: SeasonHistory) throws {
+    try save(
+      history,
+      key: "season-history:\(history.season):\(historySubjectKey(history.subject))",
+      season: history.season
+    )
+  }
+
   func clearAll() throws {
     for record in try records() {
       context.delete(record)
@@ -129,5 +144,14 @@ actor SwiftDataApexPersistenceStore: ApexPersistenceStore {
 
   private func records() throws -> [ApexSnapshotRecord] {
     try context.fetch(FetchDescriptor<ApexSnapshotRecord>())
+  }
+
+  private func historySubjectKey(_ subject: SeasonHistorySubject) -> String {
+    switch subject {
+    case .driver(let identifier):
+      "driver:\(identifier)"
+    case .team(let identifier):
+      "team:\(identifier)"
+    }
   }
 }

@@ -80,4 +80,25 @@ public actor OfflineFirstApexRepository: ApexDataRepository {
       throw error
     }
   }
+
+  public func seasonHistory(
+    season: Int,
+    subject: SeasonHistorySubject,
+    policy: LoadPolicy
+  ) async throws -> SeasonHistory {
+    let cached = try? await persistence.seasonHistory(season: season, subject: subject)
+    if policy == .cacheFirst, let cached { return cached }
+    do {
+      let value = try await remote.seasonHistory(
+        season: season,
+        subject: subject,
+        policy: policy
+      )
+      try? await persistence.saveSeasonHistory(value)
+      return value
+    } catch {
+      if let cached { return cached }
+      throw error
+    }
+  }
 }

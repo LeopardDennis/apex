@@ -17,6 +17,9 @@ public protocol ApexPersistenceStore: Sendable {
   func teamStandings(season: Int) async throws -> [TeamStanding]?
   func saveTeamStandings(_ standings: [TeamStanding], season: Int) async throws
 
+  func seasonHistory(season: Int, subject: SeasonHistorySubject) async throws -> SeasonHistory?
+  func saveSeasonHistory(_ history: SeasonHistory) async throws
+
   func clearAll() async throws
 }
 
@@ -67,6 +70,17 @@ public actor MemoryApexPersistenceStore: ApexPersistenceStore {
     try save(standings, for: PersistenceKey.teamStandings(season).rawValue)
   }
 
+  public func seasonHistory(season: Int, subject: SeasonHistorySubject) throws -> SeasonHistory? {
+    try value(SeasonHistory.self, for: PersistenceKey.seasonHistory(season, subject).rawValue)
+  }
+
+  public func saveSeasonHistory(_ history: SeasonHistory) throws {
+    try save(
+      history,
+      for: PersistenceKey.seasonHistory(history.season, history.subject).rawValue
+    )
+  }
+
   public func clearAll() {
     values.removeAll()
   }
@@ -95,6 +109,7 @@ enum PersistenceKey: Equatable, Sendable {
   case result(String)
   case driverStandings(Int)
   case teamStandings(Int)
+  case seasonHistory(Int, SeasonHistorySubject)
 
   var rawValue: String {
     switch self {
@@ -108,15 +123,29 @@ enum PersistenceKey: Equatable, Sendable {
       "driver-standings:\(season)"
     case .teamStandings(let season):
       "team-standings:\(season)"
+    case .seasonHistory(let season, let subject):
+      "season-history:\(season):\(subject.cacheComponent)"
     }
   }
 
   var season: Int? {
     switch self {
-    case .schedule(let season), .driverStandings(let season), .teamStandings(let season):
+    case .schedule(let season), .driverStandings(let season), .teamStandings(let season),
+      .seasonHistory(let season, _):
       season
     case .sessions(let identifier), .result(let identifier):
       Int(identifier.prefix(4))
+    }
+  }
+}
+
+extension SeasonHistorySubject {
+  fileprivate var cacheComponent: String {
+    switch self {
+    case .driver(let identifier):
+      "driver:\(identifier)"
+    case .team(let identifier):
+      "team:\(identifier)"
     }
   }
 }

@@ -14,6 +14,12 @@ public enum JolpicaEndpoint: Equatable, Sendable {
   case teamStandings(season: Int)
   case drivers(season: Int)
   case teams(season: Int)
+  case driverSeasonRaceResults(season: Int, driverID: String)
+  case driverSeasonSprintResults(season: Int, driverID: String)
+  case driverSeasonQualifyingResults(season: Int, driverID: String)
+  case teamSeasonRaceResults(season: Int, teamID: String)
+  case teamSeasonSprintResults(season: Int, teamID: String)
+  case teamSeasonQualifyingResults(season: Int, teamID: String)
 
   public func url(baseURL: URL = URL(string: "https://api.jolpi.ca/ergast/f1")!) throws -> URL {
     let components: [String]
@@ -36,6 +42,18 @@ public enum JolpicaEndpoint: Equatable, Sendable {
       components = ["\(season)", "drivers.json"]
     case .teams(let season):
       components = ["\(season)", "constructors.json"]
+    case .driverSeasonRaceResults(let season, let driverID):
+      components = ["\(season)", "drivers", driverID, "results.json"]
+    case .driverSeasonSprintResults(let season, let driverID):
+      components = ["\(season)", "drivers", driverID, "sprint.json"]
+    case .driverSeasonQualifyingResults(let season, let driverID):
+      components = ["\(season)", "drivers", driverID, "qualifying.json"]
+    case .teamSeasonRaceResults(let season, let teamID):
+      components = ["\(season)", "constructors", teamID, "results.json"]
+    case .teamSeasonSprintResults(let season, let teamID):
+      components = ["\(season)", "constructors", teamID, "sprint.json"]
+    case .teamSeasonQualifyingResults(let season, let teamID):
+      components = ["\(season)", "constructors", teamID, "qualifying.json"]
     }
     return try makeURL(
       baseURL: baseURL, pathComponents: components,

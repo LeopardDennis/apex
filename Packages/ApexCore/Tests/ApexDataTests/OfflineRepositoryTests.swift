@@ -45,6 +45,14 @@ private actor OfflineRemoteRepository: ApexDataRepository {
   func teamStandings(season: Int, policy: LoadPolicy) throws -> [TeamStanding] {
     throw DataClientError.offline
   }
+
+  func seasonHistory(
+    season: Int,
+    subject: SeasonHistorySubject,
+    policy: LoadPolicy
+  ) throws -> SeasonHistory {
+    throw DataClientError.offline
+  }
 }
 
 private let sampleGrandPrix = GrandPrix(

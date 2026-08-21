@@ -56,6 +56,14 @@ public actor FileApexPersistenceStore: ApexPersistenceStore {
     try save(standings, for: .teamStandings(season))
   }
 
+  public func seasonHistory(season: Int, subject: SeasonHistorySubject) throws -> SeasonHistory? {
+    try value(SeasonHistory.self, for: .seasonHistory(season, subject))
+  }
+
+  public func saveSeasonHistory(_ history: SeasonHistory) throws {
+    try save(history, for: .seasonHistory(history.season, history.subject))
+  }
+
   public func clearAll() throws {
     guard fileManager.fileExists(atPath: directory.path) else { return }
     do {

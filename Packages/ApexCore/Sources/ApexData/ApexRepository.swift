@@ -21,6 +21,7 @@ public actor ApexRepository: ApexDataRepository {
     static let standings: TimeInterval = 60 * 60
     static let sessions: TimeInterval = 60 * 60
     static let results: TimeInterval = 60 * 60
+    static let history: TimeInterval = 60 * 60
   }
 
   private let client: APIClient
@@ -169,6 +170,70 @@ public actor ApexRepository: ApexDataRepository {
     return try jolpicaDecoder.teamStandings(from: response.data, catalog: catalog)
   }
 
+  public func seasonHistory(
+    season: Int,
+    subject: SeasonHistorySubject,
+    policy: LoadPolicy
+  ) async throws -> SeasonHistory {
+    guard season == catalog.season else {
+      throw DataClientError.mapping("No bundled Apex catalog exists for season \(season).")
+    }
+    try validate(subject: subject)
+
+    let endpoints = historyEndpoints(season: season, subject: subject)
+    async let raceResponse = fetch(
+      try endpoints.race.url(baseURL: configuration.jolpicaBaseURL),
+      cacheKey: "jolpica:history:\(season):\(subject.cacheKey):race",
+      timeToLive: CacheDuration.history,
+      policy: policy
+    )
+    async let sprintResponse = fetch(
+      try endpoints.sprint.url(baseURL: configuration.jolpicaBaseURL),
+      cacheKey: "jolpica:history:\(season):\(subject.cacheKey):sprint",
+      timeToLive: CacheDuration.history,
+      policy: policy
+    )
+    async let qualifyingResponse = fetch(
+      try endpoints.qualifying.url(baseURL: configuration.jolpicaBaseURL),
+      cacheKey: "jolpica:history:\(season):\(subject.cacheKey):qualifying",
+      timeToLive: CacheDuration.history,
+      policy: policy
+    )
+
+    let (race, sprint, qualifying) = try await (
+      raceResponse,
+      sprintResponse,
+      qualifyingResponse
+    )
+    let sessions =
+      try jolpicaDecoder.raceHistory(
+        from: race.data,
+        catalog: catalog,
+        updatedAt: race.fetchedAt
+      )
+      + jolpicaDecoder.sprintHistory(
+        from: sprint.data,
+        catalog: catalog,
+        updatedAt: sprint.fetchedAt
+      )
+      + jolpicaDecoder.qualifyingHistory(
+        from: qualifying.data,
+        catalog: catalog,
+        updatedAt: qualifying.fetchedAt
+      )
+    return SeasonHistory(
+      season: season,
+      subject: subject,
+      sessions: sessions.sorted {
+        if $0.round == $1.round {
+          return $0.kind.profileSortOrder < $1.kind.profileSortOrder
+        }
+        return $0.round < $1.round
+      },
+      updatedAt: max(max(race.fetchedAt, sprint.fetchedAt), qualifying.fetchedAt)
+    )
+  }
+
   private func jolpicaSchedule(season: Int, policy: LoadPolicy) async throws -> APIDataResponse {
     let url = try JolpicaEndpoint.schedule(season: season).url(
       baseURL: configuration.jolpicaBaseURL)
@@ -308,6 +373,39 @@ public actor ApexRepository: ApexDataRepository {
     )
   }
 
+  private func validate(subject: SeasonHistorySubject) throws {
+    switch subject {
+    case .driver(let identifier):
+      guard catalog.drivers.contains(where: { $0.id == identifier }) else {
+        throw DataClientError.mapping("Unknown driver identifier \(identifier).")
+      }
+    case .team(let identifier):
+      guard catalog.teams.contains(where: { $0.id == identifier }) else {
+        throw DataClientError.mapping("Unknown team identifier \(identifier).")
+      }
+    }
+  }
+
+  private func historyEndpoints(
+    season: Int,
+    subject: SeasonHistorySubject
+  ) -> (race: JolpicaEndpoint, sprint: JolpicaEndpoint, qualifying: JolpicaEndpoint) {
+    switch subject {
+    case .driver(let identifier):
+      return (
+        .driverSeasonRaceResults(season: season, driverID: identifier),
+        .driverSeasonSprintResults(season: season, driverID: identifier),
+        .driverSeasonQualifyingResults(season: season, driverID: identifier)
+      )
+    case .team(let identifier):
+      return (
+        .teamSeasonRaceResults(season: season, teamID: identifier),
+        .teamSeasonSprintResults(season: season, teamID: identifier),
+        .teamSeasonQualifyingResults(season: season, teamID: identifier)
+      )
+    }
+  }
+
   private func sessionIdentity(from sessionID: String) throws -> (GrandPrix, SessionKind) {
     guard let grandPrix = catalog.grandPrix.first(where: { sessionID.hasPrefix($0.id + "-") })
     else {
@@ -318,5 +416,31 @@ public actor ApexRepository: ApexDataRepository {
       throw DataClientError.mapping("Unknown session kind in \(sessionID).")
     }
     return (grandPrix, kind)
+  }
+}
+
+extension SeasonHistorySubject {
+  fileprivate var cacheKey: String {
+    switch self {
+    case .driver(let identifier):
+      "driver:\(identifier)"
+    case .team(let identifier):
+      "team:\(identifier)"
+    }
+  }
+}
+
+extension SessionKind {
+  fileprivate var profileSortOrder: Int {
+    switch self {
+    case .qualifying:
+      0
+    case .sprint:
+      1
+    case .race:
+      2
+    default:
+      3
+    }
   }
 }

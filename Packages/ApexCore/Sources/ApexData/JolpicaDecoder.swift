@@ -178,6 +178,79 @@ public struct JolpicaDecoder: Sendable {
     } ?? []
   }
 
+  public func raceHistory(
+    from data: Data,
+    catalog: SeasonResourceCatalog,
+    updatedAt: Date = Date()
+  ) throws -> [SeasonSessionResult] {
+    let response: JolpicaRaceResponse<JolpicaRaceResultRaceDTO> = try decode(data)
+    return response.mrData.raceTable.races.compactMap { race in
+      guard let round = Int(race.round),
+        let grandPrix = catalog.grandPrix.first(where: { $0.round == round })
+      else { return nil }
+      return historicalResult(
+        grandPrix: grandPrix,
+        kind: .race,
+        entries: mapRaceEntries(race.results, catalog: catalog),
+        updatedAt: updatedAt
+      )
+    }
+  }
+
+  public func sprintHistory(
+    from data: Data,
+    catalog: SeasonResourceCatalog,
+    updatedAt: Date = Date()
+  ) throws -> [SeasonSessionResult] {
+    let response: JolpicaRaceResponse<JolpicaSprintResultRaceDTO> = try decode(data)
+    return response.mrData.raceTable.races.compactMap { race in
+      guard let round = Int(race.round),
+        let grandPrix = catalog.grandPrix.first(where: { $0.round == round })
+      else { return nil }
+      return historicalResult(
+        grandPrix: grandPrix,
+        kind: .sprint,
+        entries: mapRaceEntries(race.results, catalog: catalog),
+        updatedAt: updatedAt
+      )
+    }
+  }
+
+  public func qualifyingHistory(
+    from data: Data,
+    catalog: SeasonResourceCatalog,
+    updatedAt: Date = Date()
+  ) throws -> [SeasonSessionResult] {
+    let response: JolpicaRaceResponse<JolpicaQualifyingRaceDTO> = try decode(data)
+    let resolver = EntityResolver(catalog: catalog)
+    return response.mrData.raceTable.races.compactMap { race in
+      guard let round = Int(race.round),
+        let grandPrix = catalog.grandPrix.first(where: { $0.round == round })
+      else { return nil }
+      let entries = race.results.map { entry in
+        let driver = resolver.driver(
+          id: entry.driver.driverID,
+          code: entry.driver.code,
+          number: entry.driver.permanentNumber.flatMap(Int.init),
+          name: entry.driver.givenName + entry.driver.familyName
+        )
+        let team = resolver.team(id: entry.constructor.constructorID, name: entry.constructor.name)
+        return SessionResultEntry(
+          position: entry.position.flatMap(Int.init),
+          driverID: driver?.id ?? entry.driver.driverID,
+          teamID: team?.id ?? driver?.teamID ?? entry.constructor.constructorID,
+          time: entry.q3 ?? entry.q2 ?? entry.q1
+        )
+      }
+      return historicalResult(
+        grandPrix: grandPrix,
+        kind: .qualifying,
+        entries: entries,
+        updatedAt: updatedAt
+      )
+    }
+  }
+
   private func mapRaceEntries(
     _ entries: [JolpicaRaceResultEntryDTO],
     catalog: SeasonResourceCatalog
@@ -202,6 +275,26 @@ public struct JolpicaDecoder: Sendable {
         status: entry.status
       )
     }
+  }
+
+  private func historicalResult(
+    grandPrix: GrandPrix,
+    kind: SessionKind,
+    entries: [SessionResultEntry],
+    updatedAt: Date
+  ) -> SeasonSessionResult {
+    let sessionID = "\(grandPrix.id)-\(kind.rawValue)"
+    return SeasonSessionResult(
+      grandPrixID: grandPrix.id,
+      round: grandPrix.round,
+      localizedGrandPrixName: grandPrix.localizedGrandPrixName,
+      kind: kind,
+      result: SessionResult(
+        sessionID: sessionID,
+        entries: entries,
+        updatedAt: updatedAt
+      )
+    )
   }
 
   private func matchingRace(

@@ -49,6 +49,12 @@ Apex 首发采用原生 Apple 技术栈：
 | 车队积分榜 | `{season}/constructorstandings.json?limit=100` |
 | 车手列表 | `{season}/drivers.json?limit=100` |
 | 车队列表 | `{season}/constructors.json?limit=100` |
+| 车手整季正赛历史 | `{season}/drivers/{driverId}/results.json?limit=100` |
+| 车手整季排位历史 | `{season}/drivers/{driverId}/qualifying.json?limit=100` |
+| 车手整季冲刺历史 | `{season}/drivers/{driverId}/sprint.json?limit=100` |
+| 车队整季正赛历史 | `{season}/constructors/{teamId}/results.json?limit=100` |
+| 车队整季排位历史 | `{season}/constructors/{teamId}/qualifying.json?limit=100` |
+| 车队整季冲刺历史 | `{season}/constructors/{teamId}/sprint.json?limit=100` |
 
 客户端必须发送类似 `Apex/1.0 iOS` 的自定义 User-Agent。匿名访问限流当前为每秒 4 次、每小时 500 次，因此所有请求都必须经过本地缓存、请求合并和退避处理。
 
@@ -305,6 +311,7 @@ WidgetSnapshot
 | 赛历 | 12 小时 | 6 小时 | 7 天 |
 | 积分榜 | 12 小时 | 1 小时 | 7 天 |
 | 环节结果 | 已有结果不重复刷新 | 环节结束 10 分钟后检查 | 永久缓存 |
+| 车手/车队整季历史 | 1 小时 | 1 小时 | 7 天 |
 | 本地增强数据 | 随 App 发布 | 随 App 发布 | 随 App 发布 |
 
 规则：
@@ -464,6 +471,8 @@ UI 映射：
 - 已完成步骤 5 的平台无关部分：原始响应缓存、领域快照存储协议、持久化 JSON、离线优先 Repository、TTL、请求合并、节流和错误回退。
 - 已完成 Widget 数据基础：版本化领域模型、中文/主题色快照生成器和 App Group 原子文件存储。
 - 已完成 `ApexFeatures` 平台无关骨架：赛历、大奖赛详情和车手/车队积分榜的 `ObservableObject` ViewModel、载入/刷新/错误状态、中文实体解析和 iPad 稳定选择状态。
+- 已完成结果与资料 Feature：环节结果状态、中文结果行、车手/车队资料概要、整季历史、逐轮积分、领奖台/杆位和近期表现推导。
+- 已完成资料历史数据链路：按车手或车队并发读取三份 Jolpica 赛季历史，合并为可离线持久化的 `SeasonHistory`；每个资料对象固定三次请求，不按比赛逐轮请求。
 - SwiftData `@Model` 适配器已放在 `XcodeSupport/ApexSwiftData`，待完整 Xcode 环境编译验证后加入 App Target。
 - 待完整 Xcode 环境完成：App/Widget Target、把 SwiftUI 页面绑定到现有 ViewModel、SwiftData 内存容器测试和 WidgetKit Timeline。
 
@@ -473,6 +482,9 @@ Intel Mac 已通过 Package 编译、资源校验与独立 JSON 冒烟验证；�
 
 - [Jolpica F1 文档](https://github.com/jolpica/jolpica-f1/blob/main/docs/README.md)
 - [Jolpica F1 限流](https://github.com/jolpica/jolpica-f1/blob/main/docs/rate_limits.md)
+- [Jolpica 正赛结果过滤](https://github.com/jolpica/jolpica-f1/blob/main/docs/endpoints/results.md)
+- [Jolpica 排位结果过滤](https://github.com/jolpica/jolpica-f1/blob/main/docs/endpoints/qualifying.md)
+- [Jolpica 冲刺结果过滤](https://github.com/jolpica/jolpica-f1/blob/main/docs/endpoints/sprint.md)
 - [Jolpica F1 使用条款](https://github.com/jolpica/jolpica-f1/blob/main/TERMS.md)
 - [OpenF1 API 文档](https://openf1.org/docs/)
 - [OpenF1 许可](https://github.com/br-g/openf1/blob/main/LICENSE)

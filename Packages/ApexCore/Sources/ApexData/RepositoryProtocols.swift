@@ -20,7 +20,17 @@ public protocol StandingsRepository: Sendable {
   func teamStandings(season: Int, policy: LoadPolicy) async throws -> [TeamStanding]
 }
 
-public protocol ApexDataRepository: ScheduleRepository, ResultsRepository, StandingsRepository {}
+public protocol ProfileRepository: Sendable {
+  func seasonHistory(
+    season: Int,
+    subject: SeasonHistorySubject,
+    policy: LoadPolicy
+  ) async throws -> SeasonHistory
+}
+
+public protocol ApexDataRepository:
+  ScheduleRepository, ResultsRepository, StandingsRepository, ProfileRepository
+{}
 
 public protocol HTTPTransport: Sendable {
   func data(for request: URLRequest) async throws -> (Data, HTTPURLResponse)

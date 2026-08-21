@@ -34,3 +34,22 @@ func requestFactoryAddsApexHeaders() throws {
   #expect(request.value(forHTTPHeaderField: "User-Agent") == "Apex/1.0 iOS")
   #expect(request.value(forHTTPHeaderField: "Accept") == "application/json")
 }
+
+@Test
+func jolpicaBuildsFilteredProfileHistoryURLs() throws {
+  #expect(
+    try JolpicaEndpoint.driverSeasonRaceResults(season: 2026, driverID: "antonelli")
+      .url().absoluteString
+      == "https://api.jolpi.ca/ergast/f1/2026/drivers/antonelli/results.json?limit=100"
+  )
+  #expect(
+    try JolpicaEndpoint.teamSeasonSprintResults(season: 2026, teamID: "mercedes")
+      .url().absoluteString
+      == "https://api.jolpi.ca/ergast/f1/2026/constructors/mercedes/sprint.json?limit=100"
+  )
+  #expect(
+    try JolpicaEndpoint.teamSeasonQualifyingResults(season: 2026, teamID: "mercedes")
+      .url().absoluteString
+      == "https://api.jolpi.ca/ergast/f1/2026/constructors/mercedes/qualifying.json?limit=100"
+  )
+}

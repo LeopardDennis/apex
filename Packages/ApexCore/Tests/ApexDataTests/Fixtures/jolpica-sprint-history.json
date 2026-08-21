@@ -1,0 +1,36 @@
+{
+  "MRData": {
+    "RaceTable": {
+      "season": "2026",
+      "driverId": "antonelli",
+      "Races": [
+        {
+          "season": "2026",
+          "round": "1",
+          "SprintResults": [
+            {
+              "position": "2",
+              "positionText": "2",
+              "points": "7",
+              "Driver": {
+                "driverId": "antonelli",
+                "permanentNumber": "12",
+                "code": "ANT",
+                "givenName": "Andrea Kimi",
+                "familyName": "Antonelli"
+              },
+              "Constructor": {
+                "constructorId": "mercedes",
+                "name": "Mercedes"
+              },
+              "grid": "3",
+              "laps": "19",
+              "status": "Finished",
+              "Time": { "time": "+2.145" }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

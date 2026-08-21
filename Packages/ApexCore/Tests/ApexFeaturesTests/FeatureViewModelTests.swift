@@ -149,24 +149,189 @@ func featureFailureProducesStableChineseOfflineCopy() async {
   #expect(viewModel.state.canRetry)
 }
 
+@MainActor
+@Test
+func sessionResultResolvesEntitiesAndPreservesPendingAsContent() async throws {
+  let (catalog, driver, team) = profileCatalog()
+  let session = session(
+    grandPrixID: "2026-01",
+    kind: .race,
+    startsAt: 100,
+    endsAt: 200
+  )
+  let result = SessionResult(
+    sessionID: session.id,
+    entries: [
+      SessionResultEntry(
+        position: 1,
+        driverID: driver.id,
+        teamID: team.id,
+        laps: 58,
+        time: "1:31:22.456",
+        points: 25,
+        hasFastestLap: true,
+        status: "Finished"
+      )
+    ],
+    updatedAt: Date(timeIntervalSince1970: 250)
+  )
+  let repository = FeatureRepository(results: [session.id: result])
+  let viewModel = SessionResultViewModel(
+    session: session,
+    catalog: catalog,
+    repository: repository,
+    clock: FixedFeatureClock(Date(timeIntervalSince1970: 300))
+  )
+
+  await viewModel.load()
+
+  let content = try #require(viewModel.state.content)
+  #expect(content.availability == .available)
+  #expect(content.rows.first?.localizedDriverName == driver.localizedName)
+  #expect(content.rows.first?.localizedTeamName == team.localizedName)
+  #expect(content.rows.first?.teamColor == team.primaryColor)
+  #expect(content.rows.first?.timeOrGap == "1:31:22.456")
+
+  let pendingRepository = FeatureRepository()
+  let pendingViewModel = SessionResultViewModel(
+    session: session,
+    catalog: catalog,
+    repository: pendingRepository,
+    clock: FixedFeatureClock(Date(timeIntervalSince1970: 300))
+  )
+  await pendingViewModel.load()
+  #expect(pendingViewModel.state.content?.availability == .pending)
+  #expect(pendingViewModel.state.failure == nil)
+}
+
+@MainActor
+@Test
+func profileViewModelsDerivePodiumsPolesRoundPointsAndRoster() async throws {
+  let (catalog, driver, team) = profileCatalog()
+  let teammate = try #require(catalog.drivers.first { $0.id == "russell" })
+  let historySessions = [
+    historicalSession(
+      round: 1,
+      kind: .race,
+      entries: [
+        SessionResultEntry(
+          position: 1,
+          driverID: driver.id,
+          teamID: team.id,
+          points: 25
+        ),
+        SessionResultEntry(
+          position: 3,
+          driverID: teammate.id,
+          teamID: team.id,
+          points: 15
+        ),
+      ]
+    ),
+    historicalSession(
+      round: 1,
+      kind: .sprint,
+      entries: [
+        SessionResultEntry(
+          position: 2,
+          driverID: driver.id,
+          teamID: team.id,
+          points: 7
+        )
+      ]
+    ),
+    historicalSession(
+      round: 1,
+      kind: .qualifying,
+      entries: [
+        SessionResultEntry(position: 1, driverID: driver.id, teamID: team.id)
+      ]
+    ),
+    historicalSession(
+      round: 2,
+      kind: .race,
+      entries: [
+        SessionResultEntry(
+          position: 3,
+          driverID: driver.id,
+          teamID: team.id,
+          points: 15
+        )
+      ]
+    ),
+  ]
+  let updatedAt = Date(timeIntervalSince1970: 800)
+  let driverHistory = SeasonHistory(
+    season: 2026,
+    subject: .driver(driver.id),
+    sessions: historySessions,
+    updatedAt: updatedAt
+  )
+  let teamHistory = SeasonHistory(
+    season: 2026,
+    subject: .team(team.id),
+    sessions: historySessions,
+    updatedAt: updatedAt
+  )
+  let repository = FeatureRepository(
+    driverStandings: [
+      DriverStanding(position: 1, driverID: driver.id, teamID: team.id, points: 47, wins: 1),
+      DriverStanding(position: 4, driverID: teammate.id, teamID: team.id, points: 15, wins: 0),
+    ],
+    teamStandings: [
+      TeamStanding(position: 1, teamID: team.id, points: 62, wins: 1)
+    ],
+    histories: [.driver(driver.id): driverHistory, .team(team.id): teamHistory]
+  )
+
+  let driverViewModel = DriverProfileViewModel(
+    driverID: driver.id,
+    catalog: catalog,
+    repository: repository
+  )
+  await driverViewModel.load()
+  #expect(driverViewModel.overviewState.content?.standing?.position == 1)
+  #expect(driverViewModel.historyState.content?.podiums == 2)
+  #expect(driverViewModel.historyState.content?.poles == 1)
+  #expect(driverViewModel.historyState.content?.pointsByRound.map(\.points) == [32, 15])
+  #expect(driverViewModel.historyState.content?.recentResults.first?.round == 2)
+
+  let teamViewModel = TeamProfileViewModel(
+    teamID: team.id,
+    catalog: catalog,
+    repository: repository
+  )
+  await teamViewModel.load()
+  #expect(teamViewModel.overviewState.content?.drivers.count == 2)
+  #expect(teamViewModel.overviewState.content?.drivers.first { $0.id == driver.id }?.points == 47)
+  #expect(teamViewModel.historyState.content?.poles == 1)
+  #expect(teamViewModel.historyState.content?.pointsByRound.first?.points == 47)
+}
+
 private actor FeatureRepository: ApexDataRepository {
   let scheduleValue: [GrandPrix]
   let sessionsValue: [RaceSession]
   let driverStandingsValue: [DriverStanding]
   let teamStandingsValue: [TeamStanding]
   let error: DataClientError?
+  let histories: [SeasonHistorySubject: SeasonHistory]
+  let results: [String: SessionResult]
 
   init(
     schedule: [GrandPrix] = [],
     sessions: [RaceSession] = [],
     driverStandings: [DriverStanding] = [],
     teamStandings: [TeamStanding] = [],
+    histories: [SeasonHistorySubject: SeasonHistory] = [:],
+    results: [String: SessionResult] = [:],
     error: DataClientError? = nil
   ) {
     self.scheduleValue = schedule
     self.sessionsValue = sessions
     self.driverStandingsValue = driverStandings
     self.teamStandingsValue = teamStandings
+    self.histories = histories
+    self.results = results
     self.error = error
   }
 
@@ -182,7 +347,7 @@ private actor FeatureRepository: ApexDataRepository {
 
   func result(sessionID: String, policy: LoadPolicy) throws -> SessionResult? {
     if let error { throw error }
-    return nil
+    return results[sessionID]
   }
 
   func driverStandings(season: Int, policy: LoadPolicy) throws -> [DriverStanding] {
@@ -194,6 +359,83 @@ private actor FeatureRepository: ApexDataRepository {
     if let error { throw error }
     return teamStandingsValue
   }
+
+  func seasonHistory(
+    season: Int,
+    subject: SeasonHistorySubject,
+    policy: LoadPolicy
+  ) throws -> SeasonHistory {
+    if let error { throw error }
+    return histories[subject]
+      ?? SeasonHistory(
+        season: season,
+        subject: subject,
+        sessions: [],
+        updatedAt: Date(timeIntervalSince1970: 0)
+      )
+  }
+}
+
+private func profileCatalog() -> (SeasonResourceCatalog, Driver, Team) {
+  let team = Team(
+    id: "mercedes",
+    name: "Mercedes",
+    localizedName: "梅赛德斯",
+    nationality: "German",
+    primaryColor: "#00A19B",
+    onPrimaryColor: "#00100F"
+  )
+  let driver = Driver(
+    id: "antonelli",
+    number: 12,
+    code: "ANT",
+    name: "Andrea Kimi Antonelli",
+    localizedName: "安德烈亚·基米·安东内利",
+    teamID: team.id,
+    nationality: "Italian"
+  )
+  let teammate = Driver(
+    id: "russell",
+    number: 63,
+    code: "RUS",
+    name: "George Russell",
+    localizedName: "乔治·拉塞尔",
+    teamID: team.id,
+    nationality: "British"
+  )
+  return (
+    SeasonResourceCatalog(
+      season: 2026,
+      grandPrix: [
+        grandPrix(round: 1, startsAt: 100, endsAt: 200),
+        grandPrix(round: 2, startsAt: 300, endsAt: 400),
+      ],
+      drivers: [driver, teammate],
+      teams: [team]
+    ),
+    driver,
+    team
+  )
+}
+
+private func historicalSession(
+  round: Int,
+  kind: SessionKind,
+  entries: [SessionResultEntry]
+) -> SeasonSessionResult {
+  let grandPrixID = round < 10 ? "2026-0\(round)" : "2026-\(round)"
+  let sessionID = "\(grandPrixID)-\(kind.rawValue)"
+  return SeasonSessionResult(
+    grandPrixID: grandPrixID,
+    round: round,
+    localizedGrandPrixName: "第\(round)站大奖赛",
+    kind: kind,
+    result: SessionResult(
+      sessionID: sessionID,
+      entries: entries,
+      updatedAt: Date(timeIntervalSince1970: TimeInterval(round * 100))
+    )
+  )
 }
 
 private func grandPrix(round: Int, startsAt: TimeInterval, endsAt: TimeInterval) -> GrandPrix {
