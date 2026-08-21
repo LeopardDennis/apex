@@ -308,6 +308,86 @@ func profileViewModelsDerivePodiumsPolesRoundPointsAndRoster() async throws {
   #expect(teamViewModel.historyState.content?.pointsByRound.first?.points == 47)
 }
 
+@MainActor
+@Test
+func homeEnvironmentBuildsCountdownLeadersAndWidgetSnapshot() async throws {
+  let (catalog, driver, team) = profileCatalog()
+  let now = Date(timeIntervalSince1970: 50)
+  let firstGrandPrix = try #require(catalog.grandPrix.first)
+  let practice = session(
+    grandPrixID: firstGrandPrix.id,
+    kind: .practice1,
+    startsAt: 110,
+    endsAt: 170
+  )
+  let repository = FeatureRepository(
+    schedule: catalog.grandPrix,
+    sessions: [practice],
+    driverStandings: [
+      DriverStanding(
+        position: 1,
+        driverID: driver.id,
+        teamID: team.id,
+        points: 25,
+        wins: 1
+      )
+    ],
+    teamStandings: [
+      TeamStanding(position: 1, teamID: team.id, points: 43, wins: 1)
+    ]
+  )
+  let widgetStore = MemoryWidgetSnapshotStore()
+  let environment = AppEnvironment(
+    catalog: catalog,
+    repository: repository,
+    widgetSnapshotStore: widgetStore,
+    clock: FixedFeatureClock(now)
+  )
+
+  await environment.homeViewModel.load()
+
+  let content = try #require(environment.homeViewModel.state.content)
+  #expect(content.featuredGrandPrix?.id == firstGrandPrix.id)
+  #expect(content.featuredGrandPrixState == .upcoming)
+  #expect(content.featuredSession?.kind == .practice1)
+  #expect(content.countdown == Countdown(days: 0, hours: 0, minutes: 1))
+  #expect(content.followingGrandPrix.map(\.round) == [2])
+  #expect(content.driverLeader?.localizedDriverName == driver.localizedName)
+  #expect(content.driverLeader?.teamColor == team.primaryColor)
+  #expect(content.teamLeader?.localizedTeamName == team.localizedName)
+  #expect(content.issues.isEmpty)
+  #expect(try await widgetStore.snapshot() == content.widgetSnapshot)
+  #expect(environment.homeViewModel === environment.homeViewModel)
+}
+
+@MainActor
+@Test
+func homeKeepsScheduleWhenSupplementalDataFails() async throws {
+  let (catalog, _, _) = profileCatalog()
+  let repository = FeatureRepository(
+    schedule: catalog.grandPrix,
+    sessionsError: .offline,
+    driverStandingsError: .timeout,
+    teamStandingsError: .rateLimited(retryAfter: 30)
+  )
+  let viewModel = HomeViewModel(
+    catalog: catalog,
+    repository: repository,
+    widgetSnapshotStore: MemoryWidgetSnapshotStore(),
+    clock: FixedFeatureClock(Date(timeIntervalSince1970: 50))
+  )
+
+  await viewModel.load()
+
+  let content = try #require(viewModel.state.content)
+  #expect(content.featuredGrandPrix?.round == 1)
+  #expect(content.featuredSession == nil)
+  #expect(content.driverLeader == nil)
+  #expect(content.teamLeader == nil)
+  #expect(Set(content.issues.map(\.section)) == [.sessions, .driverStandings, .teamStandings])
+  #expect(viewModel.state.failure == nil)
+}
+
 private actor FeatureRepository: ApexDataRepository {
   let scheduleValue: [GrandPrix]
   let sessionsValue: [RaceSession]
@@ -316,6 +396,9 @@ private actor FeatureRepository: ApexDataRepository {
   let error: DataClientError?
   let histories: [SeasonHistorySubject: SeasonHistory]
   let results: [String: SessionResult]
+  let sessionsError: DataClientError?
+  let driverStandingsError: DataClientError?
+  let teamStandingsError: DataClientError?
 
   init(
     schedule: [GrandPrix] = [],
@@ -324,6 +407,9 @@ private actor FeatureRepository: ApexDataRepository {
     teamStandings: [TeamStanding] = [],
     histories: [SeasonHistorySubject: SeasonHistory] = [:],
     results: [String: SessionResult] = [:],
+    sessionsError: DataClientError? = nil,
+    driverStandingsError: DataClientError? = nil,
+    teamStandingsError: DataClientError? = nil,
     error: DataClientError? = nil
   ) {
     self.scheduleValue = schedule
@@ -332,6 +418,9 @@ private actor FeatureRepository: ApexDataRepository {
     self.teamStandingsValue = teamStandings
     self.histories = histories
     self.results = results
+    self.sessionsError = sessionsError
+    self.driverStandingsError = driverStandingsError
+    self.teamStandingsError = teamStandingsError
     self.error = error
   }
 
@@ -342,6 +431,7 @@ private actor FeatureRepository: ApexDataRepository {
 
   func sessions(grandPrixID: String, policy: LoadPolicy) throws -> [RaceSession] {
     if let error { throw error }
+    if let sessionsError { throw sessionsError }
     return sessionsValue
   }
 
@@ -352,11 +442,13 @@ private actor FeatureRepository: ApexDataRepository {
 
   func driverStandings(season: Int, policy: LoadPolicy) throws -> [DriverStanding] {
     if let error { throw error }
+    if let driverStandingsError { throw driverStandingsError }
     return driverStandingsValue
   }
 
   func teamStandings(season: Int, policy: LoadPolicy) throws -> [TeamStanding] {
     if let error { throw error }
+    if let teamStandingsError { throw teamStandingsError }
     return teamStandingsValue
   }
 

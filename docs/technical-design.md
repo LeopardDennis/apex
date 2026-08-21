@@ -154,7 +154,6 @@ Apex/
 ├── Apex.xcodeproj
 ├── App/
 │   ├── ApexApp.swift
-│   ├── AppEnvironment.swift
 │   └── Features/
 │       ├── Home/
 │       ├── Calendar/
@@ -173,6 +172,8 @@ Apex/
 │   ├── Sources/ApexDomain/
 │   ├── Sources/ApexData/
 │   ├── Sources/ApexResources/
+│   ├── Sources/ApexFeatures/
+│   │   └── AppEnvironment.swift
 │   └── Tests/
 └── Resources/
     ├── Localization/
@@ -194,12 +195,14 @@ Apex/
 
 Feature View 不直接访问 URLSession 或 SwiftData，只依赖 Repository 协议。
 
+`ApexFeatures.AppEnvironment` 是平台无关的组合根，持有同一份资源目录、离线 Repository、Widget 快照存储与时钟，并负责创建各页面 ViewModel。Xcode App Target 只负责从 Bundle 解码资源、提供系统目录以及把 ViewModel 绑定到 SwiftUI。
+
 ## 5. 分层与数据流
 
 ```text
 SwiftUI Feature
     ↓
-Feature Store / View Model (@Observable, @MainActor)
+Feature Store / View Model (ObservableObject, @MainActor)
     ↓
 Repository Protocol
     ├── Remote Provider (Jolpica / OpenF1)
@@ -473,6 +476,7 @@ UI 映射：
 - 已完成 `ApexFeatures` 平台无关骨架：赛历、大奖赛详情和车手/车队积分榜的 `ObservableObject` ViewModel、载入/刷新/错误状态、中文实体解析和 iPad 稳定选择状态。
 - 已完成结果与资料 Feature：环节结果状态、中文结果行、车手/车队资料概要、整季历史、逐轮积分、领奖台/杆位和近期表现推导。
 - 已完成资料历史数据链路：按车手或车队并发读取三份 Jolpica 赛季历史，合并为可离线持久化的 `SeasonHistory`；每个资料对象固定三次请求，不按比赛逐轮请求。
+- 已完成首页 Feature 与组合根：下一场/下一环节、倒计时、中文积分领跑者、局部失败降级、Widget 快照同步，以及文件缓存版本的 `AppEnvironment`。
 - SwiftData `@Model` 适配器已放在 `XcodeSupport/ApexSwiftData`，待完整 Xcode 环境编译验证后加入 App Target。
 - 待完整 Xcode 环境完成：App/Widget Target、把 SwiftUI 页面绑定到现有 ViewModel、SwiftData 内存容器测试和 WidgetKit Timeline。
 

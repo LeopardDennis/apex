@@ -7,7 +7,7 @@
 - `ApexDomain`：大奖赛、环节、车手、车队、赛果、积分榜、赛道和 Widget 快照领域模型，以及下一场比赛、下一环节和倒计时计算。
 - `ApexResources`：解码并校验仓库中的赛历、中文名称、车队主题色和赛道 JSON。
 - `ApexData`：Jolpica/OpenF1 Endpoint、网络客户端、原始响应缓存、DTO/领域映射和统一 Repository。
-- `ApexFeatures`：赛历、大奖赛详情、环节结果、积分榜和车手/车队资料的可观察 ViewModel、页面状态、中文错误文案与 iPad 稳定选择状态。
+- `ApexFeatures`：首页、赛历、大奖赛详情、环节结果、积分榜和车手/车队资料的可观察 ViewModel、页面状态、中文错误文案、iPad 稳定选择状态与 AppEnvironment。
 
 四个模块均不依赖 SwiftUI、SwiftData 或 WidgetKit，可以由 App、Widget 和测试共同使用。`ApexFeatures` 使用系统 `Combine.ObservableObject`，之后可直接由 SwiftUI 视图观察。
 
@@ -41,6 +41,7 @@ swift test
 - `FileApexPersistenceStore` 是当前可验证的持久化实现；完整 Xcode App Target 可换用 `XcodeSupport/ApexSwiftData` 中的 SwiftData 适配器，Feature 接口不变。
 - 本地 `SeasonResourceCatalog` 始终负责中文名称、车队主题色和赛道资源，远程响应不能覆盖这些展示资料。
 - `WidgetSnapshotBuilder` 生成下一场比赛、周末日程、车手领跑者和车队领跑者摘要，`FileWidgetSnapshotStore` 将版本化 JSON 原子写入 App Group。
+- `AppEnvironment.fileBacked(...)` 统一组装文件缓存、远程 Repository、离线 Repository 和 Widget 快照存储；完整 Xcode App 只需解码 Bundle 资源并提供 Application Support 与 App Group 目录。
 
 当前 Intel Mac 的 Command Line Tools 可以完成 `swift build`，但缺少 `Testing` 模块。完整 `swift test` 需要在安装完整 Xcode 的 Mac 上运行。
 
@@ -50,5 +51,6 @@ swift test
 - 用户主动检查更新或 App 发起后台刷新时调用 `refresh()`，已有内容会保留，状态切换为 `isRefreshing`。
 - `FeatureState` 区分首次载入、保留内容的刷新、失败和最后更新时间；失败不会清空已经展示的内容。
 - `CalendarViewModel`、`StandingsViewModel` 保存稳定选中 ID，供 iPad `NavigationSplitView` 在列表刷新和窗口尺寸变化后维持右侧详情。
+- `HomeViewModel` 并发载入赛历与积分榜，再载入当前/下一场的环节；环节、积分或 Widget 同步失败只形成局部提示，不会清空可用的首页赛历和倒计时。
 - `SessionResultViewModel` 区分“未举行”“已取消”“结果待公布”和“已有结果”，并把赛果映射为中文车手/车队名和官方车队主题色。
 - `DriverProfileViewModel`、`TeamProfileViewModel` 分别维护概要与历史状态，从积分榜和整季结果推导胜场、领奖台、杆位、逐轮积分及近期表现；缺失数据保持缺失，不制造占位统计。

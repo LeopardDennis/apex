@@ -24,6 +24,26 @@ public protocol WidgetSnapshotStore: Sendable {
   func removeSnapshot() async throws
 }
 
+public actor MemoryWidgetSnapshotStore: WidgetSnapshotStore {
+  private var storedSnapshot: ApexWidgetSnapshot?
+
+  public init(snapshot: ApexWidgetSnapshot? = nil) {
+    self.storedSnapshot = snapshot
+  }
+
+  public func snapshot() -> ApexWidgetSnapshot? {
+    storedSnapshot
+  }
+
+  public func saveSnapshot(_ snapshot: ApexWidgetSnapshot) {
+    storedSnapshot = snapshot
+  }
+
+  public func removeSnapshot() {
+    storedSnapshot = nil
+  }
+}
+
 public actor FileWidgetSnapshotStore: WidgetSnapshotStore {
   public static let fileName = "apex-widget-snapshot-v1.json"
   public static let supportedSchemaVersion = 1
