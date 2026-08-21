@@ -1,0 +1,22 @@
+[
+  {
+    "driver_number": 12,
+    "position": 1,
+    "number_of_laps": 58,
+    "duration": 5482.456,
+    "gap_to_leader": 0,
+    "dnf": false,
+    "dns": false,
+    "dsq": false
+  },
+  {
+    "driver_number": 16,
+    "position": 2,
+    "number_of_laps": 58,
+    "duration": "5486.657",
+    "gap_to_leader": "4.201",
+    "dnf": false,
+    "dns": false,
+    "dsq": false
+  }
+]

@@ -6,7 +6,7 @@
 
 - `ApexDomain`：大奖赛、环节、车手、车队、赛果、积分榜和赛道领域模型，以及下一场比赛、下一环节和倒计时计算。
 - `ApexResources`：解码并校验仓库中的赛历、中文名称、车队主题色和赛道 JSON。
-- `ApexData`：Jolpica/OpenF1 Endpoint、统一请求头和 Repository 协议。网络客户端与缓存实现在后续阶段补充。
+- `ApexData`：Jolpica/OpenF1 Endpoint、网络客户端、原始响应缓存、DTO/领域映射和统一 Repository。
 
 三个模块均不依赖 SwiftUI、SwiftData 或 WidgetKit，可以由 App、Widget 和测试共同使用。
 
@@ -21,3 +21,20 @@ swift test
 ```
 
 测试会读取仓库中真实的 2026 种子数据与全部赛道资源，避免测试 Fixture 与实际发布资源脱节。
+
+`ApexDataTests/Fixtures` 另外保存最小化的 Jolpica 与 OpenF1 固定响应，用来验证：
+
+- 远程车手/车队 ID 与本地中文资料、官方主题色的稳定合并。
+- OpenF1 meeting、session 和历史环节结果解析。
+- 同 endpoint 并发请求合并。
+- 网络失败时回退过期缓存。
+
+## ApexData 行为
+
+- `APIClient` 对相同缓存键只发起一次并发请求，并通过 `IntervalRequestLimiter` 将匿名请求控制在每秒 4 次以内。
+- `MemoryHTTPResponseCache` 适合测试和短期会话；`FileHTTPResponseCache` 保存原始 JSON，供 App 离线启动使用。
+- `ApexRepository` 以 OpenF1 补全周末与练习赛/Sprint Qualifying，以 Jolpica 提供正赛、冲刺、排位和积分榜。
+- 本地 `SeasonResourceCatalog` 始终负责中文名称、车队主题色和赛道资源，远程响应不能覆盖这些展示资料。
+- Widget 不直接使用这些网络接口；后续由 App 写入 App Group 快照。
+
+当前 Intel Mac 的 Command Line Tools 可以完成 `swift build`，但缺少 `Testing` 模块。完整 `swift test` 需要在安装完整 Xcode 的 Mac 上运行。

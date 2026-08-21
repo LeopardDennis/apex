@@ -16,9 +16,13 @@ let package = Package(
   targets: [
     .target(name: "ApexDomain"),
     .target(name: "ApexResources", dependencies: ["ApexDomain"]),
-    .target(name: "ApexData", dependencies: ["ApexDomain"]),
+    .target(name: "ApexData", dependencies: ["ApexDomain", "ApexResources"]),
     .testTarget(name: "ApexDomainTests", dependencies: ["ApexDomain"]),
     .testTarget(name: "ApexResourcesTests", dependencies: ["ApexResources"]),
-    .testTarget(name: "ApexDataTests", dependencies: ["ApexData"]),
+    .testTarget(
+      name: "ApexDataTests",
+      dependencies: ["ApexData", "ApexResources"],
+      resources: [.copy("Fixtures")]
+    ),
   ]
 )

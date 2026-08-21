@@ -448,6 +448,18 @@ UI 映射：
 8. 生成 Widget 快照并完成四个 Widget。
 9. 做 iPhone/iPad/分屏和离线验收。
 
+### 15.1 当前实现状态
+
+截至 ApexCore 数据层里程碑：
+
+- 已完成步骤 2：领域模型、赛历状态计算和本地资源解析。
+- 已完成步骤 3：Jolpica Endpoint、DTO、结果/积分榜映射与固定 Fixture。
+- 已完成步骤 4：OpenF1 meeting、session、driver 与 session result 映射。
+- 已完成步骤 5 的非数据库部分：原始响应内存/文件缓存、TTL、请求合并、请求节流、429/离线/超时错误分类和过期缓存回退。
+- 待完整 Xcode 环境完成：SwiftData 记录、App Group Widget 快照、App/Widget Target 和 SwiftUI 页面。
+
+Intel Mac 已通过 Package 编译、资源校验与独立 JSON 冒烟验证；由于当前 Command Line Tools 不包含 `Testing` 模块，测试套件将在 M2 Max 的完整 Xcode 环境执行。
+
 ## 16. 参考资料
 
 - [Jolpica F1 文档](https://github.com/jolpica/jolpica-f1/blob/main/docs/README.md)

@@ -1,0 +1,60 @@
+{
+  "MRData": {
+    "RaceTable": {
+      "season": "2026",
+      "Races": [
+        {
+          "season": "2026",
+          "round": "1",
+          "Results": [
+            {
+              "position": "1",
+              "positionText": "1",
+              "points": "25",
+              "Driver": {
+                "driverId": "antonelli",
+                "permanentNumber": "12",
+                "code": "ANT",
+                "givenName": "Andrea Kimi",
+                "familyName": "Antonelli",
+                "nationality": "Italian"
+              },
+              "Constructor": {
+                "constructorId": "mercedes",
+                "name": "Mercedes",
+                "nationality": "German"
+              },
+              "grid": "1",
+              "laps": "58",
+              "status": "Finished",
+              "Time": { "time": "1:31:22.456" },
+              "FastestLap": { "rank": "1", "lap": "54", "Time": { "time": "1:19.012" } }
+            },
+            {
+              "position": "2",
+              "positionText": "2",
+              "points": "18",
+              "Driver": {
+                "driverId": "leclerc",
+                "permanentNumber": "16",
+                "code": "LEC",
+                "givenName": "Charles",
+                "familyName": "Leclerc",
+                "nationality": "Monegasque"
+              },
+              "Constructor": {
+                "constructorId": "ferrari",
+                "name": "Ferrari",
+                "nationality": "Italian"
+              },
+              "grid": "3",
+              "laps": "58",
+              "status": "Finished",
+              "Time": { "time": "+4.201" }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

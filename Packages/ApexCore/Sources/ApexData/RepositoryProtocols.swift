@@ -1,7 +1,7 @@
 import ApexDomain
 import Foundation
 
-public enum LoadPolicy: Sendable {
+public enum LoadPolicy: Equatable, Sendable {
   case cacheFirst
   case reloadIgnoringCache
 }

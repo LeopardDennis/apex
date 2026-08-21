@@ -1,0 +1,15 @@
+[
+  {
+    "meeting_key": 1279,
+    "meeting_name": "Australian Grand Prix",
+    "meeting_official_name": "Formula 1 Australian Grand Prix 2026",
+    "location": "Melbourne",
+    "country_code": "AUS",
+    "country_name": "Australia",
+    "circuit_key": 10,
+    "circuit_short_name": "Melbourne",
+    "date_start": "2026-03-06T01:30:00+00:00",
+    "date_end": "2026-03-08T06:00:00+00:00",
+    "year": 2026
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "MRData": {
+    "StandingsTable": {
+      "season": "2026",
+      "StandingsLists": [
+        {
+          "season": "2026",
+          "round": "1",
+          "DriverStandings": [
+            {
+              "position": "1",
+              "points": "25",
+              "wins": "1",
+              "Driver": {
+                "driverId": "antonelli",
+                "permanentNumber": "12",
+                "code": "ANT",
+                "givenName": "Andrea Kimi",
+                "familyName": "Antonelli"
+              },
+              "Constructors": [
+                { "constructorId": "mercedes", "name": "Mercedes" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
