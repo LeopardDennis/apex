@@ -15,7 +15,7 @@ public struct DataSourceConfiguration: Equatable, Sendable {
   }
 }
 
-public actor ApexRepository: ScheduleRepository, ResultsRepository, StandingsRepository {
+public actor ApexRepository: ApexDataRepository {
   private enum CacheDuration {
     static let schedule: TimeInterval = 12 * 60 * 60
     static let standings: TimeInterval = 60 * 60

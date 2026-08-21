@@ -258,13 +258,18 @@ SessionState
 
 ### 7.1 SwiftData
 
-主 App 的 SwiftData 保存：
+主 App 首版使用版本化 `ApexSnapshotRecord` 保存领域快照：
 
-- 赛季、大奖赛和环节
-- 车手、车队与积分榜
-- 已结束环节结果
-- 外部 ID 映射
-- 原始响应元数据与最后更新时间
+```text
+ApexSnapshotRecord
+├── key            schedule / sessions / result / standings
+├── schemaVersion
+├── season
+├── updatedAt
+└── payload        Codable 领域模型
+```
+
+`OfflineFirstApexRepository` 只依赖 `ApexPersistenceStore` 协议；测试使用内存实现，当前 Intel 环境使用持久化 JSON 实现，完整 Xcode App Target 使用 `XcodeSupport/ApexSwiftData` 适配器。后续若需要按单个实体查询，可以迁移为完全规范化 SwiftData 表而不改变 Feature 接口。
 
 不保存已经格式化的日期文字；只保存绝对 `Date` 和必要的原始时区信息。
 
@@ -274,7 +279,7 @@ SessionState
 
 ### 7.3 Widget 快照
 
-Widget 不直接打开完整 SwiftData 数据库，也不主动请求网络。主 App 把紧凑 `WidgetSnapshot.json` 原子写入 App Group：
+Widget 不直接打开完整 SwiftData 数据库，也不主动请求网络。主 App 通过 `FileWidgetSnapshotStore` 把紧凑的 `apex-widget-snapshot-v1.json` 原子写入 App Group：
 
 ```text
 WidgetSnapshot
@@ -282,9 +287,10 @@ WidgetSnapshot
 ├── nextGrandPrix
 ├── sessions
 ├── driverLeader
-├── teamLeader
-└── sourceUpdatedAt
+└── teamLeader
 ```
+
+快照只保存 Widget 渲染需要的绝对时间、中文名称、赛道资源 ID、积分摘要和车队主题色，不复制完整赛果。Widget 发现不支持的 schemaVersion 时显示占位内容，不能尝试猜测字段。
 
 建议 Bundle ID：`com.leoparddennis.apex`
 
@@ -455,8 +461,10 @@ UI 映射：
 - 已完成步骤 2：领域模型、赛历状态计算和本地资源解析。
 - 已完成步骤 3：Jolpica Endpoint、DTO、结果/积分榜映射与固定 Fixture。
 - 已完成步骤 4：OpenF1 meeting、session、driver 与 session result 映射。
-- 已完成步骤 5 的非数据库部分：原始响应内存/文件缓存、TTL、请求合并、请求节流、429/离线/超时错误分类和过期缓存回退。
-- 待完整 Xcode 环境完成：SwiftData 记录、App Group Widget 快照、App/Widget Target 和 SwiftUI 页面。
+- 已完成步骤 5 的平台无关部分：原始响应缓存、领域快照存储协议、持久化 JSON、离线优先 Repository、TTL、请求合并、节流和错误回退。
+- 已完成 Widget 数据基础：版本化领域模型、中文/主题色快照生成器和 App Group 原子文件存储。
+- SwiftData `@Model` 适配器已放在 `XcodeSupport/ApexSwiftData`，待完整 Xcode 环境编译验证后加入 App Target。
+- 待完整 Xcode 环境完成：App/Widget Target、SwiftUI 页面、SwiftData 内存容器测试和 WidgetKit Timeline。
 
 Intel Mac 已通过 Package 编译、资源校验与独立 JSON 冒烟验证；由于当前 Command Line Tools 不包含 `Testing` 模块，测试套件将在 M2 Max 的完整 Xcode 环境执行。
 
